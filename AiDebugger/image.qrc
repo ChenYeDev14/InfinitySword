@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/attack.png</file>
+        <file>images/base1.png</file>
+        <file>images/base2.png</file>
+        <file>images/bg1.jpg</file>
+        <file>images/bg2.jpg</file>
+        <file>images/birthPoint1.png</file>
+        <file>images/birthPoint2.png</file>
+        <file>images/fastwalk.png</file>
+        <file>images/fastwalk1.png</file>
+        <file>images/hero1.png</file>
+        <file>images/jian.png</file>
+        <file>images/missile.png</file>
+        <file>images/missile1.png</file>
+        <file>images/missilearea.png</file>
+        <file>images/nc.png</file>
+        <file>images/nc1.png</file>
+        <file>images/slow.png</file>
+        <file>images/stuck.png</file>
+        <file>images/stun.png</file>
+        <file>images/stun1.png</file>
+        <file>images/logo.png</file>
+        <file>images/background.png</file>
+        <file>images/hero1s.png</file>
+        <file>images/hero2.png</file>
+        <file>images/hero2s.png</file>
+    </qresource>
+</RCC>

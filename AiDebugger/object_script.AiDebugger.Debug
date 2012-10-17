@@ -1,0 +1,16 @@
+INPUT(
+./debug\main.o
+./debug\widget.o
+./debug\NormalBattle.o
+./debug\replayfile.o
+./debug\Logic.o
+./debug\replaydevice.o
+./debug\herodisplay.o
+./debug\maindevice.o
+./debug\moc_widget.o
+./debug\moc_NormalBattle.o
+./debug\moc_replaydevice.o
+./debug\moc_herodisplay.o
+./debug\moc_maindevice.o
+./debug\qrc_image.o
+);

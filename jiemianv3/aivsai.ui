@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AIvsAI</class>
+ <widget class="QWidget" name="AIvsAI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1024</width>
+    <height>768</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="QProgressBar" name="progressBar">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>590</y>
+     <width>501</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="value">
+    <number>24</number>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="LineEditAI2">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>350</y>
+     <width>300</width>
+     <height>33</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Map">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>430</y>
+     <width>141</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>载入地图</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="LineEditAI1">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>270</y>
+     <width>300</width>
+     <height>33</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="LineEditMap">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>430</y>
+     <width>300</width>
+     <height>33</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="AI1">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>270</y>
+     <width>141</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>载入AI1</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="AI2">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>350</y>
+     <width>141</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="sizePolicy">
+    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+     <horstretch>0</horstretch>
+     <verstretch>0</verstretch>
+    </sizepolicy>
+   </property>
+   <property name="text">
+    <string>载入AI2</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Start">
+   <property name="geometry">
+    <rect>
+     <x>791</x>
+     <y>563</y>
+     <width>141</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>开始游戏</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="ReturnPre">
+   <property name="geometry">
+    <rect>
+     <x>791</x>
+     <y>610</y>
+     <width>141</width>
+     <height>33</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>返回上级</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

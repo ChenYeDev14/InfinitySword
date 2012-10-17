@@ -1,0 +1,16 @@
+INPUT(
+./release\main.o
+./release\widget.o
+./release\NormalBattle.o
+./release\replayfile.o
+./release\Logic.o
+./release\replaydevice.o
+./release\herodisplay.o
+./release\maindevice.o
+./release\moc_widget.o
+./release\moc_NormalBattle.o
+./release\moc_replaydevice.o
+./release\moc_herodisplay.o
+./release\moc_maindevice.o
+./release\qrc_image.o
+);
