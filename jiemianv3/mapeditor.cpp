@@ -537,7 +537,6 @@ Ui::MapEditor* MapEditor::returnUi()
 
 void MapEditor::SetMapInfo()
 {
-    if ( couldSave() ){
         Coordinate center;
         center.x = base1->x()+(double)base1->width()/2.0;
         center.y = base1->y()+(double)base1->height()/2.0;
@@ -580,16 +579,6 @@ void MapEditor::SetMapInfo()
         out.write((char*)&mInfo, sizeof(mInfo));
         out.close();
         isSaved = true;
-    }
-    else{
-        QMessageBox box;
-        box.setWindowTitle(tr("错误！"));
-        box.setIcon(QMessageBox::Warning);
-        box.setText(tr("地图元素不足！"));
-        box.setStandardButtons(QMessageBox::Ok);
-        box.exec();
-        return;
-    }
 }
 
 void MapEditor::OpenFile()
@@ -679,6 +668,7 @@ Coordinate MapEditor::DeviceToLogic(Coordinate deviceCo) //陈晔done 10/15
 
 void MapEditor::Save()
 {
+    if ( couldSave() ){
     if ( isSaved == false )
         curFile = QFileDialog::getSaveFileName(this, tr("Save"), "MapFiles/", tr("FILES (*.map)"));
 
@@ -687,6 +677,16 @@ void MapEditor::Save()
     }
     else{
         curFile = tr("mapSample");
+    }
+    }
+    else{
+        QMessageBox box;
+        box.setWindowTitle(tr("错误！"));
+        box.setIcon(QMessageBox::Warning);
+        box.setText(tr("地图元素不足！"));
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
     }
 }
 
@@ -822,9 +822,20 @@ bool MapEditor::isSaveOrNot()//判断当前文件是否经过更改
 
 void MapEditor::on_pushButton_4_clicked()
 {
+    if ( couldSave() ){
     curFile = QFileDialog::getSaveFileName(this, tr("Save"), "MapFiles/", tr("FILES (*.map)"));
     if ( curFile != "")
         SetMapInfo();
     else
         curFile = tr("mapSample");
+    }
+    else{
+        QMessageBox box;
+        box.setWindowTitle(tr("错误！"));
+        box.setIcon(QMessageBox::Warning);
+        box.setText(tr("地图元素不足！"));
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
 }

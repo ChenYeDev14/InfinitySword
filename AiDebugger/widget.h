@@ -42,6 +42,10 @@ private slots:
 
     void on_horizontalSlider_3_valueChanged(int value);
 
+    void on_pushButton_show_round_minus_clicked();
+
+    void on_pushButton_show_round_plus_clicked();
+
 private:
     Ui::Widget *ui;
     DS14::NormalBattle *battle;

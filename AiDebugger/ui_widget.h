@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'widget.ui'
 **
-** Created: Wed Oct 17 02:05:26 2012
+** Created: Wed Oct 17 21:28:53 2012
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -61,6 +61,8 @@ public:
     QCheckBox *checkBox_auto;
     QLabel *label_8;
     QLabel *label_show_round;
+    QPushButton *pushButton_show_round_minus;
+    QPushButton *pushButton_show_round_plus;
 
     void setupUi(QWidget *Widget)
     {
@@ -171,7 +173,7 @@ public:
         label_7->setGeometry(QRect(83, 670, 111, 20));
         label_round = new QLabel(Widget);
         label_round->setObjectName(QString::fromUtf8("label_round"));
-        label_round->setGeometry(QRect(190, 670, 61, 21));
+        label_round->setGeometry(QRect(200, 670, 51, 21));
         pushButton_2 = new QPushButton(Widget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
         pushButton_2->setGeometry(QRect(20, 330, 75, 23));
@@ -182,13 +184,19 @@ public:
         horizontalSlider_3->setOrientation(Qt::Horizontal);
         checkBox_auto = new QCheckBox(Widget);
         checkBox_auto->setObjectName(QString::fromUtf8("checkBox_auto"));
-        checkBox_auto->setGeometry(QRect(210, 640, 51, 16));
+        checkBox_auto->setGeometry(QRect(190, 640, 51, 16));
         label_8 = new QLabel(Widget);
         label_8->setObjectName(QString::fromUtf8("label_8"));
         label_8->setGeometry(QRect(80, 640, 71, 16));
         label_show_round = new QLabel(Widget);
         label_show_round->setObjectName(QString::fromUtf8("label_show_round"));
-        label_show_round->setGeometry(QRect(140, 640, 71, 16));
+        label_show_round->setGeometry(QRect(140, 640, 51, 16));
+        pushButton_show_round_minus = new QPushButton(Widget);
+        pushButton_show_round_minus->setObjectName(QString::fromUtf8("pushButton_show_round_minus"));
+        pushButton_show_round_minus->setGeometry(QRect(237, 637, 21, 23));
+        pushButton_show_round_plus = new QPushButton(Widget);
+        pushButton_show_round_plus->setObjectName(QString::fromUtf8("pushButton_show_round_plus"));
+        pushButton_show_round_plus->setGeometry(QRect(1220, 637, 21, 23));
 
         retranslateUi(Widget);
 
@@ -216,6 +224,8 @@ public:
         checkBox_auto->setText(QApplication::translate("Widget", "\350\207\252\345\212\250", 0, QApplication::UnicodeUTF8));
         label_8->setText(QApplication::translate("Widget", "\345\233\236\346\224\276Round:", 0, QApplication::UnicodeUTF8));
         label_show_round->setText(QString());
+        pushButton_show_round_minus->setText(QApplication::translate("Widget", "<-", 0, QApplication::UnicodeUTF8));
+        pushButton_show_round_plus->setText(QApplication::translate("Widget", "->", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

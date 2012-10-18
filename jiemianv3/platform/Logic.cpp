@@ -559,6 +559,7 @@ namespace DS14
                         {
                             gameState.AI1gold-=UPDATE_STRENTH_GOLD;
                             gameState.AI1HeroInfo[i].heroTechTree.strenth++;
+
                         }
                         break;
                     }
@@ -579,6 +580,7 @@ namespace DS14
                             {
                                 if(gameState.AI1gold>=LEARN_FASTWALK_GOLD)
                                 {
+                                    gameState.AI1HeroInfo[i].fastWalkCD = 0; //≥¬Í add 10/17
                                     gameState.AI1gold-=LEARN_FASTWALK_GOLD;
                                     gameState.AI1HeroInfo[i].heroTechTree.fastWalkLevel++;
                                 }
@@ -602,6 +604,7 @@ namespace DS14
                             {
                                 if(gameState.AI1gold>=LEARN_STUN_GOLD)
                                 {
+                                    gameState.AI1HeroInfo[i].stunCD = 0; //≥¬Í add 10/17
                                     gameState.AI1gold-=LEARN_STUN_GOLD;
                                     gameState.AI1HeroInfo[i].heroTechTree.stunLevel++;
                                 }
@@ -676,6 +679,7 @@ namespace DS14
                             {
                                 if(gameState.AI2gold>=LEARN_FASTWALK_GOLD)
                                 {
+                                    gameState.AI2HeroInfo[i].fastWalkCD = 0; //≥¬Í add 10/17
                                     gameState.AI2gold-=LEARN_FASTWALK_GOLD;
                                     gameState.AI2HeroInfo[i].heroTechTree.fastWalkLevel++;
                                 }
@@ -699,6 +703,7 @@ namespace DS14
                             {
                                 if(gameState.AI2gold>=LEARN_STUN_GOLD)
                                 {
+                                    gameState.AI2HeroInfo[i].stunCD = 0; //≥¬Í add 10/17
                                     gameState.AI2gold-=LEARN_STUN_GOLD;
                                     gameState.AI2HeroInfo[i].heroTechTree.stunLevel++;
                                 }
@@ -950,6 +955,7 @@ namespace DS14
                 if(gameState.AI2HeroInfo[i].FastwalkForwardWait!=0)gameState.AI2HeroInfo[i].FastwalkForwardWait--;
             }
         }
+
     }
 
 	//”¢–€’Ω’˘º˘Ã§
@@ -1199,7 +1205,7 @@ namespace DS14
                 gameState.missileInfo[k].targetPoint=cmd1.target[i];
                 gameState.missileInfo[k].speed=MISSILE_ORIGIN_SPEED+MISSILE_SPEED_PER_AGILITY*hero.heroTechTree.agility;
                 gameState.missileInfo[k].radius=MISSILE_ORIGIN_RADIUS+MISSILE_RANGE_PER_STRENTH*hero.heroTechTree.strenth;
-                gameState.missileInfo[k].power=std::max(0.0,(double)MISSILE_ORIGIN_POWER+MISSILE_DAMAGE_PER_STENTH*hero.heroTechTree.strenth);//º∆À„…À∫¶
+                gameState.missileInfo[k].power=std::max(0.0,(double)MISSILE_ORIGIN_POWER+MISSILE_DAMAGE_PER_STRENTH*hero.heroTechTree.strenth);//º∆À„…À∫¶
                 gameState.missileInfo[k].Last=(int)(Dist/gameState.missileInfo[k].speed)+MISSILE_DELAY;     //º∆À„º∏ªÿ∫œ∫Û±¨’®
 
                 break;
@@ -1226,7 +1232,7 @@ namespace DS14
                 gameState.missileInfo[k].targetPoint=cmd2.target[i];
                 gameState.missileInfo[k].speed=MISSILE_ORIGIN_SPEED+MISSILE_SPEED_PER_AGILITY*hero.heroTechTree.agility;
                 gameState.missileInfo[k].radius=MISSILE_ORIGIN_RADIUS+MISSILE_RANGE_PER_STRENTH*hero.heroTechTree.strenth;
-                gameState.missileInfo[k].power=std::max(0.0,(double)MISSILE_ORIGIN_POWER+MISSILE_DAMAGE_PER_STENTH*hero.heroTechTree.strenth);//º∆À„…À∫¶
+                gameState.missileInfo[k].power=std::max(0.0,(double)MISSILE_ORIGIN_POWER+MISSILE_DAMAGE_PER_STRENTH*hero.heroTechTree.strenth);//º∆À„…À∫¶
                 gameState.missileInfo[k].Last=(int)(Dist/gameState.missileInfo[k].speed)+MISSILE_DELAY;     //º∆À„º∏ªÿ∫œ∫Û±¨’®
 
                 break;

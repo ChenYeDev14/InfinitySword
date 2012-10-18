@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'widget.h'
 **
-** Created: Wed Oct 17 02:05:43 2012
+** Created: Thu Oct 18 00:51:28 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Widget[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      16,   14, // methods
+      18,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -47,6 +47,8 @@ static const uint qt_meta_data_Widget[] = {
      281,  275,    7,    7, 0x08,
      321,    7,    7,    7, 0x08,
      347,  275,    7,    7, 0x08,
+     387,    7,    7,    7, 0x08,
+     428,    7,    7,    7, 0x08,
 
        0        // eod
 };
@@ -63,6 +65,8 @@ static const char qt_meta_stringdata_Widget[] = {
     "value\0on_horizontalSlider_2_valueChanged(int)\0"
     "on_pushButton_2_clicked()\0"
     "on_horizontalSlider_3_valueChanged(int)\0"
+    "on_pushButton_show_round_minus_clicked()\0"
+    "on_pushButton_show_round_plus_clicked()\0"
 };
 
 void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -87,6 +91,8 @@ void Widget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void
         case 13: _t->on_horizontalSlider_2_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 14: _t->on_pushButton_2_clicked(); break;
         case 15: _t->on_horizontalSlider_3_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 16: _t->on_pushButton_show_round_minus_clicked(); break;
+        case 17: _t->on_pushButton_show_round_plus_clicked(); break;
         default: ;
         }
     }
@@ -124,9 +130,9 @@ int Widget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 16)
+        if (_id < 18)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 16;
+        _id -= 18;
     }
     return _id;
 }

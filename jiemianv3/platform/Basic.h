@@ -10,7 +10,7 @@ This head file will send to the competitors.
 
 namespace DS14
 {
-    const int VERSION_BASIC = 103;
+    const int VERSION_BASIC = 104;
 
 	//Some basic information of the game that used widely.
 	const int MAX_ROADBLOCK_NUMBER = 50;
@@ -82,7 +82,7 @@ namespace DS14
 	const int HP_PER_STRENTH = 10;
     const double HP_RECOVERY_PER_STRENTH = 0.5;
     const int MISSILE_RANGE_PER_STRENTH = 3;
-    const double MISSILE_DAMAGE_PER_STENTH = 0.5;
+    const double MISSILE_DAMAGE_PER_STRENTH = 0.5;
 
 	const int MOVE_SPEED_PER_AGILITY = 1;
 	const int MISSILE_SPEED_PER_AGILITY = 30;

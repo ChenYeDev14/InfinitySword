@@ -13,6 +13,8 @@ Widget::Widget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::Widget)
 {
+    cur_round = 0;
+
     ui->setupUi(this);
     ui->pushButton->setText(tr("开始对战"));
     ui->comboBox->setEditable(false);
@@ -57,6 +59,7 @@ void Widget::on_pushButton_clicked()
     {
         debugside = ui->comboBox->currentIndex() + 1;
         ui->pushButton->setText(tr("暂停对战"));
+        ui->checkBox_auto->setCheckState(Qt::Checked);
         ui->horizontalSlider->setEnabled(false);
         ui->pushButton_2->setEnabled(true);
         if (debugside == 1)
@@ -194,8 +197,16 @@ void Widget::winner(int side)
 
 void Widget::on_horizontalSlider_sliderMoved(int position)
 {
-    if (position) battle->change_to_debug_mode();
-    else battle->change_to_run_mode();
+    if (position)
+    {
+        ui->pushButton_2->setEnabled(false);
+        battle->change_to_debug_mode();
+    }
+    else
+    {
+        ui->pushButton_2->setEnabled(true);
+        battle->change_to_run_mode();
+    }
 }
 
 void Widget::on_horizontalSlider_2_valueChanged(int value)
@@ -246,4 +257,15 @@ void Widget::on_horizontalSlider_3_valueChanged(int value)
     repWidget->setStatus(statusList[show_round]);
     repWidget->repaint();
     ui->label_show_round->setText(QString::number(show_round));
+}
+
+void Widget::on_pushButton_show_round_minus_clicked()
+{
+    if (ui->horizontalSlider_3->value() == 0) return;
+    ui->horizontalSlider_3->setValue(ui->horizontalSlider_3->value()-1);
+}
+
+void Widget::on_pushButton_show_round_plus_clicked()
+{
+    ui->horizontalSlider_3->setValue(ui->horizontalSlider_3->value()+1);
 }

@@ -163,10 +163,10 @@ void NormalBattle::StartDebugBattle()
    //处理初始化服务端。
     for (int i=0; i<2; i++)
     {
-        if (server[i] != NULL) delete server[i];
         server[i] = new QLocalServer;
         if (process[i] != NULL) delete process[i];
         process[i] = new QProcess;
+
     }
     QTime time = QTime::currentTime();
     QString listen_name[2] = {QString(time.toString("ss-mm")),
@@ -241,7 +241,8 @@ void NormalBattle::StartDebugBattle()
         for (int j=0; j<3; j++)
         {
             cmd[i].heroOrder[j] = walk;
-            cmd[i].target[j] = state.AI2HeroInfo[i].heroPosition;
+            if (i == 0) cmd[i].target[j] = state.AI1HeroInfo[j].heroPosition;
+            else cmd[i].target[j] = state.AI2HeroInfo[j].heroPosition;
             for (int k=0; k<MAX_UPDATE_NUMBER_PER_ROUND; k++) cmd[i].updateScience[j][k] = none;
         }
     }
@@ -325,7 +326,8 @@ void NormalBattle::StartDebugBattle()
                     for (int j=0; j<3; j++)
                     {
                         cmd[i].heroOrder[j] = walk;
-                        cmd[i].target[j] = state.AI2HeroInfo[i].heroPosition;
+                        if (i==0) cmd[i].target[j] = state.AI1HeroInfo[j].heroPosition;
+                        else cmd[i].target[j] = state.AI2HeroInfo[j].heroPosition;
                         for (int k=0; k<MAX_UPDATE_NUMBER_PER_ROUND; k++) cmd[i].updateScience[j][k] = none;
                     }
                 }
@@ -345,6 +347,13 @@ void NormalBattle::StartDebugBattle()
     process[!debug]->terminate();
     delete _logic;
     _logic = NULL;
+    for (int i=0; i<2; i++)
+    {
+        client[i]->close();
+        server[i]->close();
+        delete server[i];
+        server[i] = NULL;
+    }
     completed = true;
 }
 
@@ -676,9 +685,10 @@ void AiReadWriteThread::run()
         }
         else msleep(1);
     }
-    process->terminate();
-    server.close();
+
     client->close();
+    server.close();
+    process->terminate();
 }
 
 void AiReadWriteThread::waitForReadingCompeleted()

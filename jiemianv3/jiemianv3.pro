@@ -27,9 +27,9 @@ HEADERS += \
     platform/replayfile.h \
     platform/NormalBattle.h \
     platform/Logic.h \
-    platform/Basic.h \
     browser.h \
-    mapeditor.h
+    mapeditor.h \
+    platform/Basic.h
 
 SOURCES += \
     widgetssingle.cpp \

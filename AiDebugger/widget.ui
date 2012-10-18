@@ -243,9 +243,9 @@
   <widget class="QLabel" name="label_round">
    <property name="geometry">
     <rect>
-     <x>190</x>
+     <x>200</x>
      <y>670</y>
-     <width>61</width>
+     <width>51</width>
      <height>21</height>
     </rect>
    </property>
@@ -285,7 +285,7 @@
   <widget class="QCheckBox" name="checkBox_auto">
    <property name="geometry">
     <rect>
-     <x>210</x>
+     <x>190</x>
      <y>640</y>
      <width>51</width>
      <height>16</height>
@@ -313,12 +313,38 @@
     <rect>
      <x>140</x>
      <y>640</y>
-     <width>71</width>
+     <width>51</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string/>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_show_round_minus">
+   <property name="geometry">
+    <rect>
+     <x>237</x>
+     <y>637</y>
+     <width>21</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>&lt;-</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="pushButton_show_round_plus">
+   <property name="geometry">
+    <rect>
+     <x>1220</x>
+     <y>637</y>
+     <width>21</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>-&gt;</string>
    </property>
   </widget>
  </widget>

@@ -10,7 +10,7 @@
 namespace DS14
 {
 
-const int VERSION_LOGIC = 103;
+const int VERSION_LOGIC = 104;
 
 class logic
 {
