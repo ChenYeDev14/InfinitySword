@@ -18,6 +18,10 @@ INPUT(
 ./debug\Logic.o
 ./debug\browser.o
 ./debug\mapeditor.o
+./debug\humanai_replaydevice.o
+./debug\humanai_herodisplay.o
+./debug\humainai_aithread.o
+./debug\humanai.o
 ./debug\moc_widgetssingle.o
 ./debug\moc_rounditem.o
 ./debug\moc_creator.o
@@ -33,5 +37,9 @@ INPUT(
 ./debug\moc_NormalBattle.o
 ./debug\moc_browser.o
 ./debug\moc_mapeditor.o
+./debug\moc_humanai_herodisplay.o
+./debug\moc_humanai_aithread.o
+./debug\moc_humanai_replaydevice.o
+./debug\moc_humanai.o
 ./debug\qrc_image.o
 );

@@ -1,18 +1,18 @@
 #include "logic.h"
-#include <fstream>
 #include <cmath>
 #include <algorithm>
-#include <fstream>
 #include <QString>
+#include <QFile>
 
 using namespace std;
+using namespace DS14;
 
 DS14::logic::logic()
 {
 	FIRSTBLOOD = false;
 }
 
-bool DS14::logic::init(std::string directory)
+bool DS14::logic::init(QString path)
 {
     gameState.AI1gold = 0;
     gameState.AI2gold = 0;
@@ -77,8 +77,9 @@ bool DS14::logic::init(std::string directory)
     {
         gameState.missileArea[i].real = false;
     }
-
-    std::ifstream infile(directory.c_str(), ios::binary);
+    QFile infile;
+    infile.setFileName(path);
+    if (!infile.open(QIODevice::ReadOnly)) return false;
     int version_basic;
     infile.read((char*)&version_basic, sizeof(int));
     if (version_basic != VERSION_BASIC) return false;
@@ -226,18 +227,7 @@ DS14::GameInfo DS14::logic::toPlayer(int side)//将side=1看作AI1，将side=2看作AI2
         status1.AI1HeroInfo[1].missileCD=-1;
         status1.AI1HeroInfo[2].missileCD=-1;
     }
-    status1.missileArea[0].centerPosition.x=status1.missileArea[0].centerPosition.y=9999;//x=y=999表示不可见
-    status1.missileArea[0].power=status1.missileArea[0].radius=-1;//设置飞弹威力与半径不可见
-    status1.missileArea[1].centerPosition.x=status1.missileArea[1].centerPosition.y=9999;//x=y=999表示不可见
-    status1.missileArea[1].power=status1.missileArea[1].radius=-1;//设置飞弹威力与半径不可见
-    status1.missileArea[2].centerPosition.x=status1.missileArea[2].centerPosition.y=9999;//x=y=999表示不可见
-    status1.missileArea[2].power=status1.missileArea[2].radius=-1;//设置飞弹威力与半径不可见
-    status1.missileArea[3].centerPosition.x=status1.missileArea[3].centerPosition.y=9999;//x=y=999表示不可见
-    status1.missileArea[3].power=status1.missileArea[3].radius=-1;//设置飞弹威力与半径不可见
-    status1.missileArea[4].centerPosition.x=status1.missileArea[4].centerPosition.y=9999;//x=y=999表示不可见
-    status1.missileArea[4].power=status1.missileArea[4].radius=-1;//设置飞弹威力与半径不可见
-    status1.missileArea[5].centerPosition.x=status1.missileArea[5].centerPosition.y=9999;//x=y=999表示不可见
-    status1.missileArea[5].power=status1.missileArea[5].radius=-1;//设置飞弹威力与半径不可见
+    
     //将stataus中的有用信息赋值给roundnumber
     gameinfo.roundNumber=status1.roundNumber;//回合数复制
     if (side == 1)
@@ -289,7 +279,14 @@ DS14::GameInfo DS14::logic::toPlayer(int side)//将side=1看作AI1，将side=2看作AI2
     for(int i=0;i<6;i++)
     {
         gameinfo.missileArea[i]=status1.missileArea[i];
-        gameinfo.Missile[i].x=gameinfo.Missile[i].y=9999;//设置坐标不可见
+		if(!(status1.missileInfo[i].isReal))
+		{
+			gameinfo.Missile[i].x=gameinfo.Missile[i].y=9999;
+		}
+		else
+		{
+			gameinfo.Missile[i] = status1.missileInfo[i].fromPoint;
+		}
     }
     //香锅信息
     gameinfo.swordInfo.CentreSwordCD = status1.swordInfo.CentreSwordCD;

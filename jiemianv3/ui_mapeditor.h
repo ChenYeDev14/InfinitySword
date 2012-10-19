@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mapeditor.ui'
 **
-** Created: Tue Oct 16 18:36:45 2012
+** Created: Fri Oct 19 00:38:50 2012
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -65,7 +65,7 @@ public:
         pushButton_4->setGeometry(QRect(10, 430, 141, 31));
         frame = new QFrame(MapEditor);
         frame->setObjectName(QString::fromUtf8("frame"));
-        frame->setGeometry(QRect(810, 20, 181, 721));
+        frame->setGeometry(QRect(830, 50, 181, 721));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
         label = new QLabel(frame);
@@ -90,7 +90,7 @@ public:
         line_2->setFrameShadow(QFrame::Sunken);
         radioButton = new QRadioButton(frame);
         radioButton->setObjectName(QString::fromUtf8("radioButton"));
-        radioButton->setGeometry(QRect(10, 100, 98, 20));
+        radioButton->setGeometry(QRect(10, 90, 180, 30));
         QFont font1;
         font1.setFamily(QString::fromUtf8("Adobe \351\273\221\344\275\223 Std R"));
         font1.setPointSize(11);
@@ -98,23 +98,23 @@ public:
         radioButton->setFont(font1);
         radioButton_2 = new QRadioButton(frame);
         radioButton_2->setObjectName(QString::fromUtf8("radioButton_2"));
-        radioButton_2->setGeometry(QRect(10, 140, 98, 21));
+        radioButton_2->setGeometry(QRect(10, 130, 180, 30));
         radioButton_2->setFont(font1);
         radioButton_3 = new QRadioButton(frame);
         radioButton_3->setObjectName(QString::fromUtf8("radioButton_3"));
-        radioButton_3->setGeometry(QRect(10, 180, 83, 16));
+        radioButton_3->setGeometry(QRect(10, 170, 180, 30));
         radioButton_3->setFont(font1);
         radioButton_4 = new QRadioButton(frame);
         radioButton_4->setObjectName(QString::fromUtf8("radioButton_4"));
-        radioButton_4->setGeometry(QRect(10, 220, 113, 16));
+        radioButton_4->setGeometry(QRect(10, 210, 180, 30));
         radioButton_4->setFont(font1);
         radioButton_5 = new QRadioButton(frame);
         radioButton_5->setObjectName(QString::fromUtf8("radioButton_5"));
-        radioButton_5->setGeometry(QRect(10, 260, 128, 16));
+        radioButton_5->setGeometry(QRect(10, 250, 180, 30));
         radioButton_5->setFont(font1);
         line_3 = new QFrame(frame);
         line_3->setObjectName(QString::fromUtf8("line_3"));
-        line_3->setGeometry(QRect(0, 430, 181, 20));
+        line_3->setGeometry(QRect(0, 460, 181, 20));
         line_3->setFrameShape(QFrame::HLine);
         line_3->setFrameShadow(QFrame::Sunken);
         line_4 = new QFrame(frame);
@@ -127,15 +127,15 @@ public:
         pushButton_5->setGeometry(QRect(20, 660, 141, 31));
         radioButton_8 = new QRadioButton(frame);
         radioButton_8->setObjectName(QString::fromUtf8("radioButton_8"));
-        radioButton_8->setGeometry(QRect(10, 340, 128, 20));
+        radioButton_8->setGeometry(QRect(10, 330, 180, 30));
         radioButton_8->setFont(font1);
         radioButton_6 = new QRadioButton(frame);
         radioButton_6->setObjectName(QString::fromUtf8("radioButton_6"));
-        radioButton_6->setGeometry(QRect(10, 290, 128, 41));
+        radioButton_6->setGeometry(QRect(10, 290, 180, 30));
         radioButton_6->setFont(font1);
         pushButton_6 = new QPushButton(frame);
         pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
-        pushButton_6->setGeometry(QRect(20, 390, 141, 31));
+        pushButton_6->setGeometry(QRect(20, 410, 141, 31));
         label->raise();
         radioButton_8->raise();
         radioButton_5->raise();
@@ -164,14 +164,14 @@ public:
         pushButton_3->setText(QApplication::translate("MapEditor", "\344\277\235\345\255\230", 0, QApplication::UnicodeUTF8));
         pushButton_4->setText(QApplication::translate("MapEditor", "\345\217\246\345\255\230\344\270\272", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("MapEditor", "\345\234\260\345\233\276\345\205\203\347\264\240", 0, QApplication::UnicodeUTF8));
-        radioButton->setText(QApplication::translate("MapEditor", "\345\267\261\346\226\271\344\270\273\345\237\272\345\234\260", 0, QApplication::UnicodeUTF8));
-        radioButton_2->setText(QApplication::translate("MapEditor", "\346\225\214\346\226\271\344\270\273\345\237\272\345\234\260", 0, QApplication::UnicodeUTF8));
-        radioButton_3->setText(QApplication::translate("MapEditor", "\345\207\217\351\200\237\345\234\260\345\270\246", 0, QApplication::UnicodeUTF8));
-        radioButton_4->setText(QApplication::translate("MapEditor", "\347\246\201\346\255\242\351\200\232\350\241\214\345\214\272\345\237\237", 0, QApplication::UnicodeUTF8));
-        radioButton_5->setText(QApplication::translate("MapEditor", "\345\267\261\346\226\271\350\213\261\351\233\204\345\207\272\347\224\237\347\202\271", 0, QApplication::UnicodeUTF8));
+        radioButton->setText(QApplication::translate("MapEditor", "\345\267\261\346\226\271\344\270\273\345\237\272\345\234\260                         ", 0, QApplication::UnicodeUTF8));
+        radioButton_2->setText(QApplication::translate("MapEditor", "\346\225\214\346\226\271\344\270\273\345\237\272\345\234\260                         ", 0, QApplication::UnicodeUTF8));
+        radioButton_3->setText(QApplication::translate("MapEditor", "\345\207\217\351\200\237\345\234\260\345\270\246                         ", 0, QApplication::UnicodeUTF8));
+        radioButton_4->setText(QApplication::translate("MapEditor", "\347\246\201\346\255\242\351\200\232\350\241\214\345\214\272\345\237\237                         ", 0, QApplication::UnicodeUTF8));
+        radioButton_5->setText(QApplication::translate("MapEditor", "\345\267\261\346\226\271\350\213\261\351\233\204\345\207\272\347\224\237\347\202\271                         ", 0, QApplication::UnicodeUTF8));
         pushButton_5->setText(QApplication::translate("MapEditor", "\347\246\273\345\274\200", 0, QApplication::UnicodeUTF8));
-        radioButton_8->setText(QApplication::translate("MapEditor", "\345\210\240\351\231\244\345\205\203\347\264\240", 0, QApplication::UnicodeUTF8));
-        radioButton_6->setText(QApplication::translate("MapEditor", "\346\225\214\346\226\271\350\213\261\351\233\204\345\207\272\347\224\237\347\202\271", 0, QApplication::UnicodeUTF8));
+        radioButton_8->setText(QApplication::translate("MapEditor", "\345\210\240\351\231\244\345\205\203\347\264\240                         ", 0, QApplication::UnicodeUTF8));
+        radioButton_6->setText(QApplication::translate("MapEditor", "\346\225\214\346\226\271\350\213\261\351\233\204\345\207\272\347\224\237\347\202\271                         ", 0, QApplication::UnicodeUTF8));
         pushButton_6->setText(QApplication::translate("MapEditor", "\345\210\267\347\231\275", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 

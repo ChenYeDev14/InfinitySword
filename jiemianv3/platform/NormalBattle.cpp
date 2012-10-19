@@ -141,14 +141,14 @@ bool NormalBattle::InitAiInfo()
 
     }
     _logic = new logic;
-    if (!_logic->init(map_location.toStdString()))
+    if (!_logic->init(map_location))
     {
         emit version_error(3);
         return false;
     }
     QFileInfo mapFile(map_location);
     rFile = new ReplayFile;
-    rFile->NewFile(playerName[0].toStdString(), playerName[1].toStdString(), mapFile.baseName().toStdString());
+    rFile->NewFile(playerName[0], playerName[1], mapFile.baseName());
     //StatusMapInfo mInfo; //  wait for logic add a function
     rFile->WriteInitialInfo(VERSION_BASIC, VERSION_LOGIC, pInfo[0], pInfo[1]);
     return true;
@@ -474,7 +474,7 @@ void NormalBattle::StartTwoAiBattle()
    }
 
    _logic = new logic;
-   if (!_logic->init(map_location.toStdString()))
+   if (!_logic->init(map_location))
    {
        emit version_error(3);
        *pcMap = 'E';
@@ -483,7 +483,7 @@ void NormalBattle::StartTwoAiBattle()
    }
    QFileInfo mapFile(map_location);
    rFile = new ReplayFile;
-   rFile->NewFile(playerName[0].toStdString(), playerName[1].toStdString(), mapFile.baseName().toStdString());
+   rFile->NewFile(playerName[0], playerName[1], mapFile.baseName());
    rFile->WriteInitialInfo(VERSION_BASIC, VERSION_LOGIC, pInfo[0], pInfo[1]);
    rFile->WriteStatus0(_logic->getStatus());
 

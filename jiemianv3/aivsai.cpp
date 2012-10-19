@@ -162,7 +162,7 @@ void AIvsAI::versionError(int i)
     QString string;
     if (i == 1) string = tr("AI1版本出错");
     else if (i == 2) string = tr("AI2版本出错");
-    else string = tr("地图版本出错");
+    else string = tr("地图加载失败或版本出错");
     QMessageBox box;
     box.setWindowTitle(tr("路径错误！"));
     box.setIcon(QMessageBox::Warning);

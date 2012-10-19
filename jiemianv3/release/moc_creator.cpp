@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'creator.h'
 **
-** Created: Thu Oct 18 02:39:01 2012
+** Created: Fri Oct 19 04:41:11 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Creator[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -42,6 +42,9 @@ static const uint qt_meta_data_Creator[] = {
      133,    8,    8,    8, 0x08,
      147,    8,    8,    8, 0x08,
      161,    8,    8,    8, 0x08,
+     169,    8,    8,    8, 0x08,
+     187,    8,    8,    8, 0x08,
+     205,    8,    8,    8, 0x08,
 
        0        // eod
 };
@@ -51,7 +54,8 @@ static const char qt_meta_stringdata_Creator[] = {
     "SingleToAi()\0AiToSingle()\0SingleToReplayer()\0"
     "ReplayerToSingle()\0TeamToBegin()\0"
     "BeginToTeam()\0MapToSingle()\0SingLeToMap()\0"
-    "Music()\0"
+    "Music()\0SingleToHumanai()\0HumanaiToSingle()\0"
+    "continueMusic()\0"
 };
 
 void Creator::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -71,6 +75,9 @@ void Creator::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 8: _t->MapToSingle(); break;
         case 9: _t->SingLeToMap(); break;
         case 10: _t->Music(); break;
+        case 11: _t->SingleToHumanai(); break;
+        case 12: _t->HumanaiToSingle(); break;
+        case 13: _t->continueMusic(); break;
         default: ;
         }
     }
@@ -109,9 +116,9 @@ int Creator::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 14;
     }
     return _id;
 }

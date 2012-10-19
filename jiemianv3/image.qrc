@@ -36,5 +36,10 @@
         <file>image/hero2s.png</file>
         <file>image/jian.png</file>
         <file>image/kexie.png</file>
+        <file>image/nc.png</file>
+        <file>image/nc1.png</file>
+        <file>image/background.png</file>
+        <file>image/select.png</file>
+        <file>image/bg2.png</file>
     </qresource>
 </RCC>

@@ -7,7 +7,6 @@
 #include <QPalette>
 #include <QMessageBox>
 #include <QFileDialog>
-#include <fstream>
 
 using namespace std;
 
@@ -84,6 +83,8 @@ MapEditor::MapEditor(QWidget *parent) :
     ui->radioButton_6->setPalette(pe);
     ui->radioButton_8->setPalette(pe);
 
+    ui->radioButton->setBaseSize(140,20);
+
 
     dragID.num = 0;
     dragID.type = 0;
@@ -98,13 +99,13 @@ void MapEditor::paintEvent(QPaintEvent *event)
 {
     QPainter paint(this);
     paint.drawPixmap(0,0,1024,768,QPixmap(":/image/2DGround3.png"));
-    paint.drawPixmap(ui->radioButton->x()+ui->frame->x()+140,ui->radioButton->y()+ui->frame->y()-10,30,30,QPixmap(":/image/base1fb.png"));
-    paint.drawPixmap(ui->radioButton_2->x()+ui->frame->x()+140,ui->radioButton_2->y()+ui->frame->y()-10,30,30,QPixmap(":/image/base2fb.png"));
-    paint.drawPixmap(ui->radioButton_3->x()+ui->frame->x()+140,ui->radioButton_3->y()+ui->frame->y()-10,30,30,QPixmap(":/image/slowfb.png"));
-    paint.drawPixmap(ui->radioButton_4->x()+ui->frame->x()+140,ui->radioButton_4->y()+ui->frame->y()-10,30,30,QPixmap(":/image/stuckfb.png"));
-    paint.drawPixmap(ui->radioButton_5->x()+ui->frame->x()+140,ui->radioButton_5->y()+ui->frame->y()-10,30,30,QPixmap(":/image/birthPointfb.png"));
-    paint.drawPixmap(ui->radioButton_6->x()+ui->frame->x()+140,ui->radioButton_6->y()+ui->frame->y()+2,30,30,QPixmap(":/image/birthPoint2fb.png"));
-    paint.drawPixmap(X+W/2-50*W/2400,Y+H/2-50*H/2400,100*W/2400,100*H/2400,QPixmap(":/image/center.png"));
+    paint.drawPixmap(ui->radioButton->x()+ui->frame->x()+140,ui->radioButton->y()+ui->frame->y(),30,30,QPixmap(":/image/base1fb.png"));
+    paint.drawPixmap(ui->radioButton_2->x()+ui->frame->x()+140,ui->radioButton_2->y()+ui->frame->y(),30,30,QPixmap(":/image/base2fb.png"));
+    paint.drawPixmap(ui->radioButton_3->x()+ui->frame->x()+140,ui->radioButton_3->y()+ui->frame->y(),30,30,QPixmap(":/image/slowfb.png"));
+    paint.drawPixmap(ui->radioButton_4->x()+ui->frame->x()+140,ui->radioButton_4->y()+ui->frame->y(),30,30,QPixmap(":/image/stuckfb.png"));
+    paint.drawPixmap(ui->radioButton_5->x()+ui->frame->x()+140,ui->radioButton_5->y()+ui->frame->y(),30,30,QPixmap(":/image/birthPointfb.png"));
+    paint.drawPixmap(ui->radioButton_6->x()+ui->frame->x()+140,ui->radioButton_6->y()+ui->frame->y(),30,30,QPixmap(":/image/birthPoint2fb.png"));
+    paint.drawPixmap(X+W/2-double(50)*W/double(2400),Y+H/2-double(50)*H/double(2400),double(100)*W/double(2400),double(100)*H/double(2400),QPixmap(":/image/center.png"));
 }
 
 
@@ -271,15 +272,15 @@ void MapEditor::mousePressEvent(QMouseEvent *event)
         }
         return;
     }
-    int radius = 50*W/2400;
+    int radius = double(50)*W/double(2400);
     if ( MapType == 1 || MapType == 2 )
-        radius = 100*W/2400;
+        radius = double(100)*W/double(2400);
     if ( coulddrop(event->x(),event->y(),radius) == false)
         return;
     switch ( MapType ){
     case (1):{
-        if ( Round(event->x(),event->y(),X+W/2,Y+W/2) < W/2 - BASE_RADIUS*W/2400 && base1Num == 0 ){
-            base1->setGeometry(event->x()-BASE_RADIUS*W/2400,event->y()-BASE_RADIUS*H/2400,BASE_RADIUS*2*W/2400,BASE_RADIUS*2*H/2400);
+        if ( Round(event->x(),event->y(),X+W/2,Y+W/2) < W/2 - BASE_RADIUS*W/double(2400) && base1Num == 0 ){
+            base1->setGeometry(event->x()-BASE_RADIUS*W/double(2400),event->y()-BASE_RADIUS*H/double(2400),BASE_RADIUS*2*W/double(2400),BASE_RADIUS*2*H/double(2400));
             base1->setPixmap(QPixmap(":/image/base1.png"));
             base1->show();
             base1Num++;
@@ -287,8 +288,8 @@ void MapEditor::mousePressEvent(QMouseEvent *event)
         break;
     }
     case (2):{
-        if ( Round(event->x(),event->y(),X+W/2,Y+W/2) < W/2 - BASE_RADIUS*W/2400 && base2Num == 0 ){
-            base2->setGeometry(event->x()-BASE_RADIUS*W/2400,event->y()-BASE_RADIUS*H/2400,BASE_RADIUS*2*W/2400,BASE_RADIUS*2*H/2400);
+        if ( Round(event->x(),event->y(),X+W/2,Y+W/2) < W/2 - BASE_RADIUS*W/double(2400) && base2Num == 0 ){
+            base2->setGeometry(event->x()-BASE_RADIUS*W/double(2400),event->y()-BASE_RADIUS*H/double(2400),BASE_RADIUS*2*W/double(2400),BASE_RADIUS*2*H/double(2400));
             base2->setPixmap(QPixmap(":/image/base2.png"));
             base2->show();
             base2Num++;
@@ -296,10 +297,10 @@ void MapEditor::mousePressEvent(QMouseEvent *event)
         break;
     }
     case (3):{
-        if ( Round(event->x(),event->y(),X+W/2,Y+W/2) < W/2 - 50*W/2400 && slowNum < 50 ){
+        if ( Round(event->x(),event->y(),X+W/2,Y+W/2) < W/2 - double(50)*W/double(2400) && slowNum < double(50) ){
             int i = 0 ;
             while ( slow[i]->isHidden() == false) i++;
-            slow[i]->setGeometry(event->x()-50*W/2400,event->y()-50*W/2400,100*W/2400,100*W/2400);
+            slow[i]->setGeometry(event->x()-double(50)*W/double(2400),event->y()-double(50)*W/double(2400),double(100)*W/double(2400),double(100)*W/double(2400));
             slow[i]->setPixmap(QPixmap(":/image/slow.png"));
             slow[i]->show();
             slowNum++;
@@ -308,10 +309,10 @@ void MapEditor::mousePressEvent(QMouseEvent *event)
         break;
     }
     case (4):{
-        if ( Round(event->x(),event->y(),X+W/2,Y+W/2) < W/2 - 50*W/2400 && stuckNum < 50 ){
+        if ( Round(event->x(),event->y(),X+W/2,Y+W/2) < W/2 - double(50)*W/double(2400) && stuckNum < double(50) ){
             int i = 0 ;
             while ( stuck[i]->isHidden() == false) i++;
-            stuck[i]->setGeometry(event->x()-50*W/2400,event->y()-50*W/2400,100*W/2400,100*W/2400);
+            stuck[i]->setGeometry(event->x()-double(50)*W/double(2400),event->y()-double(50)*W/double(2400),double(100)*W/double(2400),double(100)*W/double(2400));
             stuck[i]->setPixmap(QPixmap(":/image/stuck.png"));
             stuck[i]->show();
             stuckNum++;
@@ -319,10 +320,10 @@ void MapEditor::mousePressEvent(QMouseEvent *event)
         break;
     }
     case (5):{
-        if ( Round(event->x(),event->y(),X+W/2,Y+W/2) < W/2 - 50*W/2400 && hero1Num < 3 ){
+        if ( Round(event->x(),event->y(),X+W/2,Y+W/2) < W/2 - double(50)*W/double(2400) && hero1Num < 3 ){
             int i = 0 ;
             while ( hero1[i]->isHidden() == false) i++;
-            hero1[i]->setGeometry(event->x()-50*W/2400,event->y()-50*W/2400,100*W/2400,100*W/2400);
+            hero1[i]->setGeometry(event->x()-double(50)*W/double(2400),event->y()-double(50)*W/double(2400),double(100)*W/double(2400),double(100)*W/double(2400));
             hero1[i]->setPixmap(QPixmap(":/image/birthPoint1.png"));
             hero1[i]->show();
             hero1Num++;
@@ -330,10 +331,10 @@ void MapEditor::mousePressEvent(QMouseEvent *event)
         break;
     }
     case (6):{
-        if ( Round(event->x(),event->y(),X+W/2,Y+W/2) < W/2 - 50*W/2400 && hero2Num < 3 ){
+        if ( Round(event->x(),event->y(),X+W/2,Y+W/2) < W/2 - double(50)*W/double(2400) && hero2Num < 3 ){
             int i = 0 ;
             while ( hero2[i]->isHidden() == false) i++;
-            hero2[i]->setGeometry(event->x()-50*W/2400,event->y()-50*W/2400,100*W/2400,100*W/2400);
+            hero2[i]->setGeometry(event->x()-double(50)*W/double(2400),event->y()-double(50)*W/double(2400),double(100)*W/double(2400),double(100)*W/double(2400));
             hero2[i]->setPixmap(QPixmap(":/image/birthPoint2.png"));
             hero2[i]->show();
             hero2Num++;
@@ -354,37 +355,37 @@ Xy MapEditor::findPic(int x, int y)
     Xy answer;
     answer.type = 0;
     answer.num = 0;
-    if ( base1->isHidden() == false && Round(x,y,base1->x()+base1->width()/2,base1->y()+base1->height()/2) < 100*W/2400 ){
+    if ( base1->isHidden() == false && Round(x,y,base1->x()+base1->width()/2,base1->y()+base1->height()/2) < double(100)*W/double(2400) ){
         answer.type = 1;
         return answer;
     }
-    if ( base2->isHidden() == false && Round(x,y,base2->x()+base2->width()/2,base2->y()+base1->height()/2) < 100*W/2400 ){
+    if ( base2->isHidden() == false && Round(x,y,base2->x()+base2->width()/2,base2->y()+base1->height()/2) < double(100)*W/double(2400) ){
         answer.type = 2;
         return answer;
     }
     for ( int i = 0 ; i < 50 ; i++ ){
-        if ( slow[i]->isHidden() == false && Round(x,y,slow[i]->x()+slow[i]->width()/2,slow[i]->y()+slow[i]->height()/2) < 50*W/2400 ){
+        if ( slow[i]->isHidden() == false && Round(x,y,slow[i]->x()+slow[i]->width()/2,slow[i]->y()+slow[i]->height()/2) < double(50)*W/double(2400) ){
             answer.type = 3;
             answer.num = i;
             return answer;
        }
     }
     for ( int i = 0 ; i < 50 ; i++ ){
-        if ( stuck[i]->isHidden() == false && Round(x,y,stuck[i]->x()+stuck[i]->width()/2,stuck[i]->y()+stuck[i]->height()/2) < 50*W/2400 ){
+        if ( stuck[i]->isHidden() == false && Round(x,y,stuck[i]->x()+stuck[i]->width()/2,stuck[i]->y()+stuck[i]->height()/2) < double(50)*W/double(2400) ){
             answer.type = 4;
             answer.num = i;
             return answer;
        }
     }
     for ( int i = 0 ; i < 3 ; i++ ){
-        if ( hero1[i]->isHidden() == false && Round(x,y,hero1[i]->x()+hero1[i]->width()/2,hero1[i]->y()+hero1[i]->height()/2) < 50*W/2400 ){
+        if ( hero1[i]->isHidden() == false && Round(x,y,hero1[i]->x()+hero1[i]->width()/2,hero1[i]->y()+hero1[i]->height()/2) < double(50)*W/double(2400) ){
             answer.type = 5;
             answer.num = i;
             return answer;
        }
     }
     for ( int i = 0 ; i < 3 ; i++ ){
-        if ( hero2[i]->isHidden() == false && Round(x,y,hero2[i]->x()+hero2[i]->width()/2,hero2[i]->y()+hero2[i]->height()/2) < 50*W/2400 ){
+        if ( hero2[i]->isHidden() == false && Round(x,y,hero2[i]->x()+hero2[i]->width()/2,hero2[i]->y()+hero2[i]->height()/2) < double(50)*W/double(2400) ){
             answer.type = 6;
             answer.num = i;
             return answer;
@@ -395,29 +396,29 @@ Xy MapEditor::findPic(int x, int y)
 
 bool MapEditor::coulddrop(int x, int y, int radius)
 {
-    if ( base1->isHidden() == false && Round(x,y,base1->x()+base1->width()/2,base1->y()+base1->height()/2) < 100*W/2400 + radius ){
+    if ( base1->isHidden() == false && Round(x,y,base1->x()+base1->width()/2,base1->y()+base1->height()/2) < double(100)*W/double(2400) + radius ){
         return false;
     }
-    if ( base2->isHidden() == false && Round(x,y,base2->x()+base2->width()/2,base2->y()+base1->height()/2) < 100*W/2400 + radius){
+    if ( base2->isHidden() == false && Round(x,y,base2->x()+base2->width()/2,base2->y()+base1->height()/2) < double(100)*W/double(2400) + radius){
         return false;
     }
-    for ( int i = 0 ; i < 50 ; i++ ){
-        if ( slow[i]->isHidden() == false && Round(x,y,slow[i]->x()+slow[i]->width()/2,slow[i]->y()+slow[i]->height()/2) < 50*W/2400 + radius)
+    for ( int i = 0 ; i < double(50) ; i++ ){
+        if ( slow[i]->isHidden() == false && Round(x,y,slow[i]->x()+slow[i]->width()/2,slow[i]->y()+slow[i]->height()/2) < double(50)*W/double(2400) + radius)
             return false;
     }
-    for ( int i = 0 ; i < 50 ; i++ ){
-        if ( stuck[i]->isHidden() == false && Round(x,y,stuck[i]->x()+stuck[i]->width()/2,stuck[i]->y()+stuck[i]->height()/2) < 50*W/2400 + radius)
+    for ( int i = 0 ; i < double(50) ; i++ ){
+        if ( stuck[i]->isHidden() == false && Round(x,y,stuck[i]->x()+stuck[i]->width()/2,stuck[i]->y()+stuck[i]->height()/2) < double(50)*W/double(2400) + radius)
             return false;
     }
     for ( int i = 0 ; i < 3 ; i++ ){
-        if ( hero1[i]->isHidden() == false && Round(x,y,hero1[i]->x()+hero1[i]->width()/2,hero1[i]->y()+hero1[i]->height()/2) < 50*W/2400 + radius)
+        if ( hero1[i]->isHidden() == false && Round(x,y,hero1[i]->x()+hero1[i]->width()/2,hero1[i]->y()+hero1[i]->height()/2) < double(50)*W/double(2400) + radius)
             return false;
     }
     for ( int i = 0 ; i < 3 ; i++ ){
-        if ( hero2[i]->isHidden() == false && Round(x,y,hero2[i]->x()+hero2[i]->width()/2,hero2[i]->y()+hero2[i]->height()/2) < 50*W/2400 + radius)
+        if ( hero2[i]->isHidden() == false && Round(x,y,hero2[i]->x()+hero2[i]->width()/2,hero2[i]->y()+hero2[i]->height()/2) < double(50)*W/double(2400) + radius)
             return false;
     }
-    if ( Round(x,y,X+W/2,Y+H/2) < radius + 50*W/2400 )
+    if ( Round(x,y,X+W/2,Y+H/2) < radius + double(50)*W/double(2400) )
         return false;
     return true;
 }
@@ -461,50 +462,50 @@ void MapEditor::dropEvent(QDropEvent *dragEvent)
         Xy answer = dragID;
         switch (answer.type){
         case (1):{
-            point.setX(point.x() + 100 * W / 2400);
-            point.setY(point.y() + 100 * W / 2400);
-            if ( coulddrop(point.x(),point.y(),100*W/2400) && ( Round(point.x(),point.y(),X+W/2,Y+W/2) < W/2 - 100*W/2400 ))
-                base1->setGeometry(point.x()-100*W/2400,point.y()-100*W/2400,200*W/2400,200*W/2400);
+            point.setX(point.x() + double(100) * W / double(2400));
+            point.setY(point.y() + double(100) * W / double(2400));
+            if ( coulddrop(point.x(),point.y(),double(100)*W/double(2400)) && ( Round(point.x(),point.y(),X+W/2,Y+W/2) < W/2 - double(100)*W/double(2400) ))
+                base1->setGeometry(point.x()-double(100)*W/double(2400),point.y()-double(100)*W/double(2400),200*W/double(2400),200*W/double(2400));
             base1->show();
             break;
         }
         case (2):{
-            point.setX(point.x() + 100 * W / 2400);
-            point.setY(point.y() + 100 * W / 2400);
-            if ( coulddrop(point.x(),point.y(),100*W/2400) && Round(point.x(),point.y(),X+W/2,Y+W/2) < W/2 - 100*W/2400 )
-                base2->setGeometry(point.x()-100*W/2400,point.y()-100*W/2400,200*W/2400,200*W/2400);
+            point.setX(point.x() + double(100) * W / 2400);
+            point.setY(point.y() + double(100) * W / 2400);
+            if ( coulddrop(point.x(),point.y(),double(100)*W/double(2400)) && Round(point.x(),point.y(),X+W/2,Y+W/2) < W/2 - double(100)*W/double(2400) )
+                base2->setGeometry(point.x()-double(100)*W/double(2400),point.y()-double(100)*W/double(2400),200*W/double(2400),200*W/double(2400));
             base2->show();
             break;
         }
         case (3):{
-            point.setX(point.x() + 50 * W / 2400);
-            point.setY(point.y() + 50 * W / 2400);
-            if ( coulddrop(point.x(),point.y(),50*W/2400) && Round(point.x(),point.y(),X+W/2,Y+W/2) < W/2 - 50*W/2400 )
-                slow[answer.num]->setGeometry(point.x()-50*W/2400,point.y()-50*W/2400,100*W/2400,100*W/2400);
+            point.setX(point.x() + double(50) * W / 2400);
+            point.setY(point.y() + double(50) * W / 2400);
+            if ( coulddrop(point.x(),point.y(),double(50)*W/double(2400)) && Round(point.x(),point.y(),X+W/2,Y+W/2) < W/2 - double(50)*W/double(2400) )
+                slow[answer.num]->setGeometry(point.x()-double(50)*W/double(2400),point.y()-double(50)*W/double(2400),double(100)*W/double(2400),double(100)*W/double(2400));
             slow[answer.num]->show();
             break;
         }
         case (4):{
-            point.setX(point.x() + 50 * W / 2400);
-            point.setY(point.y() + 50 * W / 2400);
-            if ( coulddrop(point.x(),point.y(),50*W/2400) && Round(point.x(),point.y(),X+W/2,Y+W/2) < W/2 - 50*W/2400 )
-                stuck[answer.num]->setGeometry(point.x()-50*W/2400,point.y()-50*W/2400,100*W/2400,100*W/2400);
+            point.setX(point.x() + double(50) * W / 2400);
+            point.setY(point.y() + double(50) * W / 2400);
+            if ( coulddrop(point.x(),point.y(),double(50)*W/double(2400)) && Round(point.x(),point.y(),X+W/2,Y+W/2) < W/2 - double(50)*W/double(2400) )
+                stuck[answer.num]->setGeometry(point.x()-double(50)*W/double(2400),point.y()-double(50)*W/double(2400),double(100)*W/double(2400),double(100)*W/double(2400));
             stuck[answer.num]->show();
             break;
         }
         case (5):{
-            point.setX(point.x() + 50 * W / 2400);
-            point.setY(point.y() + 50 * W / 2400);
-            if ( coulddrop(point.x(),point.y(),50*W/2400) && Round(point.x(),point.y(),X+W/2,Y+W/2) < W/2 - 50*W/2400 )
-                hero1[answer.num]->setGeometry(point.x()-50*W/2400,point.y()-50*W/2400,100*W/2400,100*W/2400);
+            point.setX(point.x() + double(50) * W / 2400);
+            point.setY(point.y() + double(50) * W / 2400);
+            if ( coulddrop(point.x(),point.y(),double(50)*W/double(2400)) && Round(point.x(),point.y(),X+W/2,Y+W/2) < W/2 - double(50)*W/double(2400) )
+                hero1[answer.num]->setGeometry(point.x()-double(50)*W/double(2400),point.y()-double(50)*W/double(2400),double(100)*W/double(2400),double(100)*W/double(2400));
             hero1[answer.num]->show();
             break;
         }
         case (6):{
-            point.setX(point.x() + 50 * W / 2400);
-            point.setY(point.y() + 50 * W / 2400);
-            if ( coulddrop(point.x(),point.y(),50*W/2400) && Round(point.x(),point.y(),X+W/2,Y+W/2) < W/2 - 50*W/2400 )
-                hero2[answer.num]->setGeometry(point.x()-50*W/2400,point.y()-50*W/2400,100*W/2400,100*W/2400);
+            point.setX(point.x() + double(50) * W / 2400);
+            point.setY(point.y() + double(50) * W / 2400);
+            if ( coulddrop(point.x(),point.y(),double(50)*W/double(2400)) && Round(point.x(),point.y(),X+W/2,Y+W/2) < W/2 - double(50)*W/double(2400) )
+                hero2[answer.num]->setGeometry(point.x()-double(50)*W/double(2400),point.y()-double(50)*W/double(2400),double(100)*W/double(2400),double(100)*W/double(2400));
             hero2[answer.num]->show();
             break;
         }
@@ -574,51 +575,64 @@ void MapEditor::SetMapInfo()
                 n++;
             }
         }
-        ofstream out(curFile.toStdString().c_str(), ios::binary);
-        out.write((char*)&VERSION_BASIC, sizeof(int));
-        out.write((char*)&mInfo, sizeof(mInfo));
-        out.close();
+        QFile outFile;
+        outFile.setFileName(curFile);
+        outFile.open(QIODevice::WriteOnly);
+        outFile.write((char*)&VERSION_BASIC, sizeof(int));
+        outFile.write((char*)&mInfo, sizeof(mInfo));
+        outFile.close();
         isSaved = true;
 }
 
 void MapEditor::OpenFile()
 {
-    ifstream inf(curFile.toStdString().c_str(),ios::binary);
+    QFile inFile;
+    inFile.setFileName(curFile);
+    if (!inFile.open(QIODevice::ReadOnly))
+    {
+        QMessageBox box;
+        box.setWindowTitle(tr("错误！"));
+        box.setIcon(QMessageBox::Warning);
+        box.setText(tr("文件打开失败！"));
+        box.setStandardButtons(QMessageBox::Ok);
+        box.exec();
+        return;
+    }
     int version;
-    inf.read((char*)&version, sizeof(int));
+    inFile.read((char*)&version, sizeof(int));
     if (version == VERSION_BASIC){
-        inf.read((char*)&mInfo, sizeof(mInfo));
-        inf.close();
+        inFile.read((char*)&mInfo, sizeof(mInfo));
+        inFile.close();
         Init();
-        base1->setGeometry(mInfo.AIBases[0].x*W/double(2400)+X+W/2-100*W/double(2400),Y+W/2-mInfo.AIBases[0].y*W/2400-100*W/2400,200*W/2400,200*H/2400);
+        base1->setGeometry(mInfo.AIBases[0].x*W/double(2400)+X+W/2-double(100)*W/double(2400),Y+W/2-mInfo.AIBases[0].y*W/double(2400)-double(100)*W/double(2400),200*W/double(2400),200*H/double(2400));
         base1->setPixmap(QPixmap(":/image/base1.png"));
         base1->show();
         base1Num = 1;
-        base2->setGeometry(mInfo.AIBases[1].x*W/2400+X+W/2-100*W/2400,Y+W/2-mInfo.AIBases[1].y*W/2400-100*W/2400,200*W/2400,200*H/2400);
+        base2->setGeometry(mInfo.AIBases[1].x*W/double(2400)+X+W/2-double(100)*W/double(2400),Y+W/2-mInfo.AIBases[1].y*W/double(2400)-double(100)*W/double(2400),200*W/double(2400),200*H/double(2400));
         base2->setPixmap(QPixmap(":/image/base2.png"));
         base2->show();
         base2Num = 1;
         for ( int i = 0 ; i < 3 ; i++ ){
-            hero1[i]->setGeometry(mInfo.AIHeroBirthPlace[0][i].x*W/2400+X+W/2-50*W/2400,Y+W/2-mInfo.AIHeroBirthPlace[0][i].y*W/2400-50*W/2400,100*W/2400,100*H/2400);
+            hero1[i]->setGeometry(mInfo.AIHeroBirthPlace[0][i].x*W/double(2400)+X+W/2-double(50)*W/double(2400),Y+W/2-mInfo.AIHeroBirthPlace[0][i].y*W/double(2400)-double(50)*W/double(2400),double(100)*W/double(2400),double(100)*H/double(2400));
             hero1[i]->setPixmap(QPixmap(":/image/birthPoint1.png"));
             hero1[i]->show();
         }
         hero1Num = 3;
         for ( int i = 0 ; i < 3 ; i++ ){
-            hero2[i]->setGeometry(mInfo.AIHeroBirthPlace[1][i].x*W/2400+X+W/2-50*W/2400,Y+W/2-mInfo.AIHeroBirthPlace[1][i].y*W/2400-50*W/2400,100*W/2400,100*H/2400);
+            hero2[i]->setGeometry(mInfo.AIHeroBirthPlace[1][i].x*W/double(2400)+X+W/2-double(50)*W/double(2400),Y+W/2-mInfo.AIHeroBirthPlace[1][i].y*W/double(2400)-double(50)*W/double(2400),double(100)*W/double(2400),double(100)*H/double(2400));
             hero2[i]->setPixmap(QPixmap(":/image/birthPoint2.png"));
             hero2[i]->show();
         }
         hero2Num = 3;
         stuckNum = mInfo.roadBlockNumber;
         for ( int i = 0 ; i < stuckNum ; i++ ){
-            stuck[i]->setGeometry(mInfo.roadBlock[i].x*W/2400+X+W/2-50*W/2400,-mInfo.roadBlock[i].y*W/2400+Y+H/2-50*W/2400,100*W/2400,100*W/2400);
+            stuck[i]->setGeometry(mInfo.roadBlock[i].x*W/double(2400)+X+W/2-double(50)*W/double(2400),-mInfo.roadBlock[i].y*W/double(2400)+Y+H/2-double(50)*W/double(2400),double(100)*W/double(2400),double(100)*W/double(2400));
             stuck[i]->setPixmap(QPixmap(":/image/stuck.png"));
             stuck[i]->show();
         }
         slowNum = mInfo.slowDownAreaNumber;
         for ( int i = 0 ; i < slowNum ; i++ ){
-            slow[i]->setGeometry(mInfo.slowDownArea[i].x*W/2400+X+W/2-50*W/2400,-mInfo.slowDownArea[i].y*W/2400+Y+H/2-50*W/2400,100*W/2400,100*W/2400);
+            slow[i]->setGeometry(mInfo.slowDownArea[i].x*W/double(2400)+X+W/2-double(50)*W/double(2400),-mInfo.slowDownArea[i].y*W/double(2400)+Y+H/2-double(50)*W/double(2400),double(100)*W/double(2400),double(100)*W/double(2400));
             slow[i]->setPixmap(QPixmap(":/image/slow.png"));
             slow[i]->show();
         }
@@ -658,11 +672,11 @@ void MapEditor::Init()
 
 Coordinate MapEditor::DeviceToLogic(Coordinate deviceCo) //陈晔done 10/15
 {
-    int cx = X + W/2;
-    int cy = Y + H/2;
+    double cx = X + W/2;
+    double cy = Y + H/2;
     Coordinate logicCo;
-    logicCo.x = ((deviceCo.x - cx) * MAP_RADIUS * 2 / W);
-    logicCo.y = ((cy - deviceCo.y) * MAP_RADIUS * 2 / H);
+    logicCo.x = ((deviceCo.x - cx) * (double)MAP_RADIUS * double(2) / W);
+    logicCo.y = ((cy - deviceCo.y) * (double)MAP_RADIUS * double(2) / H);
     return logicCo;
 }
 
@@ -722,77 +736,80 @@ bool MapEditor::isSaveOrNot()//判断当前文件是否经过更改
     if ( base1Num == 0 && base2Num == 0 && stuckNum == 0 && slowNum == 0 && hero1Num == 0 && hero2Num == 0 )
         return true;
     int flag=0;
-    ifstream inf(curFile.toStdString().c_str(),ios::binary);
-    if ( !inf )
+    QFile inFile;
+    inFile.setFileName(curFile);
+    if ( !inFile.open(QIODevice::ReadOnly) )
         flag =1;
-    else{
-    int version;
-    inf.read((char*)&version, sizeof(int));
-    if ( version != VERSION_BASIC )
-        flag = 1;
-    inf.read((char*)&mInfo, sizeof(mInfo));
-    inf.close();
-    Coordinate center;
-    center.x = base1->x()+(double)base1->width()/2.0;
-    center.y = base1->y()+(double)base1->height()/2.0;
-    if ( DeviceToLogic(center).x != mInfo.AIBases[0].x
-         || DeviceToLogic(center).y != mInfo.AIBases[0].y){
-        flag = 1;
-    }
-    center.x = base2->x()+(double)base2->width()/2.0;
-    center.y = base2->y()+(double)base2->height()/2.0;
-    if ( DeviceToLogic(center).x != mInfo.AIBases[1].x
-         || DeviceToLogic(center).y != mInfo.AIBases[1].y)
-        flag = 1;
-    for ( int i = 0 ; i < 3 ; i++ ){
-        center.x = hero1[i]->x()+(double)hero1[i]->width()/2.0;
-        center.y = hero1[i]->y()+(double)hero1[i]->height()/2.0;
-        if ( DeviceToLogic(center).x != mInfo.AIHeroBirthPlace[0][i].x
-             || DeviceToLogic(center).y != mInfo.AIHeroBirthPlace[0][i].y ){
+    else
+    {
+        int version;
+        inFile.read((char*)&version, sizeof(int));
+        if ( version != VERSION_BASIC )
+            flag = 1;
+        inFile.read((char*)&mInfo, sizeof(mInfo));
+        inFile.close();
+        Coordinate center;
+        center.x = base1->x()+(double)base1->width()/2.0;
+        center.y = base1->y()+(double)base1->height()/2.0;
+        if ( DeviceToLogic(center).x != mInfo.AIBases[0].x
+             || DeviceToLogic(center).y != mInfo.AIBases[0].y){
             flag = 1;
         }
-        center.x = hero2[i]->x()+(double)hero2[i]->width()/2.0;
-        center.y = hero2[i]->y()+(double)hero2[i]->height()/2.0;
-        if ( DeviceToLogic(center).x != mInfo.AIHeroBirthPlace[1][i].x
-             || DeviceToLogic(center).x != mInfo.AIHeroBirthPlace[1][i].x)
+        center.x = base2->x()+(double)base2->width()/2.0;
+        center.y = base2->y()+(double)base2->height()/2.0;
+        if ( DeviceToLogic(center).x != mInfo.AIBases[1].x
+             || DeviceToLogic(center).y != mInfo.AIBases[1].y)
             flag = 1;
-    }
-    if ( hero1Num!=3 )
-        flag = 1;
-    if ( hero2Num!=3 )
-        flag = 1;
-    if ( base1Num != 1 )
-        flag = 1;
-    if ( base2Num != 1 )
-        flag = 1;
-    if ( slowNum != mInfo.slowDownAreaNumber )
-        flag = 1;
-    if ( stuckNum != mInfo.roadBlockNumber )
-        flag = 1;
-    int num1 = 0 ,num2 = 0;
-    if ( flag == 0 )
-    for ( int i = 0 ; i < 50 ; i++ ){
-        center.x = slow[i]->x()+(double)slow[i]->width()/2.0;
-        center.y = slow[i]->y()+(double)slow[i]->height()/2.0;
-        if ( slow[i]->isHidden() == false ){
-            if ( DeviceToLogic(center).x != mInfo.slowDownArea[num1].x
-                 || DeviceToLogic(center).y != mInfo.slowDownArea[num1].y )
+        for ( int i = 0 ; i < 3 ; i++ ){
+            center.x = hero1[i]->x()+(double)hero1[i]->width()/2.0;
+            center.y = hero1[i]->y()+(double)hero1[i]->height()/2.0;
+            if ( DeviceToLogic(center).x != mInfo.AIHeroBirthPlace[0][i].x
+                 || DeviceToLogic(center).y != mInfo.AIHeroBirthPlace[0][i].y ){
                 flag = 1;
-                break;
-        }
-        else
-            num1++;
-        center.x = stuck[i]->x()+(double)stuck[i]->width()/2.0;
-        center.y = stuck[i]->y()+(double)stuck[i]->height()/2.0;
-        if ( stuck[i]->isHidden() == false ){
-            if ( DeviceToLogic(center).x != mInfo.roadBlock[num2].x
-                 || DeviceToLogic(center).y != mInfo.roadBlock[num2].y )
+            }
+            center.x = hero2[i]->x()+(double)hero2[i]->width()/2.0;
+            center.y = hero2[i]->y()+(double)hero2[i]->height()/2.0;
+            if ( DeviceToLogic(center).x != mInfo.AIHeroBirthPlace[1][i].x
+                 || DeviceToLogic(center).x != mInfo.AIHeroBirthPlace[1][i].x)
                 flag = 1;
-                break;
         }
-        else
-            num2++;
-    }
+        if ( hero1Num!=3 )
+            flag = 1;
+        if ( hero2Num!=3 )
+            flag = 1;
+        if ( base1Num != 1 )
+            flag = 1;
+        if ( base2Num != 1 )
+            flag = 1;
+        if ( slowNum != mInfo.slowDownAreaNumber )
+            flag = 1;
+        if ( stuckNum != mInfo.roadBlockNumber )
+            flag = 1;
+        int num1 = 0 ,num2 = 0;
+        if ( flag == 0 )
+        for ( int i = 0 ; i < 50 ; i++ ){
+            center.x = slow[i]->x()+(double)slow[i]->width()/2.0;
+            center.y = slow[i]->y()+(double)slow[i]->height()/2.0;
+            if ( slow[i]->isHidden() == false ){
+                if ( DeviceToLogic(center).x != mInfo.slowDownArea[num1].x
+                     || DeviceToLogic(center).y != mInfo.slowDownArea[num1].y )
+                    flag = 1;
+                    break;
+            }
+            else
+                num1++;
+            center.x = stuck[i]->x()+(double)stuck[i]->width()/2.0;
+            center.y = stuck[i]->y()+(double)stuck[i]->height()/2.0;
+            if ( stuck[i]->isHidden() == false ){
+                if ( DeviceToLogic(center).x != mInfo.roadBlock[num2].x
+                     || DeviceToLogic(center).y != mInfo.roadBlock[num2].y )
+                    flag = 1;
+                    break;
+            }
+            else
+                num2++;
+        }
+
     }
     if( flag == 1 || isSaved == false )
     {

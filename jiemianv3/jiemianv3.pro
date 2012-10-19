@@ -1,5 +1,4 @@
 QT      += core network
-QT      += thread
 QT      += phonon
 QT       += webkit
 CONFIG += qaxcontainer
@@ -29,6 +28,10 @@ HEADERS += \
     platform/Logic.h \
     browser.h \
     mapeditor.h \
+    humanai_herodisplay.h \
+    humanai_aithread.h \
+    humanai_replaydevice.h \
+    humanai.h \
     platform/Basic.h
 
 SOURCES += \
@@ -50,7 +53,11 @@ SOURCES += \
     platform/NormalBattle.cpp \
     platform/Logic.cpp \
     browser.cpp \
-    mapeditor.cpp
+    mapeditor.cpp \
+    humanai_replaydevice.cpp \
+    humanai_herodisplay.cpp \
+    humainai_aithread.cpp \
+    humanai.cpp
 
 FORMS += \
     widgetssingle.ui \
@@ -60,7 +67,8 @@ FORMS += \
     aivsai.ui \
     replaywindow.ui \
     teammenu.ui \
-    mapeditor.ui
+    mapeditor.ui \
+    humanai.ui
 
 RESOURCES += \
     image.qrc

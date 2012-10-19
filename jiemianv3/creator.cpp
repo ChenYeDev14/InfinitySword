@@ -10,6 +10,7 @@ Creator::Creator(QApplication &app)
     Phonon::createPath(media, audioOutput);
     sourceList.append(QString("music/infinity.wma"));
 
+
     //建立pad
     pad = new RoundRectItem(QRectF(QPointF(0,0),QPointF(0,0)),QColor(0,0,255,0));
     pad->setZValue(0);
@@ -79,6 +80,15 @@ Creator::Creator(QApplication &app)
     mapEditWindow->widget()->setWindowOpacity(0);
     mapEditWindow->setZValue(0.5);
 
+    //人机对战
+    humanaiWindow = new QGraphicsProxyWidget(pad);
+    humanaiWidget = new humanai();
+    humanaiWindow->setWidget(humanaiWidget);
+    humanaiWindow->setX(backWindow->x());
+    humanaiWindow->setY(backWindow->y());
+    humanaiWindow->widget()->setWindowOpacity(0);
+    humanaiWindow->setZValue(0.5);
+
     //制作团队
     teamMeneWindow = new QGraphicsProxyWidget(pad);
     teamMeneWideget = new TeamMenu();
@@ -107,6 +117,7 @@ Creator::Creator(QApplication &app)
     teamMeneWindow->close();
     teamWindow->close();
     mapEditWindow->close();
+    humanaiWindow->close();
 
     QObject::connect(beginWidget->returnUi()->exitmain,SIGNAL(clicked()),this,SLOT(close()));
     QObject::connect(beginWidget->returnUi()->startsingle,SIGNAL(clicked()),this,SLOT(BeginToSingle()));
@@ -121,6 +132,9 @@ Creator::Creator(QApplication &app)
     connect(this->replayerWidget->returnUi()->pushButton,SIGNAL(clicked()),this->replayerWidget,SLOT(GoInto()));
     connect(this->mapWideget->returnUi()->pushButton_5,SIGNAL(clicked()),this,SLOT(MapToSingle()));
     connect(this->singleWidget->ui->mapedit,SIGNAL(clicked()), this, SLOT(SingLeToMap()));
+    connect(this->singleWidget->ui->playervsai,SIGNAL(clicked()),this,SLOT(SingleToHumanai()));
+    connect(this->humanaiWidget->returnUi()->Button_back, SIGNAL(clicked()), this, SLOT(HumanaiToSingle()));
+    connect(this->media,SIGNAL(aboutToFinish()),this,SLOT(continueMusic()));
 
 //    connect(this->singleWidget->ui->replay,SIGNAL(clicked()),this->replayerWidget,SLOT(GoInto()));
 
@@ -142,6 +156,7 @@ Creator::Creator(QApplication &app)
     ReplayerState = new QState(stateMachine);
     WebState = new QState(stateMachine);
     MapState = new QState(stateMachine);
+    HumanaiState = new QState(stateMachine);
     ChatState = new QState(stateMachine);
     WidState = new QState(stateMachine);
 
@@ -265,14 +280,16 @@ void Creator::Music()
      if(media->state() == Phonon::PlayingState)
          media->pause();
      else{
-         media->play();
+          media->play();
      }
 }
 
 void Creator::closeEvent(QCloseEvent *)
 {
-    if(media->state() == Phonon::PlayingState)
+    if(media->state() == Phonon::PlayingState){
+        this->musicWidget->ui->checkBox->setTristate(false);
         media->pause();
+    }
     media->stop();
 }
 
@@ -304,4 +321,33 @@ void Creator::SingLeToMap()
     sleep(1000);
 
     singleWindow->close();
+}
+
+void Creator::HumanaiToSingle()
+{
+    singleWindow->show();
+
+    QParallelAnimationGroup* parallelWindow = WindowToMenuAnimation( humanaiWindow ,singleWindow , HumanaiState , SingleState);
+    parallelWindow->start();
+    sleep(1000);
+
+    humanaiWindow->close();
+}
+
+void Creator::SingleToHumanai()
+{
+    humanaiWindow->show();
+
+    QParallelAnimationGroup* parallelWindow = MenuToWindowAnimation( singleWindow , humanaiWindow, SingleState , HumanaiState);
+    parallelWindow->start();
+    sleep(1000);
+
+    singleWindow->close();
+}
+
+
+void Creator::continueMusic()
+{
+    media->enqueue(sourceList);
+    media->play();
 }

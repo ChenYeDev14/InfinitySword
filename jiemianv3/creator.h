@@ -27,6 +27,7 @@
 #include "productionteam.h"
 #include "Animation.h"
 #include "mapeditor.h"
+#include "humanai.h"
 
 class Creator : public QGraphicsView
 {
@@ -49,6 +50,7 @@ private:
     QGraphicsProxyWidget* teamWindow;
     QGraphicsProxyWidget* teamMeneWindow;
     QGraphicsProxyWidget* mapEditWindow;
+    QGraphicsProxyWidget* humanaiWindow;
 
     BackWidget* backWidget;
     BeginBottum* beginWidget;
@@ -59,6 +61,7 @@ private:
     TeamMenu* teamMeneWideget;
     ProductionTeam* teamWideget;
     MapEditor* mapWideget;
+    humanai* humanaiWidget;
 
  //≤•∑≈“Ù¿÷
     Phonon::MediaObject *media;
@@ -78,6 +81,7 @@ private:
     QState* ReplayerState;
     QState* WebState;
     QState* MapState;
+    QState* HumanaiState;
     QState* ChatState;
     QState* WidState;
 
@@ -94,6 +98,9 @@ private slots:
     void MapToSingle();
     void SingLeToMap();
     void Music();
+    void SingleToHumanai();
+    void HumanaiToSingle();
+    void continueMusic();
 
 protected:
     void closeEvent(QCloseEvent *);

@@ -119,14 +119,14 @@ void ReplayWindow::on_loadButton_clicked()
     //fileName
 
     ReplayFile rFile;
-        if (!rFile.OpenFile(fileName.toStdString()))
+        if (!rFile.OpenFile(fileName))
         {
             if ( fileName == "" )
                 return;
             QMessageBox box;
             box.setWindowTitle(tr("´íÎó£¡"));
             box.setIcon(QMessageBox::Warning);
-            box.setText(tr("¼ÓÔØ´íÎó£¡"));
+            box.setText(tr("»Ø·Å¼ÓÔØ´íÎó£¡"));
             box.setStandardButtons(QMessageBox::Yes);
             box.exec();
             return;
@@ -136,7 +136,7 @@ void ReplayWindow::on_loadButton_clicked()
             QMessageBox box;
             box.setWindowTitle(tr("´íÎó£¡"));
             box.setIcon(QMessageBox::Warning);
-            box.setText(tr("°æ±¾ºÅ´íÎó£¡"));
+            box.setText(tr("»Ø·Å°æ±¾ºÅ´íÎó£¡"));
             box.setStandardButtons(QMessageBox::Yes);
             box.exec();
             return;
@@ -145,8 +145,12 @@ void ReplayWindow::on_loadButton_clicked()
         int winner;
         rFile.ReadWinner(winner);
         ifStatus =true;
+        if ( timer->isActive() == true )
+            timer->stop();
         ui->startButton->setEnabled(true);
         ui->pushButton_6->setEnabled(true);
+        ui->stopButton_1->setEnabled(false);
+        ui->pushButton_2->setEnabled(false);
 
         ui->spinBox->setRange(0,roundNum);
         ui->horizontalSlider->setRange(0,roundNum);
