@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'NormalBattle.h'
 **
-** Created: Fri Oct 19 04:41:54 2012
+** Created: Sun Oct 21 19:11:32 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!

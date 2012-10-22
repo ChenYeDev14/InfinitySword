@@ -83,9 +83,9 @@ Creator::Creator(QApplication &app)
     //人机对战
     humanaiWindow = new QGraphicsProxyWidget(pad);
     humanaiWidget = new humanai();
-    humanaiWindow->setWidget(humanaiWidget);
     humanaiWindow->setX(backWindow->x());
     humanaiWindow->setY(backWindow->y());
+    humanaiWindow->setWidget(humanaiWidget);
     humanaiWindow->widget()->setWindowOpacity(0);
     humanaiWindow->setZValue(0.5);
 
@@ -133,6 +133,7 @@ Creator::Creator(QApplication &app)
     connect(this->mapWideget->returnUi()->pushButton_5,SIGNAL(clicked()),this,SLOT(MapToSingle()));
     connect(this->singleWidget->ui->mapedit,SIGNAL(clicked()), this, SLOT(SingLeToMap()));
     connect(this->singleWidget->ui->playervsai,SIGNAL(clicked()),this,SLOT(SingleToHumanai()));
+    connect(this->singleWidget->ui->playervsai, SIGNAL(clicked()), humanaiWidget, SLOT(initEmpty()));
     connect(this->humanaiWidget->returnUi()->Button_back, SIGNAL(clicked()), this, SLOT(HumanaiToSingle()));
     connect(this->media,SIGNAL(aboutToFinish()),this,SLOT(continueMusic()));
 

@@ -6,7 +6,7 @@ using namespace DS14;
 using namespace std;
 
 
-ReplayFile::ReplayFile() { }
+ReplayFile::ReplayFile() { newfile = false;}
 
 bool ReplayFile::NewFile(QString playerName1, QString playerName2, QString mapName)
 {
@@ -15,7 +15,8 @@ bool ReplayFile::NewFile(QString playerName1, QString playerName2, QString mapNa
     QString fileName = "RepFiles/" + playerName1 + "_vs_" + playerName2 + "_inMap_" + mapName + "_atTime_";
     fileName.append(date.toString("yyyy-MM-dd_")).append(time.toString("hh-mm-ss")).append(".rep");
     file.setFileName(fileName);
-    return file.open(QIODevice::WriteOnly);
+    newfile = file.open(QIODevice::WriteOnly);
+    return newfile;
 }
 
 void ReplayFile::WriteInitialInfo(int basic_version, int logic_version, const DS14::PlayerInfo &playerInfo1, const DS14::PlayerInfo &playerInfo2)
@@ -83,7 +84,7 @@ bool ReplayFile::ReadInitialInfo(DS14::PlayerInfo &playerInfo1, DS14::PlayerInfo
 
 }
 
-void ReplayFile::ReadAllRoundInfo(int &roundNum, DS14::Status *statusList[])
+bool ReplayFile::ReadAllRoundInfo(int &roundNum, DS14::Status *statusList[])
 {
 
     Status s0;
@@ -128,6 +129,11 @@ void ReplayFile::ReadAllRoundInfo(int &roundNum, DS14::Status *statusList[])
                 file.read((char*)cmd2, sizeof(PlayerCommand));
             }
         }
+        if (f == 'E') //“Ï≥£Ω·Œ≤
+        {
+            file.close();
+            return false;
+        }
         for (; cur < next; cur++)
         {            
             _logic.update(&pcmd1, &pcmd2);
@@ -159,11 +165,21 @@ void ReplayFile::ReadAllRoundInfo(int &roundNum, DS14::Status *statusList[])
         if (cmd1 != NULL) {delete cmd1; cmd1 = NULL;}
         if (cmd2 != NULL) {delete cmd2; cmd2 = NULL;}
     }
+    return true;
 }
 
 void ReplayFile::ReadWinner(int &winSide)
 {
 	file.read((char*)(&winSide),sizeof(int));
+    file.close();
+}
+
+void ReplayFile::WriteErrorEnd()
+{
+    if (!newfile) return;
+    char f = 'E';
+    for (int i = 0; i < 2 * sizeof(PlayerCommand) + 3; i++)
+        file.putChar(f);
     file.close();
 }
 		

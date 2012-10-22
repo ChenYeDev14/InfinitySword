@@ -15,7 +15,7 @@ widgetssingle::widgetssingle(QWidget *parent) :
     ui->aivsai->setDisabled(false);
     ui->levelmode->setDisabled(true);
     ui->mapedit->setDisabled(false);
-    ui->playervsai->setDisabled(true);
+    ui->playervsai->setDisabled(false);
     ui->replay->setDisabled(false);
     ui->returnpre->setDisabled(false);
 

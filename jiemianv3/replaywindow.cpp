@@ -127,7 +127,7 @@ void ReplayWindow::on_loadButton_clicked()
             box.setWindowTitle(tr("错误！"));
             box.setIcon(QMessageBox::Warning);
             box.setText(tr("回放加载错误！"));
-            box.setStandardButtons(QMessageBox::Yes);
+            box.setStandardButtons(QMessageBox::Ok);
             box.exec();
             return;
         }
@@ -137,11 +137,20 @@ void ReplayWindow::on_loadButton_clicked()
             box.setWindowTitle(tr("错误！"));
             box.setIcon(QMessageBox::Warning);
             box.setText(tr("回放版本号错误！"));
-            box.setStandardButtons(QMessageBox::Yes);
+            box.setStandardButtons(QMessageBox::Ok);
             box.exec();
             return;
         }
-        rFile.ReadAllRoundInfo(roundNum, statusList);
+        if (!rFile.ReadAllRoundInfo(roundNum, statusList))
+        {
+            QMessageBox box;
+            box.setWindowTitle(tr("错误！"));
+            box.setIcon(QMessageBox::Warning);
+            box.setText(tr("回放文件不完整！"));
+            box.setStandardButtons(QMessageBox::Ok);
+            box.exec();
+            return;
+        }
         int winner;
         rFile.ReadWinner(winner);
         ifStatus =true;

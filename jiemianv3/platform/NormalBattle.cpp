@@ -147,10 +147,10 @@ bool NormalBattle::InitAiInfo()
         return false;
     }
     QFileInfo mapFile(map_location);
-    rFile = new ReplayFile;
-    rFile->NewFile(playerName[0], playerName[1], mapFile.baseName());
+    //rFile = new ReplayFile;
+    //rFile->NewFile(playerName[0], playerName[1], mapFile.baseName());
     //StatusMapInfo mInfo; //  wait for logic add a function
-    rFile->WriteInitialInfo(VERSION_BASIC, VERSION_LOGIC, pInfo[0], pInfo[1]);
+    //rFile->WriteInitialInfo(VERSION_BASIC, VERSION_LOGIC, pInfo[0], pInfo[1]);
     return true;
 }
 /**********************************************************************************************************
@@ -235,7 +235,7 @@ void NormalBattle::StartDebugBattle()
 
     PlayerCommand cmd[2];
     Status state = _logic->getStatus();
-    rFile->WriteStatus0(state);
+    //rFile->WriteStatus0(state);
     for (int i=0; i<2; i++)
     {
         for (int j=0; j<3; j++)
@@ -372,14 +372,14 @@ bool NormalBattle::UpDateCommand(PlayerCommand *c1, PlayerCommand *c2, bool toRF
     _logic->update(c1, c2);
     Status state = _logic->getStatus();
     emit round(state.roundNumber);
-    if (toRFile) rFile->WriteCommand(state.roundNumber-1, c1, c2);
+    //if (toRFile) rFile->WriteCommand(state.roundNumber-1, c1, c2);
     int winner = WhetherWin(state);
     if (winner)
     {
-        rFile->WriteWinner(state.roundNumber, winner);
+        //rFile->WriteWinner(state.roundNumber, winner);
         emit send_winner(winner);
-        delete rFile;
-        rFile = NULL;
+        //delete rFile;
+        //rFile = NULL;
         return true;
     }
     return false;
@@ -609,9 +609,13 @@ void NormalBattle::end()
             delete aiThread[i];
             aiThread[i] = NULL;
         }
-    }   
+    }
     if (_logic != NULL) delete _logic;
-    if (rFile != NULL) delete rFile;
+    if (rFile != NULL)
+    {
+        rFile->WriteErrorEnd();
+        delete rFile;
+    }
     _logic = NULL;
     rFile = NULL;
 }

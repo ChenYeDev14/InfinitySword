@@ -23,10 +23,12 @@ public:
     bool OpenFile(QString path); //打开回放文件，返回是否成功
     //以下函数默认文件打开成功
     bool ReadInitialInfo(PlayerInfo &playerInfo1, PlayerInfo &playerInfo2); //读出初始信息
-    void ReadAllRoundInfo(int &roundNum, Status *statusList[]); //读出所有回合信息,statusList[]为指针数组，采用动态分配内存
+    bool ReadAllRoundInfo(int &roundNum, Status *statusList[]); //读出所有回合信息,statusList[]为指针数组，采用动态分配内存
     void ReadWinner(int &winSide);
+    void WriteErrorEnd();
 private:
     QFile file;
+    bool newfile;
 };
 }
 

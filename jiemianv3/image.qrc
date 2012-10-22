@@ -38,8 +38,18 @@
         <file>image/kexie.png</file>
         <file>image/nc.png</file>
         <file>image/nc1.png</file>
-        <file>image/background.png</file>
         <file>image/select.png</file>
         <file>image/bg2.png</file>
+        <file>image/fastwalk.png</file>
+        <file>image/fastwalk1.png</file>
+        <file>image/missile.png</file>
+        <file>image/missile1.png</file>
+        <file>image/stun.png</file>
+        <file>image/stun1.png</file>
+        <file>image/bg1.jpg</file>
+        <file>image/human_back.png</file>
+        <file>image/attack.png</file>
+        <file>image/humanai_back.png</file>
+        <file>image/kuang.png</file>
     </qresource>
 </RCC>

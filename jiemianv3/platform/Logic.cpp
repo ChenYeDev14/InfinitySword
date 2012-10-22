@@ -82,17 +82,22 @@ bool DS14::logic::init(QString path)
     if (!infile.open(QIODevice::ReadOnly)) return false;
     int version_basic;
     infile.read((char*)&version_basic, sizeof(int));
-    if (version_basic != VERSION_BASIC) return false;
+    if (version_basic != VERSION_BASIC)
+    {
+        infile.close();
+        return false;
+    }
     infile.read((char*)(&(gameState.mapInfo)),sizeof(DS14::StatusMapInfo));
     for (int i=0; i<3; i++)
     {
         gameState.AI1HeroInfo[i].heroPosition = gameState.mapInfo.AIHeroBirthPlace[0][i];
         gameState.AI2HeroInfo[i].heroPosition = gameState.mapInfo.AIHeroBirthPlace[1][i];
     }
+    infile.close();
     return true;
 }
-/*
-void DS14::logic::init(std::string path)
+
+void logic::init()
 {
 	gameState.AI1gold = 0;
 	gameState.AI2gold = 0;
@@ -146,40 +151,36 @@ void DS14::logic::init(std::string path)
 	}
     gameState.swordInfo.AI1SwordNumber = 0;
     gameState.swordInfo.AI2SwordNumber = 0;
-    gameState.swordInfo.groundNumber = 0;
+    gameState.swordInfo.groundNumber = 1;
+    gameState.swordInfo.groundSwords[0].x = 0;
+    gameState.swordInfo.groundSwords[0].y = 0;
     gameState.swordInfo.CentreSwordCD = 0;
 	gameState.roundNumber = 0;
 
 
-	gameState.AI1HeroInfo[0].heroPosition.x = -500;
-	gameState.AI1HeroInfo[0].heroPosition.y = -500;
-	gameState.AI1HeroInfo[1].heroPosition.x = -500;
-	gameState.AI1HeroInfo[1].heroPosition.y = -300;
-	gameState.AI1HeroInfo[2].heroPosition.x = -300;
-	gameState.AI1HeroInfo[2].heroPosition.y = -500;
-	gameState.AI2HeroInfo[0].heroPosition.x = 500;
-	gameState.AI2HeroInfo[0].heroPosition.y = 500;
-	gameState.AI2HeroInfo[1].heroPosition.x = 500;
-	gameState.AI2HeroInfo[1].heroPosition.y = 300;
-	gameState.AI2HeroInfo[2].heroPosition.x = 300;
-	gameState.AI2HeroInfo[2].heroPosition.y = 500;
-	for(int i=0;i<3;i++)
-	{
-		gameState.mapInfo.AIHeroBirthPlace[0][i]=gameState.AI1HeroInfo[i].heroPosition;
-	}
-	for(int i=0;i<3;i++)
-	{
-		gameState.mapInfo.AIHeroBirthPlace[1][i]=gameState.AI2HeroInfo[i].heroPosition;
-	}
-    gameState.mapInfo.roadBlockNumber = 2;
+    gameState.mapInfo.AIHeroBirthPlace[0][0].x = 0;
+    gameState.mapInfo.AIHeroBirthPlace[0][0].y = 0;
+    gameState.mapInfo.AIHeroBirthPlace[0][1].x = 0;
+    gameState.mapInfo.AIHeroBirthPlace[0][1].y = 0;
+    gameState.mapInfo.AIHeroBirthPlace[0][2].x = 0;
+    gameState.mapInfo.AIHeroBirthPlace[0][2].y = 0;
+    gameState.mapInfo.AIHeroBirthPlace[1][0].x = 0;
+    gameState.mapInfo.AIHeroBirthPlace[1][0].y = 0;
+    gameState.mapInfo.AIHeroBirthPlace[1][1].x = 0;
+    gameState.mapInfo.AIHeroBirthPlace[1][1].y = 0;
+    gameState.mapInfo.AIHeroBirthPlace[1][2].x = 0;
+    gameState.mapInfo.AIHeroBirthPlace[1][2].y = 0;
 
-    gameState.mapInfo.roadBlock[0].x = -200;
-    gameState.mapInfo.roadBlock[0].y = -200;
-    gameState.mapInfo.roadBlock[1].x = 200;
-    gameState.mapInfo.roadBlock[1].y = 200;
-    gameState.mapInfo.slowDownAreaNumber = 1;
-    gameState.mapInfo.slowDownArea[0].x = 500;
-    gameState.mapInfo.slowDownArea[0].y = -500;
+	for(int i=0;i<3;i++)
+	{
+        gameState.AI1HeroInfo[i].heroPosition = gameState.mapInfo.AIHeroBirthPlace[0][i];
+	}
+	for(int i=0;i<3;i++)
+	{
+        gameState.AI2HeroInfo[i].heroPosition = gameState.mapInfo.AIHeroBirthPlace[1][i];
+	}
+    gameState.mapInfo.roadBlockNumber = 0;
+
 
 	for(int i = 0;i<6;i++)
 	{
@@ -190,25 +191,13 @@ void DS14::logic::init(std::string path)
 	
 
     gameState.mapInfo.AIBases[0].x = 0;
-	gameState.mapInfo.AIBases[0].y = -900;
+    gameState.mapInfo.AIBases[0].y = 0;
     gameState.mapInfo.AIBases[1].x = 0;
-	gameState.mapInfo.AIBases[1].y = 900;
+    gameState.mapInfo.AIBases[1].y = 0;
 
-	gameState.mapInfo.AIHeroBirthPlace[0][0].x = -500;
-	gameState.mapInfo.AIHeroBirthPlace[0][0].y = -500;
-	gameState.mapInfo.AIHeroBirthPlace[0][1].x = -500;
-	gameState.mapInfo.AIHeroBirthPlace[0][1].y = -300;
-	gameState.mapInfo.AIHeroBirthPlace[0][2].x = -300;
-	gameState.mapInfo.AIHeroBirthPlace[0][2].y = -500;
-	gameState.mapInfo.AIHeroBirthPlace[1][0].x = 500;
-	gameState.mapInfo.AIHeroBirthPlace[1][0].y = 500;
-	gameState.mapInfo.AIHeroBirthPlace[1][1].x = 500;
-	gameState.mapInfo.AIHeroBirthPlace[1][1].y = 300;
-	gameState.mapInfo.AIHeroBirthPlace[1][2].x = 300;
-	gameState.mapInfo.AIHeroBirthPlace[1][2].y = 500;
 
 }
-*/
+
 DS14::GameInfo DS14::logic::toPlayer(int side)//将side=1看作AI1，将side=2看作AI2,数值为-1代表不可见
 {
     Status status1;
@@ -1189,8 +1178,10 @@ namespace DS14
             if (!isOperable(hero)) continue;
             if (hero.missileCD) continue;
             if (cmd1.heroOrder[i]!=launchMissile) continue;
-
             gameState.AI1HeroInfo[i].missileCD=MISSILE_CD;        //置CD
+
+            Coordinate centre; centre.x =0; centre.y = 0;
+            if (Distance(cmd1.target[i], centre) > MAP_RADIUS) continue; //add by 陈晔 10/20
 
             for (int k=0;k<6;k++)
             if (!gameState.missileInfo[k].isReal)
@@ -1216,8 +1207,10 @@ namespace DS14
             if (!isOperable(hero)) continue;
             if (hero.missileCD) continue;
             if (cmd2.heroOrder[i]!=launchMissile) continue;
-
             gameState.AI2HeroInfo[i].missileCD=MISSILE_CD;        //置CD
+
+            Coordinate centre; centre.x =0; centre.y = 0;
+            if (Distance(cmd1.target[i], centre) > MAP_RADIUS) continue;  //add by 陈晔 10/20
 
             for (int k=0;k<6;k++)
             if (!gameState.missileInfo[k].isReal)

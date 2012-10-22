@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'creator.h'
 **
-** Created: Fri Oct 19 03:27:04 2012
+** Created: Sat Oct 20 18:01:33 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_Creator[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -44,6 +44,7 @@ static const uint qt_meta_data_Creator[] = {
      161,    8,    8,    8, 0x08,
      169,    8,    8,    8, 0x08,
      187,    8,    8,    8, 0x08,
+     205,    8,    8,    8, 0x08,
 
        0        // eod
 };
@@ -54,6 +55,7 @@ static const char qt_meta_stringdata_Creator[] = {
     "ReplayerToSingle()\0TeamToBegin()\0"
     "BeginToTeam()\0MapToSingle()\0SingLeToMap()\0"
     "Music()\0SingleToHumanai()\0HumanaiToSingle()\0"
+    "continueMusic()\0"
 };
 
 void Creator::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -75,6 +77,7 @@ void Creator::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 10: _t->Music(); break;
         case 11: _t->SingleToHumanai(); break;
         case 12: _t->HumanaiToSingle(); break;
+        case 13: _t->continueMusic(); break;
         default: ;
         }
     }
@@ -113,9 +116,9 @@ int Creator::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 14;
     }
     return _id;
 }

@@ -32,7 +32,8 @@ HEADERS += \
     humanai_aithread.h \
     humanai_replaydevice.h \
     humanai.h \
-    platform/Basic.h
+    platform/Basic.h \
+    FindPath.h
 
 SOURCES += \
     widgetssingle.cpp \
