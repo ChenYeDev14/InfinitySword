@@ -54,19 +54,19 @@ MapEditor::MapEditor(QWidget *parent) :
     connect(ui->pushButton_2,SIGNAL(clicked()),this,SLOT(Open()));
     connect(ui->pushButton,SIGNAL(clicked()),this,SLOT(newFile()));
     for ( int i = 0 ; i < 3 ; i++ ){
-        hero1[i] = new QLabel(this);
+        hero1[i] = new QLabel_Real(this);
         hero1[i]->hide();
-        hero2[i] = new QLabel(this);
+        hero2[i] = new QLabel_Real(this);
         hero2[i]->hide();
     }
-    base1 = new QLabel(this);
+    base1 = new QLabel_Real(this);
     base1->hide();
-    base2 = new QLabel(this);
+    base2 = new QLabel_Real(this);
     base2->hide();
     for ( int i = 0 ; i < 50 ; i++ ){
-        stuck[i] = new QLabel(this);
+        stuck[i] = new QLabel_Real(this);
         stuck[i]->hide();
-        slow[i] = new QLabel(this);
+        slow[i] = new QLabel_Real(this);
         slow[i]->hide();
     }
     setAcceptDrops(true);
@@ -607,6 +607,12 @@ void MapEditor::OpenFile()
         base1->setGeometry(mInfo.AIBases[0].x*W/double(2400)+X+W/2-double(100)*W/double(2400),Y+W/2-mInfo.AIBases[0].y*W/double(2400)-double(100)*W/double(2400),200*W/double(2400),200*H/double(2400));
         base1->setPixmap(QPixmap(":/image/base1.png"));
         base1->show();
+        Coordinate center;
+        center.x = base1->x()+base1->width()/2.0;
+        center.y = base1->y()+base1->height()/2.0;
+        qDebug() << mInfo.AIBases[0].x*W/double(2400)+X+W/2-double(100)*W/double(2400) << base1->x();
+        qDebug() << center.x;
+        qDebug() << mInfo.AIBases[0].x << DeviceToLogic(center).x;
         base1Num = 1;
         base2->setGeometry(mInfo.AIBases[1].x*W/double(2400)+X+W/2-double(100)*W/double(2400),Y+W/2-mInfo.AIBases[1].y*W/double(2400)-double(100)*W/double(2400),200*W/double(2400),200*H/double(2400));
         base2->setPixmap(QPixmap(":/image/base2.png"));
@@ -792,24 +798,25 @@ bool MapEditor::isSaveOrNot()//判断当前文件是否经过更改
             center.y = slow[i]->y()+(double)slow[i]->height()/2.0;
             if ( slow[i]->isHidden() == false ){
                 if ( DeviceToLogic(center).x != mInfo.slowDownArea[num1].x
-                     || DeviceToLogic(center).y != mInfo.slowDownArea[num1].y )
+                     || DeviceToLogic(center).y != mInfo.slowDownArea[num1].y ){
                     flag = 1;
                     break;
+                }
+                else
+                    num1++;
             }
-            else
-                num1++;
             center.x = stuck[i]->x()+(double)stuck[i]->width()/2.0;
             center.y = stuck[i]->y()+(double)stuck[i]->height()/2.0;
             if ( stuck[i]->isHidden() == false ){
                 if ( DeviceToLogic(center).x != mInfo.roadBlock[num2].x
-                     || DeviceToLogic(center).y != mInfo.roadBlock[num2].y )
+                     || DeviceToLogic(center).y != mInfo.roadBlock[num2].y ){
                     flag = 1;
                     break;
+                }
+                else
+                    num2++;
             }
-            else
-                num2++;
         }
-
     }
     if( flag == 1 || isSaved == false )
     {

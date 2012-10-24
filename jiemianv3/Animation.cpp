@@ -1,6 +1,8 @@
 #include "Animation.h"
 #include <QtGui>
 
+const double pi = 3.1415926;
+
 QParallelAnimationGroup* MenuAnimation(QGraphicsProxyWidget *formerWidget, QGraphicsProxyWidget *aimWidget, QState *formerState, QState *aimState)
 {
     if(formerWidget != NULL)
@@ -83,12 +85,12 @@ QParallelAnimationGroup* WindowAnimation(QGraphicsProxyWidget *formerWidget, QGr
     aimState->assignProperty(formerWidget->widget(), "windowOpacity", 0);
 
     QPropertyAnimation *DisWidget = new QPropertyAnimation(formerWidget->widget(), "windowOpacity");
-    DisWidget->setDuration(1000);
+    DisWidget->setDuration(500);
     DisWidget->setKeyValueAt(1,0);
     DisWidget->setEasingCurve(QEasingCurve::InOutQuad);
 
     QPropertyAnimation *AppWidget = new QPropertyAnimation(aimWidget->widget(), "windowOpacity");
-    AppWidget->setDuration(1000);
+    AppWidget->setDuration(500);
     AppWidget->setKeyValueAt(1,1);
     AppWidget->setEasingCurve(QEasingCurve::InOutQuad);
 
@@ -99,47 +101,24 @@ QParallelAnimationGroup* WindowAnimation(QGraphicsProxyWidget *formerWidget, QGr
     return parallelWid;
 }
 
-QParallelAnimationGroup* ButtonAnimation(QPushButton* button[], int n)
+QParallelAnimationGroup* ButtonAnimation(QPushButton* but[], int n)
 {
-    QPropertyAnimation *but[n];
     QParallelAnimationGroup *group = new QParallelAnimationGroup;
-    for (int i=0; i<n; i++)
-    {
-        but[i]=new QPropertyAnimation(button[i], "pos");
-        but[i]->setDuration(750 + i * 50);
-        but[i]->setKeyValueAt(1,QPointF(-cos(((i-4.5) / 25.0) * 6.28) * 240+700,
-                                        sin(((i-4.5) / 25.0) * 6.28) * 240+240));
-        but[i]->setEasingCurve(QEasingCurve::InOutBack);
-
-        group->addAnimation(but[i]);
-    }
+    for (int i = 0; i < 10 ; ++i) {
+         QPropertyAnimation *anim = new QPropertyAnimation(but[i], "pos");
+         anim->setDuration(750 + 9*25 - i * 25);
+         if ( i == 9 )
+             anim->setKeyValueAt(1,QPointF(but[9]->x(),but[9]->y()));
+         for ( int j = 1 ; j <= ( 9 - i ) ; j++ ){
+             anim->setKeyValueAt( 1.0 / ( 9.0 - (double)i ) * (double)j ,QPointF(but[9]->x() - ( 1 - cos ( pi / 2 * j ) ) * 80 , but[9]->y() - j * 60 ));
+         }
+         anim->setEasingCurve(QEasingCurve::InOutBack);
+         group->addAnimation(anim);
+     }
 
     return group;
 }
 
-QParallelAnimationGroup* reviewAnimation(QPushButton *pushButton, QGraphicsProxyWidget *formerWidget, QState *formerState)
-{
-    formerState->assignProperty(formerWidget->widget(), "windowOpacity", 1);
-
-    int y = formerWidget->widget()->y();
-
-    QPropertyAnimation *DisWidget = new QPropertyAnimation(formerWidget->widget(), "windowOpacity");
-    DisWidget->setDuration(500);
-    DisWidget->setKeyValueAt(1,0);
-    DisWidget->setEasingCurve(QEasingCurve::InOutQuad);
-
-    QPropertyAnimation *fPingWidget = new QPropertyAnimation(formerWidget, "y");
-    fPingWidget->setDuration(500);
-    fPingWidget->setKeyValueAt(0.9999,y-300);
-    fPingWidget->setKeyValueAt(1,y);
-    fPingWidget->setEasingCurve(QEasingCurve::InOutQuad);
-
-    QParallelAnimationGroup* parallelWid = new QParallelAnimationGroup();
-    parallelWid->addAnimation(DisWidget);
-    parallelWid->addAnimation(fPingWidget);
-
-    return parallelWid;
-}
 
 QParallelAnimationGroup* MenuToWindowAnimation(QGraphicsProxyWidget *formerWidget, QGraphicsProxyWidget *aimWidget, QState *formerState, QState *aimState)
 {

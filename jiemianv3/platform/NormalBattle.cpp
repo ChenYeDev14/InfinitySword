@@ -573,7 +573,8 @@ bool NormalBattle::RoundTimer()
         emit send_winner(winner);
         for (int i=0; i<2; i++)
         {
-            aiThread[i]->Ter();
+            delete aiThread[i];
+            aiThread[i] = NULL;
          }
         //killTimer(timerID);
         delete _logic;
@@ -657,6 +658,8 @@ void AiReadWriteThread::run()
     }
     client->read((char*)&playerInfo, sizeof(playerInfo));
     init_state = 3;
+    QTime time_read;
+    time_read.start();
     while (!ter)
     {
         //if (process.state() != QProcess::Running)
@@ -678,7 +681,10 @@ void AiReadWriteThread::run()
             client->read(&f, sizeof(f));
             if (f == 'r')
             {
+                int t = time_read.elapsed();
+                if (t < 10) msleep(10-t);
                 client->write((char*)&gInfo, sizeof(gInfo));
+                time_read.restart();
             }
             else if (f == 'w')
             {

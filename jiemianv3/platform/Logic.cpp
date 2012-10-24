@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <QString>
 #include <QFile>
+#include <QDebug>
 
 using namespace std;
 using namespace DS14;
@@ -1480,7 +1481,9 @@ namespace DS14
 		AddGold(gameState);
 		Preparation(gameState);
 		UpdateTree(gameState, cmd1, cmd2);
+        //qDebug()<<"3";
 		HeroMove(gameState,cmd1,cmd2);
+       // qDebug()<<"4";
 		HeroFastWalk(gameState,cmd1,cmd2);
 		HeroStun(gameState,cmd1,cmd2);
 		HeroHPRecovery(gameState);

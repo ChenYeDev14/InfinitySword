@@ -51,5 +51,8 @@
         <file>image/attack.png</file>
         <file>image/humanai_back.png</file>
         <file>image/kuang.png</file>
+        <file>image/logIn.png</file>
+        <file>image/form.png</file>
+        <file>image/title.png</file>
     </qresource>
 </RCC>

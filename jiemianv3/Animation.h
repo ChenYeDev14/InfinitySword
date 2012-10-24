@@ -12,5 +12,5 @@ QParallelAnimationGroup* MenuToWindowAnimation(QGraphicsProxyWidget *formerWidge
 QParallelAnimationGroup* WindowToMenuAnimation(QGraphicsProxyWidget *formerWidget, QGraphicsProxyWidget *aimWidget, QState *formerState, QState *aimState);
 QParallelAnimationGroup* ButtonAnimation(QPushButton* button[], int n);
 
-QParallelAnimationGroup* reviewAnimation(QPushButton *pushButton, QGraphicsProxyWidget *formerWidget, QState *formerState);
+QParallelAnimationGroup* reviewAnimation( QGraphicsProxyWidget *formerWidget, QState *formerState);
 #endif // ANIMATION_H

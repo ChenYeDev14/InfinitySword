@@ -21,7 +21,7 @@ AiThread::AiThread()
 AiThread::~AiThread()
 {
     EndGame();
-    if (!wait()) process->kill();
+    if (!wait(1000)) process->kill();
     if (command != NULL) delete command;
 }
 

@@ -9,7 +9,7 @@
 namespace DS14
 {
 //版本号
-    const int VERSION_BASIC = 105;
+    const int VERSION_BASIC = 106;
 
 //游戏基本常量：路障最大数量、减速区域最大数量
 	const int MAX_ROADBLOCK_NUMBER = 50;
@@ -246,8 +246,8 @@ const int MAP_RADIUS = 1200;
 //队伍名称和英雄名称
 		wchar_t teamName[20];        
 		wchar_t heroName[3][20]; 
-		wchar_t userName[20]; //测试赛用 用户名，密码
-		wchar_t code[20];   
+		wchar_t userName[40]; //测试赛用 用户名
+		
 	}PlayerInfo;
 
 }

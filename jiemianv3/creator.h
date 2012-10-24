@@ -28,6 +28,8 @@
 #include "Animation.h"
 #include "mapeditor.h"
 #include "humanai.h"
+#include "loginwidget.h"
+#include "testwidget.h"
 
 class Creator : public QGraphicsView
 {
@@ -51,6 +53,8 @@ private:
     QGraphicsProxyWidget* teamMeneWindow;
     QGraphicsProxyWidget* mapEditWindow;
     QGraphicsProxyWidget* humanaiWindow;
+    QGraphicsProxyWidget* LogInWindow;
+    QGraphicsProxyWidget* TestWindow;
 
     BackWidget* backWidget;
     BeginBottum* beginWidget;
@@ -62,6 +66,9 @@ private:
     ProductionTeam* teamWideget;
     MapEditor* mapWideget;
     humanai* humanaiWidget;
+    LogInWidget* logInwidget;
+    TestWidget* testwidget;
+
 
  //≤•∑≈“Ù¿÷
     Phonon::MediaObject *media;
@@ -72,7 +79,7 @@ private:
     QState* MainState;
     QState* TeamState;
     QState* BeginState;
-    QState* CheckState;
+    QState* TestState;
     QState* BeginMenuState;
     QState* SingleState;
     QState* OldMenuState;
@@ -84,6 +91,7 @@ private:
     QState* HumanaiState;
     QState* ChatState;
     QState* WidState;
+    QState* LogState;
 
 
 private slots:
@@ -101,6 +109,11 @@ private slots:
     void SingleToHumanai();
     void HumanaiToSingle();
     void continueMusic();
+    void SingleToLogIn();
+    void LogInToSingle();
+    void LogInToTest(QString user_name);
+    void TestToLogIn();
+
 
 protected:
     void closeEvent(QCloseEvent *);

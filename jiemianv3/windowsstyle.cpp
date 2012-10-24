@@ -1,21 +1,26 @@
 #include <QtGui>
+#include <QColor>
 
 #include "windowsstyle.h"
 
 void Style::polish(QPalette &palette)
 {
-//    QColor blue(0, 0, 200);
-//    QColor veryLightBlue(239, 239, 247);
-//    QColor lightBlue(223, 223, 239);
-//    QColor darkBlue(95, 95, 191);
+    QColor buttomColor(109,194,229);//µ­À¶
 
-//    palette = QPalette(blue);
-//    palette.setBrush(QPalette::BrightText, Qt::white);
-//    palette.setBrush(QPalette::Base, veryLightBlue);
-//    palette.setBrush(QPalette::AlternateBase, lightBlue);
-//    palette.setBrush(QPalette::Highlight, darkBlue);
-//    palette.setBrush(QPalette::Disabled, QPalette::Highlight,
-//                     Qt::darkGray);
+    QColor slightlyOpaqueBlack(0,0,0,63);
+
+    QColor gray(50,50,50);//»ÒÉ«
+
+    palette=QPalette();//µ÷É«°å
+
+    QBrush brush=palette.background();
+
+    brush.setColor(buttomColor);
+
+    palette.setBrush(QPalette::Active,QPalette::ButtonText,brush);
+
+    palette.setBrush(QPalette::Disabled,QPalette::ButtonText,QColor(125,125,125));
+
 }
 
 void Style::polish(QWidget *widget)
@@ -78,7 +83,7 @@ void Style::drawPrimitive(PrimitiveElement which,
     switch (which) {
     case PE_PanelButtonCommand:
         drawBevel(option, painter);
-         //QWindowsStyle::drawPrimitive(which, option, painter, widget);
+//         QWindowsStyle::drawPrimitive(which, option, painter, widget);
         break;
     case PE_Frame:
         drawBronzeFrame(option, painter);
@@ -207,6 +212,9 @@ void Style::drawBevel(const QStyleOption *option,
     painter->setPen(Qt::NoPen);
     painter->setBrush(pic);
     painter->drawRect(rect);
+
+//    painter->setPen(Qt::red);
+//    painter->setBrush(Qt::color1);
 
     if (option->state & (State_On | State_Sunken)) {
         QColor slightlyOpaqueBlack(0, 0, 0, 63);

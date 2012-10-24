@@ -11,8 +11,6 @@ INPUT(
 ./debug\teammenu.o
 ./debug\productionteam.o
 ./debug\productionteamtitle.o
-./debug\windowsstyle.o
-./debug\Animation.o
 ./debug\replayfile.o
 ./debug\NormalBattle.o
 ./debug\Logic.o
@@ -22,6 +20,13 @@ INPUT(
 ./debug\humanai_herodisplay.o
 ./debug\humainai_aithread.o
 ./debug\humanai.o
+./debug\TestBattle.o
+./debug\test.o
+./debug\testwidget.o
+./debug\loginwidget.o
+./debug\Animation.o
+./debug\qlabel_real.o
+./debug\windowsstyle.o
 ./debug\moc_widgetssingle.o
 ./debug\moc_rounditem.o
 ./debug\moc_creator.o
@@ -41,5 +46,9 @@ INPUT(
 ./debug\moc_humanai_aithread.o
 ./debug\moc_humanai_replaydevice.o
 ./debug\moc_humanai.o
+./debug\moc_loginwidget.o
+./debug\moc_qlabel_real.o
+./debug\moc_TestBattle.o
+./debug\moc_testwidget.o
 ./debug\qrc_image.o
 );

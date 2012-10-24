@@ -11,8 +11,6 @@ INPUT(
 ./release\teammenu.o
 ./release\productionteam.o
 ./release\productionteamtitle.o
-./release\windowsstyle.o
-./release\Animation.o
 ./release\replayfile.o
 ./release\NormalBattle.o
 ./release\Logic.o
@@ -22,6 +20,13 @@ INPUT(
 ./release\humanai_herodisplay.o
 ./release\humainai_aithread.o
 ./release\humanai.o
+./release\TestBattle.o
+./release\test.o
+./release\testwidget.o
+./release\loginwidget.o
+./release\Animation.o
+./release\qlabel_real.o
+./release\windowsstyle.o
 ./release\moc_widgetssingle.o
 ./release\moc_rounditem.o
 ./release\moc_creator.o
@@ -41,5 +46,9 @@ INPUT(
 ./release\moc_humanai_aithread.o
 ./release\moc_humanai_replaydevice.o
 ./release\moc_humanai.o
+./release\moc_loginwidget.o
+./release\moc_qlabel_real.o
+./release\moc_TestBattle.o
+./release\moc_testwidget.o
 ./release\qrc_image.o
 );

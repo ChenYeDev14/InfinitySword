@@ -13,7 +13,7 @@ widgetssingle::widgetssingle(QWidget *parent) :
     setPalette(pal);
 
     ui->aivsai->setDisabled(false);
-    ui->levelmode->setDisabled(true);
+    ui->levelmode->setDisabled(false);
     ui->mapedit->setDisabled(false);
     ui->playervsai->setDisabled(false);
     ui->replay->setDisabled(false);

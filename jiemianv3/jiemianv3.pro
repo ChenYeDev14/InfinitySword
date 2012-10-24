@@ -1,6 +1,7 @@
-QT      += core network
 QT      += phonon
-QT       += webkit
+QT      += webkit
+QT      += network
+QT      += sql
 CONFIG += qaxcontainer
 
 OTHER_FILES += \
@@ -33,7 +34,12 @@ HEADERS += \
     humanai_replaydevice.h \
     humanai.h \
     platform/Basic.h \
-    FindPath.h
+    FindPath.h \
+    platform/test.h \
+    loginwidget.h \
+    qlabel_real.h \
+    platform/TestBattle.h \
+    testwidget.h
 
 SOURCES += \
     widgetssingle.cpp \
@@ -48,8 +54,6 @@ SOURCES += \
     teammenu.cpp \
     productionteam.cpp \
     productionteamtitle.cpp \
-    windowsstyle.cpp \
-    Animation.cpp \
     platform/replayfile.cpp \
     platform/NormalBattle.cpp \
     platform/Logic.cpp \
@@ -58,7 +62,14 @@ SOURCES += \
     humanai_replaydevice.cpp \
     humanai_herodisplay.cpp \
     humainai_aithread.cpp \
-    humanai.cpp
+    humanai.cpp \
+    platform/TestBattle.cpp \
+    platform/test.cpp \
+    testwidget.cpp \
+    loginwidget.cpp \
+    Animation.cpp \
+    qlabel_real.cpp \
+    windowsstyle.cpp
 
 FORMS += \
     widgetssingle.ui \
@@ -69,7 +80,9 @@ FORMS += \
     replaywindow.ui \
     teammenu.ui \
     mapeditor.ui \
-    humanai.ui
+    humanai.ui \
+    testwidget.ui \
+    loginwidget.ui
 
 RESOURCES += \
     image.qrc

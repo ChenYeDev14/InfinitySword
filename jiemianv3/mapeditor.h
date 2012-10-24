@@ -11,6 +11,7 @@
 #include <QList>
 #include "platform/Status.h"
 #include "ui_mapeditor.h"
+#include "qlabel_real.h"
 
 using namespace std;
 using namespace DS14;
@@ -55,7 +56,7 @@ private:
     bool couldSave();
 
     int MapType;
-    QLabel *hero1[3],*hero2[3],*base1,*base2,*stuck[50],*slow[50];
+    QLabel_Real *hero1[3],*hero2[3],*base1,*base2,*stuck[50],*slow[50];
     int hero1Num,hero2Num,base1Num,base2Num,stuckNum,slowNum;
     Xy dragID;
     int xPosition,yPointion;

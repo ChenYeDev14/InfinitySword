@@ -99,6 +99,18 @@ ReplayWindow::ReplayWindow(QWidget *parent) :
     ui->lineEdit_5->setText(tr("½ðÇ®"));
     ui->lineEdit_6->setText(tr("±¦½£Êý"));
 
+    QColor blueColor(199,250,100);
+
+    QPalette pal;
+    pal.setBrush(QPalette::Base,blueColor);
+
+    ui->lineEdit->setPalette(pal);
+    ui->lineEdit_2->setPalette(pal);
+    ui->lineEdit_3->setPalette(pal);
+    ui->lineEdit_4->setPalette(pal);
+    ui->lineEdit_5->setPalette(pal);
+    ui->lineEdit_6->setPalette(pal);
+
 
     connect(this,SIGNAL(show(int,int)),this,SLOT(Label_show(int,int)));
 

@@ -109,6 +109,24 @@ Creator::Creator(QApplication &app)
                       QBrush(Qt::black));
     teamWindow->setPalette(Tpalette);
 
+//µÇÂ½
+    LogInWindow = new QGraphicsProxyWidget(pad);
+    logInwidget = new LogInWidget();
+    LogInWindow->setWidget(logInwidget);
+    LogInWindow->widget()->setWindowOpacity(0);
+    LogInWindow->setZValue(0.5);
+    LogInWindow->setX(0);
+    LogInWindow->setY(0);
+
+//²âÊÔÈü
+    TestWindow = new QGraphicsProxyWidget(pad);
+    testwidget = new TestWidget();
+    TestWindow->setWidget(testwidget);
+    TestWindow->widget()->setWindowOpacity(0);
+    TestWindow->setZValue(0.5);
+    TestWindow->setX(0);
+    TestWindow->setY(0);
+
 
 //  beginWindow->close();
     aiWindow->close();
@@ -118,6 +136,8 @@ Creator::Creator(QApplication &app)
     teamWindow->close();
     mapEditWindow->close();
     humanaiWindow->close();
+    LogInWindow->close();
+    TestWindow->close();
 
     QObject::connect(beginWidget->returnUi()->exitmain,SIGNAL(clicked()),this,SLOT(close()));
     QObject::connect(beginWidget->returnUi()->startsingle,SIGNAL(clicked()),this,SLOT(BeginToSingle()));
@@ -136,6 +156,10 @@ Creator::Creator(QApplication &app)
     connect(this->singleWidget->ui->playervsai, SIGNAL(clicked()), humanaiWidget, SLOT(initEmpty()));
     connect(this->humanaiWidget->returnUi()->Button_back, SIGNAL(clicked()), this, SLOT(HumanaiToSingle()));
     connect(this->media,SIGNAL(aboutToFinish()),this,SLOT(continueMusic()));
+    connect(this->singleWidget->ui->levelmode,SIGNAL(clicked()),this,SLOT(SingleToLogIn()));
+    connect(this->logInwidget->returnUi()->pushButton_2,SIGNAL(clicked()),this,SLOT(LogInToSingle()));
+    connect(this->logInwidget,SIGNAL(login_success(QString)),this,SLOT(LogInToTest(QString)));
+    connect(this->testwidget->returnUi()->pushButton,SIGNAL(clicked()),this,SLOT(TestToLogIn()));
 
 //    connect(this->singleWidget->ui->replay,SIGNAL(clicked()),this->replayerWidget,SLOT(GoInto()));
 
@@ -153,7 +177,7 @@ Creator::Creator(QApplication &app)
     MainState = new QState(stateMachine);
     TeamState = new QState(stateMachine);
     BeginState = new QState(stateMachine);
-    CheckState = new QState(stateMachine);
+    TestState = new QState(stateMachine);
     ReplayerState = new QState(stateMachine);
     WebState = new QState(stateMachine);
     MapState = new QState(stateMachine);
@@ -166,6 +190,7 @@ Creator::Creator(QApplication &app)
     OldMenuState = new QState(stateMachine);
     CheckMenuState = new QState(stateMachine);
     TeamMenuState = new QState(stateMachine);
+    LogState = new QState(stateMachine);
 
     MainState->assignProperty(MainState, "z", 0);
     MainState->assignProperty(beginWindow->widget(), "windowOpacity", 1);
@@ -351,4 +376,73 @@ void Creator::continueMusic()
 {
     media->enqueue(sourceList);
     media->play();
+}
+
+
+void Creator::SingleToLogIn()
+{
+    LogInWindow->show();
+
+    QParallelAnimationGroup* parallelWindow = MenuToWindowAnimation( singleWindow , LogInWindow, SingleState , LogState);
+    parallelWindow->start();
+    sleep(1000);
+
+    singleWindow->close();
+}
+
+
+void Creator::LogInToSingle()
+{
+    singleWindow->show();
+
+    QParallelAnimationGroup* parallelWindow = WindowToMenuAnimation( LogInWindow ,singleWindow , LogState , SingleState);
+    parallelWindow->start();
+    sleep(1000);
+
+    LogInWindow->close();
+}
+
+void Creator::LogInToTest(QString user_name)
+{
+    testwidget->SetUserName(user_name);
+    testwidget->upDateScores();
+
+    TestWindow->show();
+
+    QParallelAnimationGroup* parallelWindow = WindowAnimation(LogInWindow , TestWindow , LogState , TestState);
+    QParallelAnimationGroup* parallelButton = ButtonAnimation(testwidget->but, 10);
+
+    QParallelAnimationGroup* parallel = new QParallelAnimationGroup;
+    parallel->addAnimation(parallelWindow);
+
+    QSequentialAnimationGroup* sequential = new QSequentialAnimationGroup;
+    sequential->addAnimation(parallel);
+    sequential->addPause(0);
+    sequential->addAnimation(parallelButton);
+
+    sequential->start();
+    sleep(1000);
+
+    LogInWindow->close();
+}
+
+void Creator::TestToLogIn()
+{
+    singleWindow->show();
+
+    QParallelAnimationGroup* parallelWindow = WindowToMenuAnimation(TestWindow , singleWindow , TestState , SingleState );
+
+    QParallelAnimationGroup* parallel = new QParallelAnimationGroup;
+    parallel->addAnimation(parallelWindow);
+
+    QSequentialAnimationGroup* sequential = new QSequentialAnimationGroup;
+    sequential->addAnimation(parallel);
+
+    sequential->start();
+    sleep(1000);
+    for ( int i = 0 ; i < 10 ; i++ ){
+        testwidget->but[i]->setProperty("pos",QPointF(testwidget->but[9]->x(),testwidget->but[9]->y()));
+    }
+
+    TestWindow->close();
 }
