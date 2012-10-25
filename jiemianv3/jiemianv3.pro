@@ -39,7 +39,8 @@ HEADERS += \
     loginwidget.h \
     qlabel_real.h \
     platform/TestBattle.h \
-    testwidget.h
+    testwidget.h \
+    database.h
 
 SOURCES += \
     widgetssingle.cpp \

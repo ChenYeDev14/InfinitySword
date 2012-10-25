@@ -26,16 +26,6 @@
     <number>24</number>
    </property>
   </widget>
-  <widget class="QLineEdit" name="LineEditAI2">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>350</y>
-     <width>300</width>
-     <height>33</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="Map">
    <property name="geometry">
     <rect>
@@ -47,26 +37,6 @@
    </property>
    <property name="text">
     <string>载入地图</string>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="LineEditAI1">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>270</y>
-     <width>300</width>
-     <height>33</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QLineEdit" name="LineEditMap">
-   <property name="geometry">
-    <rect>
-     <x>200</x>
-     <y>430</y>
-     <width>300</width>
-     <height>33</height>
-    </rect>
    </property>
   </widget>
   <widget class="QPushButton" name="AI1">
@@ -125,6 +95,36 @@
    </property>
    <property name="text">
     <string>返回上级</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_AI1">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>273</y>
+     <width>250</width>
+     <height>27</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_AI2">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>353</y>
+     <width>250</width>
+     <height>27</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox_map">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>433</y>
+     <width>250</width>
+     <height>27</height>
+    </rect>
    </property>
   </widget>
  </widget>

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'loginwidget.ui'
 **
-** Created: Wed Oct 24 01:24:52 2012
+** Created: Thu Oct 25 20:30:53 2012
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,6 +14,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QCheckBox>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
@@ -31,6 +32,7 @@ public:
     QPushButton *pushButton_2;
     QLineEdit *lineEdit_user;
     QLineEdit *lineEdit_code;
+    QCheckBox *checkBox_remember;
 
     void setupUi(QWidget *LogInWidget)
     {
@@ -56,10 +58,10 @@ public:
         label_2->setAlignment(Qt::AlignCenter);
         pushButton_login = new QPushButton(LogInWidget);
         pushButton_login->setObjectName(QString::fromUtf8("pushButton_login"));
-        pushButton_login->setGeometry(QRect(100, 330, 141, 31));
+        pushButton_login->setGeometry(QRect(100, 350, 141, 31));
         pushButton_2 = new QPushButton(LogInWidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
-        pushButton_2->setGeometry(QRect(280, 330, 141, 31));
+        pushButton_2->setGeometry(QRect(280, 350, 141, 31));
         lineEdit_user = new QLineEdit(LogInWidget);
         lineEdit_user->setObjectName(QString::fromUtf8("lineEdit_user"));
         lineEdit_user->setGeometry(QRect(210, 200, 171, 31));
@@ -69,6 +71,18 @@ public:
         lineEdit_code->setFrame(true);
         lineEdit_code->setEchoMode(QLineEdit::Password);
         lineEdit_code->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
+        checkBox_remember = new QCheckBox(LogInWidget);
+        checkBox_remember->setObjectName(QString::fromUtf8("checkBox_remember"));
+        checkBox_remember->setGeometry(QRect(290, 300, 91, 16));
+        QPalette palette;
+        QBrush brush(QColor(255, 255, 255, 255));
+        brush.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::WindowText, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::WindowText, brush);
+        QBrush brush1(QColor(120, 120, 120, 255));
+        brush1.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Disabled, QPalette::WindowText, brush1);
+        checkBox_remember->setPalette(palette);
 
         retranslateUi(LogInWidget);
 
@@ -82,6 +96,7 @@ public:
         label_2->setText(QApplication::translate("LogInWidget", "\345\257\206\347\240\201\357\274\232", 0, QApplication::UnicodeUTF8));
         pushButton_login->setText(QApplication::translate("LogInWidget", "\347\231\273\351\231\206", 0, QApplication::UnicodeUTF8));
         pushButton_2->setText(QApplication::translate("LogInWidget", "\350\277\224\345\233\236", 0, QApplication::UnicodeUTF8));
+        checkBox_remember->setText(QApplication::translate("LogInWidget", "\350\256\260\344\275\217\345\257\206\347\240\201", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

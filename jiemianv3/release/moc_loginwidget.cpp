@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'loginwidget.h'
 **
-** Created: Wed Oct 24 01:32:49 2012
+** Created: Thu Oct 25 20:31:05 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_LogInWidget[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -36,6 +36,7 @@ static const uint qt_meta_data_LogInWidget[] = {
  // slots: signature, parameters, type, tag, flags
       36,   12,   12,   12, 0x08,
       44,   12,   12,   12, 0x08,
+      70,   12,   12,   12, 0x08,
 
        0        // eod
 };
@@ -43,6 +44,7 @@ static const uint qt_meta_data_LogInWidget[] = {
 static const char qt_meta_stringdata_LogInWidget[] = {
     "LogInWidget\0\0login_success(QString)\0"
     "LogIn()\0http_request_ready_read()\0"
+    "user_name_return_pressed()\0"
 };
 
 void LogInWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -54,6 +56,7 @@ void LogInWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 0: _t->login_success((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 1: _t->LogIn(); break;
         case 2: _t->http_request_ready_read(); break;
+        case 3: _t->user_name_return_pressed(); break;
         default: ;
         }
     }
@@ -91,9 +94,9 @@ int LogInWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }

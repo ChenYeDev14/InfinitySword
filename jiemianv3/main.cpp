@@ -4,6 +4,7 @@
 #include <QSplashScreen>
 #include "windowsstyle.h"
 #include "creator.h"
+#include <QFont>
 
 void sleep(unsigned int msec)
 {
@@ -18,9 +19,23 @@ int main(int argc, char*argv[])
     QApplication app(argc, argv);
     //QApplication::setLibraryPaths(QStringList << QCoreApplication::applicationDirPath()+"/plugins/");
 
+    QApplication::setStyle(new Style);
+    //设置字体
+    QFont font = app.font();
+    font.setBold(true);
+    font.setLetterSpacing(QFont::PercentageSpacing, 115);
+    app.setFont(font);
+    //设置颜色
+    QPalette palette = app.palette();
+    palette.setBrush(QPalette::Active,QPalette::ButtonText, QColor(255, 255, 255));
+    palette.setBrush(QPalette::Disabled,QPalette::ButtonText,QColor(0,0,0));
+    palette.setBrush(QPalette::Inactive,QPalette::ButtonText,QColor(255,255,255));
+    app.setPalette(palette);
+
     QApplication::addLibraryPath("./plugins");
     QTextCodec::setCodecForTr(QTextCodec::codecForLocale());
-    QApplication::setStyle(new Style);
+
+
 
     QCursor my(QPixmap(":/image/cursor3.png"),52,52);
     app.setOverrideCursor(my);

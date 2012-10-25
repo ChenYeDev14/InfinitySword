@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'clickbottum.ui'
 **
-** Created: Wed Oct 24 01:24:51 2012
+** Created: Thu Oct 25 01:57:57 2012
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -29,10 +29,10 @@ public:
     {
         if (ClickBottum->objectName().isEmpty())
             ClickBottum->setObjectName(QString::fromUtf8("ClickBottum"));
-        ClickBottum->resize(113, 69);
+        ClickBottum->resize(154, 68);
         checkBox = new QCheckBox(ClickBottum);
         checkBox->setObjectName(QString::fromUtf8("checkBox"));
-        checkBox->setGeometry(QRect(20, 20, 71, 16));
+        checkBox->setGeometry(QRect(20, 20, 101, 16));
         QPalette palette;
         QBrush brush(QColor(255, 255, 255, 255));
         brush.setStyle(Qt::SolidPattern);

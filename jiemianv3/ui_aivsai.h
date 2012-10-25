@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'aivsai.ui'
 **
-** Created: Wed Oct 24 01:24:52 2012
+** Created: Thu Oct 25 00:56:02 2012
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,8 +14,8 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QComboBox>
 #include <QtGui/QHeaderView>
-#include <QtGui/QLineEdit>
 #include <QtGui/QProgressBar>
 #include <QtGui/QPushButton>
 #include <QtGui/QWidget>
@@ -26,14 +26,14 @@ class Ui_AIvsAI
 {
 public:
     QProgressBar *progressBar;
-    QLineEdit *LineEditAI2;
     QPushButton *Map;
-    QLineEdit *LineEditAI1;
-    QLineEdit *LineEditMap;
     QPushButton *AI1;
     QPushButton *AI2;
     QPushButton *Start;
     QPushButton *ReturnPre;
+    QComboBox *comboBox_AI1;
+    QComboBox *comboBox_AI2;
+    QComboBox *comboBox_map;
 
     void setupUi(QWidget *AIvsAI)
     {
@@ -44,18 +44,9 @@ public:
         progressBar->setObjectName(QString::fromUtf8("progressBar"));
         progressBar->setGeometry(QRect(50, 590, 501, 20));
         progressBar->setValue(24);
-        LineEditAI2 = new QLineEdit(AIvsAI);
-        LineEditAI2->setObjectName(QString::fromUtf8("LineEditAI2"));
-        LineEditAI2->setGeometry(QRect(200, 350, 300, 33));
         Map = new QPushButton(AIvsAI);
         Map->setObjectName(QString::fromUtf8("Map"));
         Map->setGeometry(QRect(50, 430, 141, 33));
-        LineEditAI1 = new QLineEdit(AIvsAI);
-        LineEditAI1->setObjectName(QString::fromUtf8("LineEditAI1"));
-        LineEditAI1->setGeometry(QRect(200, 270, 300, 33));
-        LineEditMap = new QLineEdit(AIvsAI);
-        LineEditMap->setObjectName(QString::fromUtf8("LineEditMap"));
-        LineEditMap->setGeometry(QRect(200, 430, 300, 33));
         AI1 = new QPushButton(AIvsAI);
         AI1->setObjectName(QString::fromUtf8("AI1"));
         AI1->setGeometry(QRect(50, 270, 141, 33));
@@ -73,6 +64,15 @@ public:
         ReturnPre = new QPushButton(AIvsAI);
         ReturnPre->setObjectName(QString::fromUtf8("ReturnPre"));
         ReturnPre->setGeometry(QRect(791, 610, 141, 33));
+        comboBox_AI1 = new QComboBox(AIvsAI);
+        comboBox_AI1->setObjectName(QString::fromUtf8("comboBox_AI1"));
+        comboBox_AI1->setGeometry(QRect(220, 273, 250, 27));
+        comboBox_AI2 = new QComboBox(AIvsAI);
+        comboBox_AI2->setObjectName(QString::fromUtf8("comboBox_AI2"));
+        comboBox_AI2->setGeometry(QRect(220, 353, 250, 27));
+        comboBox_map = new QComboBox(AIvsAI);
+        comboBox_map->setObjectName(QString::fromUtf8("comboBox_map"));
+        comboBox_map->setGeometry(QRect(220, 433, 250, 27));
 
         retranslateUi(AIvsAI);
 

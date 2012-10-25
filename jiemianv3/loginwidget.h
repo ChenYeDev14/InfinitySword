@@ -29,10 +29,12 @@ private:
     QSqlDatabase db;
     QNetworkReply * reply;
     QString user_name;
+    QString user_code;
 
 private slots:
     void LogIn();
     void http_request_ready_read();
+    void user_name_return_pressed();
 
 signals:
     void login_success(QString);

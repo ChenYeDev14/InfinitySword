@@ -24,7 +24,7 @@ TestBattle::TestBattle()
 TestBattle::~TestBattle()
 {
     EndGame();
-    process->kill();
+    if (process != NULL) process->kill();
     if (command != NULL) delete command;
     if (test_logic != NULL) delete test_logic;
 }

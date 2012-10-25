@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'testwidget.ui'
 **
-** Created: Wed Oct 24 02:37:38 2012
+** Created: Thu Oct 25 00:38:44 2012
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,9 +14,9 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QComboBox>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
-#include <QtGui/QLineEdit>
 #include <QtGui/QProgressBar>
 #include <QtGui/QPushButton>
 #include <QtGui/QWidget>
@@ -27,7 +27,6 @@ class Ui_TestWidget
 {
 public:
     QPushButton *pushButton;
-    QLineEdit *lineEdit;
     QPushButton *pushButton_2;
     QPushButton *pushButton_3;
     QPushButton *pushButton_4;
@@ -63,6 +62,7 @@ public:
     QLabel *test10;
     QProgressBar *progressBar;
     QLabel *label_nickname;
+    QComboBox *comboBox_AI;
 
     void setupUi(QWidget *TestWidget)
     {
@@ -72,9 +72,6 @@ public:
         pushButton = new QPushButton(TestWidget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(30, 660, 141, 31));
-        lineEdit = new QLineEdit(TestWidget);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
-        lineEdit->setGeometry(QRect(200, 50, 250, 31));
         pushButton_2 = new QPushButton(TestWidget);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
         pushButton_2->setGeometry(QRect(30, 50, 141, 31));
@@ -328,6 +325,9 @@ public:
         font1.setBold(true);
         font1.setWeight(75);
         label_nickname->setFont(font1);
+        comboBox_AI = new QComboBox(TestWidget);
+        comboBox_AI->setObjectName(QString::fromUtf8("comboBox_AI"));
+        comboBox_AI->setGeometry(QRect(210, 52, 250, 27));
 
         retranslateUi(TestWidget);
 

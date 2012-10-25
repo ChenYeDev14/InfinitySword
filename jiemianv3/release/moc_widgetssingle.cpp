@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'widgetssingle.h'
 **
-** Created: Wed Oct 24 01:32:17 2012
+** Created: Thu Oct 25 00:59:36 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!

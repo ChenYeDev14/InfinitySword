@@ -1,11 +1,13 @@
 #include <QtGui>
 #include <QColor>
 
+
 #include "windowsstyle.h"
 
 void Style::polish(QPalette &palette)
-{
-    QColor buttomColor(109,194,229);//µ­À¶
+{/*
+    //QColor buttonColor(109,194,229);//µ­À¶
+    QColor buttonColor(0,0,0);
 
     QColor slightlyOpaqueBlack(0,0,0,63);
 
@@ -15,11 +17,9 @@ void Style::polish(QPalette &palette)
 
     QBrush brush=palette.background();
 
-    brush.setColor(buttomColor);
+    brush.setColor(buttonColor);
+*/
 
-    palette.setBrush(QPalette::Active,QPalette::ButtonText,brush);
-
-    palette.setBrush(QPalette::Disabled,QPalette::ButtonText,QColor(125,125,125));
 
 }
 
