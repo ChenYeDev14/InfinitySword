@@ -12,6 +12,7 @@ namespace DS14
         int AI2SwordNumber;
         int CentreSwordCD;
 		int groundNumber;
+        int first_index;
         Coordinate groundSwords[MAX_GOUNDSWORD_NUMBER];
     }StatusSwordInfo;
 

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'humanai.h'
 **
-** Created: Wed Oct 24 01:32:47 2012
+** Created: Wed Nov 21 12:35:18 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_humanai[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -42,6 +42,7 @@ static const uint qt_meta_data_humanai[] = {
      104,    8,    8,    8, 0x08,
      119,    8,    8,    8, 0x08,
      125,    8,    8,    8, 0x08,
+     148,    8,    8,    8, 0x08,
 
        0        // eod
 };
@@ -50,7 +51,8 @@ static const char qt_meta_stringdata_humanai[] = {
     "humanai\0\0initEmpty()\0GameUpdate()\0"
     "LoadMap()\0LoadAI()\0StartGame()\0"
     "connectError()\0initError()\0pathError()\0"
-    "versionError()\0end()\0on_Button_help_clicked()\0"
+    "versionError()\0end()\0ai_init_ready(QString)\0"
+    "on_Button_help_clicked()\0"
 };
 
 void humanai::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -69,11 +71,11 @@ void humanai::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 7: _t->pathError(); break;
         case 8: _t->versionError(); break;
         case 9: _t->end(); break;
-        case 10: _t->on_Button_help_clicked(); break;
+        case 10: _t->ai_init_ready((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 11: _t->on_Button_help_clicked(); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObjectExtraData humanai::staticMetaObjectExtraData = {
@@ -108,9 +110,9 @@ int humanai::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 12)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 12;
     }
     return _id;
 }

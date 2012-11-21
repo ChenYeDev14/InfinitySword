@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'NormalBattle.h'
 **
-** Created: Wed Oct 24 01:32:37 2012
+** Created: Wed Nov 21 12:35:11 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -103,12 +103,12 @@ static const uint qt_meta_data_DS14__NormalBattle[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      20,   14, // methods
+      21,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       9,       // signalCount
+      10,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
       20,   19,   19,   19, 0x05,
@@ -120,19 +120,20 @@ static const uint qt_meta_data_DS14__NormalBattle[] = {
      131,   19,   19,   19, 0x05,
      143,   19,   19,   19, 0x05,
      173,   19,   19,   19, 0x05,
+     195,  192,   19,   19, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-     192,   19,   19,   19, 0x0a,
-     208,   19,   19,   19, 0x0a,
-     214,   19,   19,   19, 0x0a,
-     237,   19,   19,   19, 0x0a,
-     258,   19,   19,   19, 0x0a,
-     271,   19,   19,   19, 0x0a,
-     290,  288,   19,   19, 0x0a,
-     308,   19,   19,   19, 0x08,
-     330,   19,   19,   19, 0x08,
-     352,   19,   19,   19, 0x08,
-     371,   19,   19,   19, 0x08,
+     230,   19,   19,   19, 0x0a,
+     246,   19,   19,   19, 0x0a,
+     252,   19,   19,   19, 0x0a,
+     275,   19,   19,   19, 0x0a,
+     296,   19,   19,   19, 0x0a,
+     309,   19,   19,   19, 0x0a,
+     328,  326,   19,   19, 0x0a,
+     346,   19,   19,   19, 0x08,
+     368,   19,   19,   19, 0x08,
+     390,   19,   19,   19, 0x08,
+     409,   19,   19,   19, 0x08,
 
        0        // eod
 };
@@ -143,8 +144,9 @@ static const char qt_meta_stringdata_DS14__NormalBattle[] = {
     "send_winner(int)\0round(int)\0name\0"
     "ready_for_connect(QString)\0mem_error()\0"
     "debug_battle_logic_prepared()\0"
-    "version_error(int)\0ready_connect()\0"
-    "end()\0change_to_debug_mode()\0"
+    "version_error(int)\0,,\0"
+    "init_info(QString,QString,QString)\0"
+    "ready_connect()\0end()\0change_to_debug_mode()\0"
     "change_to_run_mode()\0stopBattle()\0"
     "continueBattle()\0t\0setSleepTime(int)\0"
     "send_connect_error1()\0send_connect_error2()\0"
@@ -166,17 +168,18 @@ void DS14::NormalBattle::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 6: _t->mem_error(); break;
         case 7: _t->debug_battle_logic_prepared(); break;
         case 8: _t->version_error((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 9: _t->ready_connect(); break;
-        case 10: _t->end(); break;
-        case 11: _t->change_to_debug_mode(); break;
-        case 12: _t->change_to_run_mode(); break;
-        case 13: _t->stopBattle(); break;
-        case 14: _t->continueBattle(); break;
-        case 15: _t->setSleepTime((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 16: _t->send_connect_error1(); break;
-        case 17: _t->send_connect_error2(); break;
-        case 18: _t->send_init_error1(); break;
-        case 19: _t->send_init_error2(); break;
+        case 9: _t->init_info((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3]))); break;
+        case 10: _t->ready_connect(); break;
+        case 11: _t->end(); break;
+        case 12: _t->change_to_debug_mode(); break;
+        case 13: _t->change_to_run_mode(); break;
+        case 14: _t->stopBattle(); break;
+        case 15: _t->continueBattle(); break;
+        case 16: _t->setSleepTime((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 17: _t->send_connect_error1(); break;
+        case 18: _t->send_connect_error2(); break;
+        case 19: _t->send_init_error1(); break;
+        case 20: _t->send_init_error2(); break;
         default: ;
         }
     }
@@ -214,9 +217,9 @@ int DS14::NormalBattle::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 20)
+        if (_id < 21)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 20;
+        _id -= 21;
     }
     return _id;
 }
@@ -280,5 +283,12 @@ void DS14::NormalBattle::version_error(int _t1)
 {
     void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
     QMetaObject::activate(this, &staticMetaObject, 8, _a);
+}
+
+// SIGNAL 9
+void DS14::NormalBattle::init_info(QString _t1, QString _t2, QString _t3)
+{
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)) };
+    QMetaObject::activate(this, &staticMetaObject, 9, _a);
 }
 QT_END_MOC_NAMESPACE

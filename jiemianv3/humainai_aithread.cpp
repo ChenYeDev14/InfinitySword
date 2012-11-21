@@ -137,10 +137,26 @@ void AiThread::run()
         emit version_error();
         return;
     }
+    if (!client->waitForReadyRead())
+    {
+        *pcMap = 'E';
+        UnmapViewOfFile(pcMap);
+        CloseHandle(hFileMap);
+        process->terminate();
+        emit init_error();
+        return;
+    }
     PlayerInfo pInfo;
     client->read((char*)&pInfo, sizeof(PlayerInfo));
+
+    QString teamName;
+    qDebug()<<pInfo.teamName;
+    teamName = teamName.fromWCharArray(pInfo.teamName);
+    qDebug()<<teamName;
+    emit init_ready(teamName);
     //time.start();
     int last_round = 0;
+    reading = false;
     while(!ended)
     {
         //int t = time.elapsed();

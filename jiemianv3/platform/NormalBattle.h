@@ -1,5 +1,6 @@
 #ifndef NORMALBATTLE_H
 #define NORMALBATTLE_H
+
 #include <QString>
 #include <QThread>
 #include <QTimer>
@@ -133,6 +134,7 @@ signals:
     void mem_error();
     void debug_battle_logic_prepared();
     void version_error(int); //ai版本错误，1,2分别代表两个ai
+    void init_info(QString, QString, QString);
 };
 
 

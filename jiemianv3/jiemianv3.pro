@@ -65,12 +65,12 @@ SOURCES += \
     humainai_aithread.cpp \
     humanai.cpp \
     platform/TestBattle.cpp \
-    platform/test.cpp \
     testwidget.cpp \
     loginwidget.cpp \
     Animation.cpp \
     qlabel_real.cpp \
-    windowsstyle.cpp
+    windowsstyle.cpp \
+    platform/test.cpp
 
 FORMS += \
     widgetssingle.ui \

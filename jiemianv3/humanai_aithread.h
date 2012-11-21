@@ -40,6 +40,7 @@ signals:
     void init_error();      //当读取ai初始信息出错时被发送，1,2分别代表两个ai
     void mem_error();
     void version_error();
+    void init_ready(QString);
 };
 
 #endif // AITHREAD_FOR_HUMANAIBATTLE_H

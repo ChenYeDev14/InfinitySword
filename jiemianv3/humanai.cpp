@@ -26,6 +26,7 @@ humanai::humanai(QWidget *parent) :
     connect(ai, SIGNAL(init_error()), this, SLOT(initError()));
     connect(ai, SIGNAL(path_error()), this, SLOT(pathError()));
     connect(ai, SIGNAL(version_error()), this, SLOT(versionError()));
+    connect(ai, SIGNAL(init_ready(QString)), this, SLOT(ai_init_ready(QString)));
 
     gameDisplay = NULL;
     for (int i=0; i<3; i++)
@@ -114,6 +115,7 @@ humanai::~humanai()
 
 void humanai::end()
 {
+    rFile.WriteErrorEnd();
     ai->EndGame();
     GameTimer.stop();
 }
@@ -138,11 +140,13 @@ void humanai::GameUpdate()
 
     if (humanSide == 1)
     {
+        rFile.WriteCommand(TheGame.getStatus().roundNumber, &command1, &command2);
         TheGame.update(&command1,&command2);
         ai->SetGameInfo(TheGame.toPlayer(2));
     }
     else
     {
+        rFile.WriteCommand(TheGame.getStatus().roundNumber, &command2, &command1);
         TheGame.update(&command2,&command1);
         ai->SetGameInfo(TheGame.toPlayer(1));
     }
@@ -240,8 +244,45 @@ void humanai::StartGame()
         QMessageBox::warning(this, QString(tr("Â·¾¶´íÎó")), QString(tr("µØÍ¼Â·¾¶´íÎó£¡")));
         return;
     }
-    TheGame.init(map_path);
+    if (!TheGame.init(map_path))
+    {
+        QMessageBox::warning(this, QString(tr("°æ±¾´íÎó")), QString(tr("µØÍ¼°æ±¾³ö´í")));
+        return;
+    }
+
     ai->StartGame(TheGame.toPlayer(2));
+
+}
+
+void humanai::ai_init_ready(QString tName)
+{
+    PlayerInfo pInfo;
+    int n = tName.toWCharArray(pInfo.teamName);
+    pInfo.teamName[n] = '\0';
+    n = QString("hero1").toWCharArray(pInfo.heroName[0]);
+    pInfo.heroName[0][n] = '\0';
+    n = QString("hero2").toWCharArray(pInfo.heroName[1]);
+    pInfo.heroName[1][n] = '\0';
+    n = QString("hero3").toWCharArray(pInfo.heroName[2]);
+    pInfo.heroName[1][n] = '\0';
+    QFileInfo map(map_path);
+    if (humanSide == 1)
+    {
+        PlayerInfo info_human = pInfo;
+        QString("human").toWCharArray(info_human.teamName);
+
+        rFile.NewFile("human", tName, map.baseName());
+        rFile.WriteInitialInfo(VERSION_BASIC, VERSION_LOGIC, info_human, pInfo);
+    }
+    else
+    {
+        PlayerInfo info_human = pInfo;
+        QString("human").toWCharArray(info_human.teamName);
+        qDebug() <<"xx:"<<QString::fromWCharArray(info_human.teamName);
+        rFile.NewFile("human", tName, map.baseName());
+        rFile.WriteInitialInfo(VERSION_BASIC, VERSION_LOGIC, pInfo, info_human);
+    }
+    rFile.WriteStatus0(TheGame.getStatus());
     GameTimer.start(200);
 }
 
@@ -275,6 +316,7 @@ void humanai::gameEnd(int x)
     GameTimer.stop();
     ai->EndGame();
     if (x==0) return;
+    rFile.WriteWinner(TheGame.getStatus().roundNumber, x);
     if (x == humanSide)
     {
         QMessageBox box;
@@ -303,11 +345,6 @@ void humanai::gameEnd(int x)
         box.exec();
     }
 }
-
-
-//ËÑÂ·
-
-
 
 
 void humanai::on_Button_help_clicked()

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'humanai_aithread.h'
 **
-** Created: Wed Oct 24 01:43:02 2012
+** Created: Tue Nov 20 04:26:59 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,12 +23,12 @@ static const uint qt_meta_data_AiThread[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       5,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       5,       // signalCount
+       6,       // signalCount
 
  // signals: signature, parameters, type, tag, flags
       10,    9,    9,    9, 0x05,
@@ -36,6 +36,7 @@ static const uint qt_meta_data_AiThread[] = {
       39,    9,    9,    9, 0x05,
       52,    9,    9,    9, 0x05,
       64,    9,    9,    9, 0x05,
+      80,    9,    9,    9, 0x05,
 
        0        // eod
 };
@@ -43,6 +44,7 @@ static const uint qt_meta_data_AiThread[] = {
 static const char qt_meta_stringdata_AiThread[] = {
     "AiThread\0\0path_error()\0connect_error()\0"
     "init_error()\0mem_error()\0version_error()\0"
+    "init_ready(QString)\0"
 };
 
 void AiThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -56,10 +58,10 @@ void AiThread::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 2: _t->init_error(); break;
         case 3: _t->mem_error(); break;
         case 4: _t->version_error(); break;
+        case 5: _t->init_ready((*reinterpret_cast< QString(*)>(_a[1]))); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObjectExtraData AiThread::staticMetaObjectExtraData = {
@@ -94,9 +96,9 @@ int AiThread::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }
@@ -129,5 +131,12 @@ void AiThread::mem_error()
 void AiThread::version_error()
 {
     QMetaObject::activate(this, &staticMetaObject, 4, 0);
+}
+
+// SIGNAL 5
+void AiThread::init_ready(QString _t1)
+{
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)) };
+    QMetaObject::activate(this, &staticMetaObject, 5, _a);
 }
 QT_END_MOC_NAMESPACE

@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mapeditor.ui'
 **
-** Created: Wed Oct 24 01:24:52 2012
+** Created: Tue Nov 6 13:28:53 2012
 **      by: Qt User Interface Compiler version 4.8.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

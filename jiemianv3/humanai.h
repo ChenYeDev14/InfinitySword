@@ -9,6 +9,7 @@
 #include "humanai_replaydevice.h"
 #include "platform/Status.h"
 #include "platform/logic.h"
+#include "platform/replayfile.h"
 #include <QTimer>
 #include <QLabel>
 #include <QtGui>
@@ -33,6 +34,7 @@ private:
     heroDisplay *AI2Hero[3];
     replayDevice *gameDisplay;
     DS14::logic TheGame;
+    DS14::ReplayFile rFile;
     QTimer GameTimer;
     DS14::PlayerCommand command2;
     DS14::Coordinate EnemyPosition[3];
@@ -57,6 +59,8 @@ private slots:
     void pathError();
     void versionError();
     void end();
+
+    void ai_init_ready(QString);
 
     void on_Button_help_clicked();
 };

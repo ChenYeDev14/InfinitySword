@@ -9,7 +9,7 @@
 namespace DS14
 {
 
-const int VERSION_LOGIC = 105; //当逻辑的upDate发生变化是增加版本号
+const int VERSION_LOGIC = 106; //当逻辑的upDate发生变化是增加版本号
 
 class logic
 {

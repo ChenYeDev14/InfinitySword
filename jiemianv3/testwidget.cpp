@@ -17,7 +17,7 @@
 #include <QFile>
 #include <QTextStream>
 
-const int max_round_num[10] = {75, 15, 45, 180, 0, 0, 0, 0, 0, 0};
+const int max_round_num[10] = {75, 15, 45, 180, 300, 400, 1000, 0, 0, 0};
 
 TestWidget::TestWidget(QWidget *parent) :
     QWidget(parent),
@@ -66,7 +66,7 @@ TestWidget::TestWidget(QWidget *parent) :
     but[9] = ui->pushButton_12;
     for (int i=0; i<10; i++)
     {
-        if (i < 6) but[i]->setEnabled(false); else but[i]->setEnabled(true);
+        if (i < 3) but[i]->setEnabled(false); else but[i]->setEnabled(true);
     }
     for ( int i = 0 ; i < 9 ; i++ ){
         but[i]->move(but[9]->x(),but[9]->y());
@@ -135,7 +135,7 @@ void TestWidget::upDateScores()
     columns.append(",nickname");
     QSqlQuery query(db);
     QString exe = "SELECT "+columns+" FROM user WHERE email = '"+user_name+"'";
-    qDebug() << exe;
+
     query.exec(exe);
     if (query.next()) for (int i=0; i<10; i++)
     {
@@ -158,7 +158,7 @@ void TestWidget::printScore()
 
 void TestWidget::setAllEnable(bool f)
 {
-    for (int i=9; i>=6; i--) but[i]->setEnabled(f);
+    for (int i=9; i>=3; i--) but[i]->setEnabled(f);
     if (f) level = 0;
 }
 
@@ -336,3 +336,30 @@ void TestWidget::on_pushButton_9_clicked()  //µÚËÄ¹Ø
 }
 
 
+
+void TestWidget::on_pushButton_8_clicked()
+{
+    level = 5;
+    setAllEnable(false);
+    ui->progressBar->setRange(0, max_round_num[4]);
+    ui->progressBar->setValue(0);
+    testbattle->StartBattle(ui->comboBox_AI->currentText(), 5);
+}
+
+void TestWidget::on_pushButton_7_clicked()
+{
+    level = 6;
+    setAllEnable(false);
+    ui->progressBar->setRange(0, max_round_num[5]);
+    ui->progressBar->setValue(0);
+    testbattle->StartBattle(ui->comboBox_AI->currentText(), 6);
+}
+
+void TestWidget::on_pushButton_6_clicked()
+{
+    level = 7;
+    setAllEnable(false);
+    ui->progressBar->setRange(0, max_round_num[6]);
+    ui->progressBar->setValue(0);
+    testbattle->StartBattle(ui->comboBox_AI->currentText(), 7);
+}

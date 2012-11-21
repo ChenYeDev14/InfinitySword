@@ -21,12 +21,12 @@ INPUT(
 ./release\humainai_aithread.o
 ./release\humanai.o
 ./release\TestBattle.o
-./release\test.o
 ./release\testwidget.o
 ./release\loginwidget.o
 ./release\Animation.o
 ./release\qlabel_real.o
 ./release\windowsstyle.o
+./release\test.o
 ./release\moc_widgetssingle.o
 ./release\moc_rounditem.o
 ./release\moc_creator.o

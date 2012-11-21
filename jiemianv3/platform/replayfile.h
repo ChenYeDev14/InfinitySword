@@ -10,10 +10,11 @@ namespace DS14
 class ReplayFile
 {
 public:
-    ReplayFile();
+    ReplayFile(bool testBattle = false);
     //写入
     bool NewFile(QString playerName1, QString playerName2, QString mapName);//根据信息新建回放文件
-    void WriteInitialInfo(int basic_version, int logic_version, const PlayerInfo &playerInfo1, const PlayerInfo &playerInfo2);
+    void WriteInitialInfo(int basic_version, int logic_version,
+                          const PlayerInfo &playerInfo1, const PlayerInfo &playerInfo2);
             //写入初始信息（玩家，地图）
     //void WriteRoundInfo(const Status &roundStatus); //写入回合信息
     void WriteStatus0(const Status &s);
@@ -29,6 +30,7 @@ public:
 private:
     QFile file;
     bool newfile;
+    bool test_battle; //是否为测试赛回放
 };
 }
 

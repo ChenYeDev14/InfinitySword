@@ -8,6 +8,7 @@
 #include <wchar.h>
 #include <string>
 #include <windows.h>
+#include "replayfile.h"
 
 #include <QDebug>
 
@@ -154,6 +155,12 @@ void TestBattle::run()
     //初始化逻辑
     test_logic = new test;
     test_logic->test_init(test_level);
+
+    //ReplayFile rFile(false);
+    //rFile.NewFile(QString::fromWCharArray(pInfo.teamName), "Test", QString::number(test_level));
+    //rFile.WriteInitialInfo(VERSION_BASIC, VERSION_LOGIC, pInfo, pInfo);
+    //rFile.WriteStatus0(test_logic->getStatus());
+
     PlayerCommand cmd;
     for (int i=0; i<3; i++)
     {
@@ -174,12 +181,15 @@ void TestBattle::run()
 
             int result = test_logic->test_update(&cmd, test_level);
 
-            emit round_up(test_logic->getStatus().roundNumber);
+            emit round_up(test_logic->getStatus().roundNumber);//, &rFile);
             if (result != -1)
             {
                 //显示和记录score = result
                 *pcMap = 'E';
                 emit game_end(result);
+                /*if (result > 0)
+                    rFile.WriteWinner(test_logic->getStatus().roundNumber, 0);
+                else rFile.WriteWinner(test_logic->getStatus().roundNumber, 1);*/
                 break;//退出
             }
             for (int i=0; i<3; i++)

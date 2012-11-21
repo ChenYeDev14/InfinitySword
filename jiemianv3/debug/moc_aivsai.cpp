@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'aivsai.h'
 **
-** Created: Thu Oct 25 16:44:30 2012
+** Created: Tue Nov 20 04:26:47 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!

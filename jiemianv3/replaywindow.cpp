@@ -779,20 +779,31 @@ void ReplayWindow::Label_show(int i,int n)
     QString magicCD;
     QString stunCD;
     QString fastWalkCD;
+    QString attackLevel;
+    QString strength;
+    QString minjie;
     if ( n != -1 ){
         if ( i < 3 ){
             CurrentUnitHP.setNum(statusList[n-1]->AI1HeroInfo[i].currentHP);
             magicCD.setNum(statusList[n-1]->AI1HeroInfo[i].missileCD);
             stunCD.setNum(statusList[n-1]->AI1HeroInfo[i].stunCD);
             fastWalkCD.setNum(statusList[n-1]->AI1HeroInfo[i].fastWalkCD);
-            Label_showInfo->setText(tr("    种类: 英雄 \n\n    名字: %1 \n\n    队伍: %2 \n\n    血量: %3  \n\n    法术CD: %4 \n\n    晕眩CD: %5 \n\n    疾风步CD: %6")
+            attackLevel.setNum(statusList[n-1]->AI1HeroInfo[i].heroTechTree.attackLevel);
+            strength.setNum(statusList[n-1]->AI1HeroInfo[i].heroTechTree.strenth);
+            minjie.setNum(statusList[n-1]->AI1HeroInfo[i].heroTechTree.agility);
+            Label_showInfo->setText(tr("    种类: 英雄 \n\n    名字: %1 \n\n    队伍: %2 \n\n    血量: %3  \n\n    法术CD: %4 \n\n    晕眩CD: %5 \n\n    疾风步CD: %6 \n\n    普攻等级： %7\n\n    力量： %8 \n\n    敏捷： %9")
                                     .arg(QString::fromStdWString(pInfo[0].heroName[i]))
                                     .arg(QString::fromStdWString(pInfo[0].teamName))
                                     .arg(CurrentUnitHP)
                                     .arg(magicCD)
                                     .arg(stunCD)
-                                    .arg(fastWalkCD));
+                                    .arg(fastWalkCD)
+                                    .arg(attackLevel)
+                                    .arg(strength)
+                                    .arg(minjie));
             Label_showInfo->move(QPoint(hero[i]->x()+hero[i]->width(),hero[i]->y()+hero[i]->height()));
+            if ( Label_showInfo->y() > Y + H / 2 )
+                Label_showInfo->move(QPoint(hero[i]->x()+hero[i]->width(),hero[i]->y()+hero[i]->height()-Label_showInfo->height()));
             Label_showInfo->show();
         }
         if ( i > 2 && i < 6){
@@ -800,14 +811,22 @@ void ReplayWindow::Label_show(int i,int n)
             magicCD.setNum(statusList[n-1]->AI2HeroInfo[i-3].missileCD);
             stunCD.setNum(statusList[n-1]->AI2HeroInfo[i-3].stunCD);
             fastWalkCD.setNum(statusList[n-1]->AI2HeroInfo[i-3].fastWalkCD);
-            Label_showInfo->setText(tr("    种类: 英雄 \n\n    名字: %1 \n\n    队伍: %2 \n\n    血量: %3  \n\n    法术CD: %4 \n\n    晕眩CD: %5 \n\n    疾风步CD: %6")
+            attackLevel.setNum(statusList[n-1]->AI2HeroInfo[i-3].heroTechTree.attackLevel);
+            strength.setNum(statusList[n-1]->AI2HeroInfo[i-3].heroTechTree.strenth);
+            minjie.setNum(statusList[n-1]->AI2HeroInfo[i-3].heroTechTree.agility);
+            Label_showInfo->setText(tr("    种类: 英雄 \n\n    名字: %1 \n\n    队伍: %2 \n\n    血量: %3  \n\n    法术CD: %4 \n\n    晕眩CD: %5 \n\n    疾风步CD: %6 \n\n    普攻等级： %7\n\n    力量： %8 \n\n    敏捷： %9")
                                     .arg(QString::fromStdWString(pInfo[1].heroName[i-3]))
                                     .arg(QString::fromStdWString(pInfo[1].teamName))
                                     .arg(CurrentUnitHP)
                                     .arg(magicCD)
                                     .arg(stunCD)
-                                    .arg(fastWalkCD));
+                                    .arg(fastWalkCD)
+                                    .arg(attackLevel)
+                                    .arg(strength)
+                                    .arg(minjie));
             Label_showInfo->move(QPoint(hero[i]->x()+hero[i]->width(),hero[i]->y()+hero[i]->height()));
+            if ( Label_showInfo->y() > Y + H / 2 )
+                Label_showInfo->move(QPoint(hero[i]->x()+hero[i]->width(),hero[i]->y()+hero[i]->height()-Label_showInfo->height()));
             Label_showInfo->show();
         }
         if ( i == 10 ){

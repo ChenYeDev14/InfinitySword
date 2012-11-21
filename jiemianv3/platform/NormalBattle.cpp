@@ -482,6 +482,9 @@ void NormalBattle::StartTwoAiBattle()
        return;
    }
    QFileInfo mapFile(map_location);
+
+   emit init_info(playerName[0], playerName[1], mapFile.baseName());
+
    rFile = new ReplayFile;
    rFile->NewFile(playerName[0], playerName[1], mapFile.baseName());
    rFile->WriteInitialInfo(VERSION_BASIC, VERSION_LOGIC, pInfo[0], pInfo[1]);
@@ -562,7 +565,7 @@ bool NormalBattle::RoundTimer()
     Status state = _logic->getStatus();
     if (state.roundNumber % 10 == 0) emit round(state.roundNumber);
     //rFile->WriteRoundInfo(state);
-    if (cmd1 != NULL || cmd2 != NULL) rFile->WriteCommand(state.roundNumber-1, cmd1, cmd2);
+    if ((cmd1 != NULL) || (cmd2 != NULL)) rFile->WriteCommand(state.roundNumber-1, cmd1, cmd2);
     int winner = WhetherWin(state);
     if (aiThread[0]->hasCrashed() && !aiThread[1]->hasCrashed()) winner = 2;
     else if (!aiThread[0]->hasCrashed() && aiThread[1]->hasCrashed()) winner = 1;

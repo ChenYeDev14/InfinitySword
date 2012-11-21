@@ -10,7 +10,7 @@ using namespace DS14;
 
 DS14::logic::logic()
 {
-	FIRSTBLOOD = false;
+    FIRSTBLOOD = false;
 }
 
 bool DS14::logic::init(QString path)
@@ -68,6 +68,7 @@ bool DS14::logic::init(QString path)
     gameState.swordInfo.AI1SwordNumber = 0;
     gameState.swordInfo.AI2SwordNumber = 0;
     gameState.swordInfo.groundNumber = 0;
+    gameState.swordInfo.first_index = 0;
     gameState.swordInfo.CentreSwordCD = -1;
     gameState.roundNumber = 0;
     for(int i = 0;i<=5;i++)
@@ -100,63 +101,63 @@ bool DS14::logic::init(QString path)
 
 void logic::init()
 {
-	gameState.AI1gold = 0;
-	gameState.AI2gold = 0;
-	for(int i = 0;i<=2;i++)
-	{
-		gameState.AI1HeroInfo[i].AttackBackWait = 0;
-		gameState.AI1HeroInfo[i].AttackForwardWait = 0;
-		gameState.AI1HeroInfo[i].currentHP = 100;
-		gameState.AI1HeroInfo[i].FastwalkBackWait = 0;
-		gameState.AI1HeroInfo[i].fastWalkCD = 0;
-		gameState.AI1HeroInfo[i].FastwalkForwardWait = 0;
-		gameState.AI1HeroInfo[i].FastwalkLast = 0;
+    gameState.AI1gold = 0;
+    gameState.AI2gold = 0;
+    for(int i = 0;i<=2;i++)
+    {
+        gameState.AI1HeroInfo[i].AttackBackWait = 0;
+        gameState.AI1HeroInfo[i].AttackForwardWait = 0;
+        gameState.AI1HeroInfo[i].currentHP = 100;
+        gameState.AI1HeroInfo[i].FastwalkBackWait = 0;
+        gameState.AI1HeroInfo[i].fastWalkCD = 0;
+        gameState.AI1HeroInfo[i].FastwalkForwardWait = 0;
+        gameState.AI1HeroInfo[i].FastwalkLast = 0;
         gameState.AI1HeroInfo[i].hasSword = false;
-		gameState.AI1HeroInfo[i].heroTechTree.agility = 0;
-		gameState.AI1HeroInfo[i].heroTechTree.attackLevel = 0;
-		gameState.AI1HeroInfo[i].heroTechTree.fastWalkLevel = 0;
-		gameState.AI1HeroInfo[i].heroTechTree.strenth = 0;
-		gameState.AI1HeroInfo[i].heroTechTree.stunLevel = 0;
-		gameState.AI1HeroInfo[i].InvincibleLast = 0;
+        gameState.AI1HeroInfo[i].heroTechTree.agility = 0;
+        gameState.AI1HeroInfo[i].heroTechTree.attackLevel = 0;
+        gameState.AI1HeroInfo[i].heroTechTree.fastWalkLevel = 0;
+        gameState.AI1HeroInfo[i].heroTechTree.strenth = 0;
+        gameState.AI1HeroInfo[i].heroTechTree.stunLevel = 0;
+        gameState.AI1HeroInfo[i].InvincibleLast = 0;
         gameState.AI1HeroInfo[i].missileCD = 0;
-		gameState.AI1HeroInfo[i].RebornWait = 0;
-		gameState.AI1HeroInfo[i].StunBackWait = 0;
-		gameState.AI1HeroInfo[i].stunCD = 0;
-		gameState.AI1HeroInfo[i].StunForwardWait = 0;
-		gameState.AI1HeroInfo[i].StunLast = 0;
+        gameState.AI1HeroInfo[i].RebornWait = 0;
+        gameState.AI1HeroInfo[i].StunBackWait = 0;
+        gameState.AI1HeroInfo[i].stunCD = 0;
+        gameState.AI1HeroInfo[i].StunForwardWait = 0;
+        gameState.AI1HeroInfo[i].StunLast = 0;
 
-		gameState.AI2HeroInfo[i].AttackBackWait = 0;
-		gameState.AI2HeroInfo[i].AttackForwardWait = 0;
-		gameState.AI2HeroInfo[i].currentHP = 100;
-		gameState.AI2HeroInfo[i].FastwalkBackWait = 0;
-		gameState.AI2HeroInfo[i].fastWalkCD = 0;
-		gameState.AI2HeroInfo[i].FastwalkForwardWait = 0;
-		gameState.AI2HeroInfo[i].FastwalkLast = 0;
+        gameState.AI2HeroInfo[i].AttackBackWait = 0;
+        gameState.AI2HeroInfo[i].AttackForwardWait = 0;
+        gameState.AI2HeroInfo[i].currentHP = 100;
+        gameState.AI2HeroInfo[i].FastwalkBackWait = 0;
+        gameState.AI2HeroInfo[i].fastWalkCD = 0;
+        gameState.AI2HeroInfo[i].FastwalkForwardWait = 0;
+        gameState.AI2HeroInfo[i].FastwalkLast = 0;
         gameState.AI2HeroInfo[i].hasSword = false;
-		gameState.AI2HeroInfo[i].heroTechTree.agility = 0;
-		gameState.AI2HeroInfo[i].heroTechTree.attackLevel = 0;
-		gameState.AI2HeroInfo[i].heroTechTree.fastWalkLevel = 0;
-		gameState.AI2HeroInfo[i].heroTechTree.strenth = 0;
-		gameState.AI2HeroInfo[i].heroTechTree.stunLevel = 0;
-		gameState.AI2HeroInfo[i].InvincibleLast = 0;
+        gameState.AI2HeroInfo[i].heroTechTree.agility = 0;
+        gameState.AI2HeroInfo[i].heroTechTree.attackLevel = 0;
+        gameState.AI2HeroInfo[i].heroTechTree.fastWalkLevel = 0;
+        gameState.AI2HeroInfo[i].heroTechTree.strenth = 0;
+        gameState.AI2HeroInfo[i].heroTechTree.stunLevel = 0;
+        gameState.AI2HeroInfo[i].InvincibleLast = 0;
         gameState.AI2HeroInfo[i].missileCD = 0;
-		gameState.AI2HeroInfo[i].RebornWait = 0;
-		gameState.AI2HeroInfo[i].StunBackWait = 0;
-		gameState.AI2HeroInfo[i].stunCD = 0;
-		gameState.AI2HeroInfo[i].StunForwardWait = 0;
-		gameState.AI2HeroInfo[i].StunLast = 0;
-	}
-	for(int i = 0;i<=5;i++)
-	{
-		gameState.missileInfo[i].isReal = false;
-	}
+        gameState.AI2HeroInfo[i].RebornWait = 0;
+        gameState.AI2HeroInfo[i].StunBackWait = 0;
+        gameState.AI2HeroInfo[i].stunCD = 0;
+        gameState.AI2HeroInfo[i].StunForwardWait = 0;
+        gameState.AI2HeroInfo[i].StunLast = 0;
+    }
+    for(int i = 0;i<=5;i++)
+    {
+        gameState.missileInfo[i].isReal = false;
+    }
     gameState.swordInfo.AI1SwordNumber = 0;
     gameState.swordInfo.AI2SwordNumber = 0;
     gameState.swordInfo.groundNumber = 1;
     gameState.swordInfo.groundSwords[0].x = 0;
     gameState.swordInfo.groundSwords[0].y = 0;
     gameState.swordInfo.CentreSwordCD = 0;
-	gameState.roundNumber = 0;
+    gameState.roundNumber = 0;
 
 
     gameState.mapInfo.AIHeroBirthPlace[0][0].x = 0;
@@ -172,24 +173,24 @@ void logic::init()
     gameState.mapInfo.AIHeroBirthPlace[1][2].x = 0;
     gameState.mapInfo.AIHeroBirthPlace[1][2].y = 0;
 
-	for(int i=0;i<3;i++)
-	{
+    for(int i=0;i<3;i++)
+    {
         gameState.AI1HeroInfo[i].heroPosition = gameState.mapInfo.AIHeroBirthPlace[0][i];
-	}
-	for(int i=0;i<3;i++)
-	{
+    }
+    for(int i=0;i<3;i++)
+    {
         gameState.AI2HeroInfo[i].heroPosition = gameState.mapInfo.AIHeroBirthPlace[1][i];
-	}
+    }
     gameState.mapInfo.roadBlockNumber = 0;
 
 
-	for(int i = 0;i<6;i++)
-	{
+    for(int i = 0;i<6;i++)
+    {
         gameState.missileArea[i].centerPosition.x = 0;
         gameState.missileArea[i].centerPosition.y = 0;
         gameState.missileArea[i].real = false;
-	}
-	
+    }
+
 
     gameState.mapInfo.AIBases[0].x = 0;
     gameState.mapInfo.AIBases[0].y = 0;
@@ -217,7 +218,7 @@ DS14::GameInfo DS14::logic::toPlayer(int side)//将side=1看作AI1，将side=2看作AI2
         status1.AI1HeroInfo[1].missileCD=-1;
         status1.AI1HeroInfo[2].missileCD=-1;
     }
-    
+
     //将stataus中的有用信息赋值给roundnumber
     gameinfo.roundNumber=status1.roundNumber;//回合数复制
     if (side == 1)
@@ -261,7 +262,7 @@ DS14::GameInfo DS14::logic::toPlayer(int side)//将side=1看作AI1，将side=2看作AI2
     {
         gameinfo.mapInfo.slowDownArea[i]=status1.mapInfo.slowDownArea[i];
     }
-    
+
     //金钱信息复制
     if(side == 1) gameinfo.gold=status1.AI1gold;
     if(side == 2) gameinfo.gold=status1.AI2gold;
@@ -269,14 +270,14 @@ DS14::GameInfo DS14::logic::toPlayer(int side)//将side=1看作AI1，将side=2看作AI2
     for(int i=0;i<6;i++)
     {
         gameinfo.missileArea[i]=status1.missileArea[i];
-		if(!(status1.missileInfo[i].isReal))
-		{
-			gameinfo.Missile[i].x=gameinfo.Missile[i].y=9999;
-		}
-		else
-		{
-			gameinfo.Missile[i] = status1.missileInfo[i].fromPoint;
-		}
+        if(!(status1.missileInfo[i].isReal))
+        {
+            gameinfo.Missile[i].x=gameinfo.Missile[i].y=9999;
+        }
+        else
+        {
+            gameinfo.Missile[i] = status1.missileInfo[i].fromPoint;
+        }
     }
     //香锅信息
     gameinfo.swordInfo.CentreSwordCD = status1.swordInfo.CentreSwordCD;
@@ -296,83 +297,83 @@ DS14::GameInfo DS14::logic::toPlayer(int side)//将side=1看作AI1，将side=2看作AI2
 }
 namespace DS14
 {
-	//距离函数
-	double Distance(Coordinate p1,Coordinate p2)
-	{
-		return sqrt((p2.x-p1.x)*(p2.x-p1.x)+(p2.y-p1.y)*(p2.y-p1.y));
-	}
+    //距离函数
+    double Distance(Coordinate p1,Coordinate p2)
+    {
+        return sqrt((p2.x-p1.x)*(p2.x-p1.x)+(p2.y-p1.y)*(p2.y-p1.y));
+    }
 
-	//检查从p1到p2时路线是否会与圆心为center,半径为radius的圆相交(已知p1不在圆内)
-	//若不相交直接返回可到点p2,否则返回最远的可到点c
-	Coordinate check_intersection(Coordinate center,Coordinate p1,Coordinate p2,double radius)
-	{
-		if(!(p1.x==p2.x&&p1.y==p2.y))
-		{
-			double a = Distance(p1,p2),b = Distance(p1,center), c = Distance(p2,center);//三边长
-			double area3;
-			//darkthecross修改，这尼玛是B为锐角不是C不为锐角
-			//Han修改：B不为锐角
-			if(a*a+c*c<=b*b)
-			{
-				if(c>=radius) return p2;
-				else
-				{
-					double area2 = fabs(p1.x*p2.y+p1.y*center.x+p2.x*center.y-p1.x*center.y-p1.y*p2.x-p2.y*center.x); //三角形面积的两倍
-					double d = area2/a;   //边a上的高d
-					double distance = sqrt(b*b-d*d)-sqrt(radius*radius-d*d);  //尽可能远的点到p1的距离
-					Coordinate target;
-					target.x = (distance/a) * (p2.x-p1.x) + p1.x;
-					target.y = (distance/a) * (p2.y-p1.y) + p1.y;
-					return target; //确定最远可行点
-				}
-			}
-			else if(a*a+b*b<=c*c)//若C不为锐角
-			{
-				return p2;
-			}
-			else
-			{
-				area3 = abs(double(p1.x*p2.y+p1.y*center.x+p2.x*center.y-p1.x*center.y-p1.y*p2.x-p2.y*center.x)); //三角形面积的两倍
-				if(area3>=0.01)
-				{
-					double d = area3/a;   //边a上的高d
-					if(d>=radius) 
-					{
-						return p2;
-					}
-					else
-					{
-						double distance = sqrt(b*b-d*d)-sqrt(radius*radius-d*d);  //尽可能远的点到p1的距离
-						Coordinate target;
-						target.x = (distance/a) * (p2.x-p1.x) + p1.x;
-						target.y = (distance/a) * (p2.y-p1.y) + p1.y;
-						return target; //确定最远可行点
-					}
-				}
-				else
-				{
-					return p2;
-				}
-			}
-		}
-		else
-		{
-			return p2;
-		}
-	}
+    //检查从p1到p2时路线是否会与圆心为center,半径为radius的圆相交(已知p1不在圆内)
+    //若不相交直接返回可到点p2,否则返回最远的可到点c
+    Coordinate check_intersection(Coordinate center,Coordinate p1,Coordinate p2,double radius)
+    {
+        if(!(p1.x==p2.x&&p1.y==p2.y))
+        {
+            double a = Distance(p1,p2),b = Distance(p1,center), c = Distance(p2,center);//三边长
+            double area3;
+            //darkthecross修改，这尼玛是B为锐角不是C不为锐角
+            //Han修改：B不为锐角
+            if(a*a+c*c<=b*b)
+            {
+                if(c>=radius) return p2;
+                else
+                {
+                    double area2 = fabs(p1.x*p2.y+p1.y*center.x+p2.x*center.y-p1.x*center.y-p1.y*p2.x-p2.y*center.x); //三角形面积的两倍
+                    double d = area2/a;   //边a上的高d
+                    double distance = sqrt(b*b-d*d)-sqrt(radius*radius-d*d);  //尽可能远的点到p1的距离
+                    Coordinate target;
+                    target.x = (distance/a) * (p2.x-p1.x) + p1.x;
+                    target.y = (distance/a) * (p2.y-p1.y) + p1.y;
+                    return target; //确定最远可行点
+                }
+            }
+            else if(a*a+b*b<=c*c)//若C不为锐角
+            {
+                return p2;
+            }
+            else
+            {
+                area3 = abs(double(p1.x*p2.y+p1.y*center.x+p2.x*center.y-p1.x*center.y-p1.y*p2.x-p2.y*center.x)); //三角形面积的两倍
+                if(area3>=0.01)
+                {
+                    double d = area3/a;   //边a上的高d
+                    if(d>=radius)
+                    {
+                        return p2;
+                    }
+                    else
+                    {
+                        double distance = sqrt(b*b-d*d)-sqrt(radius*radius-d*d);  //尽可能远的点到p1的距离
+                        Coordinate target;
+                        target.x = (distance/a) * (p2.x-p1.x) + p1.x;
+                        target.y = (distance/a) * (p2.y-p1.y) + p1.y;
+                        return target; //确定最远可行点
+                    }
+                }
+                else
+                {
+                    return p2;
+                }
+            }
+        }
+        else
+        {
+            return p2;
+        }
+    }
 
-	bool isOperable(const HeroInfo &hero)
-	{
+    bool isOperable(const HeroInfo &hero)
+    {
         return (!hero.hasSword &&
-			!hero.FastwalkForwardWait &&
-			!hero.FastwalkBackWait &&
-			!hero.StunForwardWait &&
-			!hero.StunBackWait &&
-			!hero.AttackForwardWait &&
-			!hero.AttackBackWait &&
-			!hero.StunLast &&
-			!hero.RebornWait);
-	}
+            !hero.FastwalkForwardWait &&
+            !hero.FastwalkBackWait &&
+            !hero.StunForwardWait &&
+            !hero.StunBackWait &&
+            !hero.AttackForwardWait &&
+            !hero.AttackBackWait &&
+            !hero.StunLast &&
+            !hero.RebornWait);
+    }
 
     //darkthecross修改
     bool isOperablew(const HeroInfo &hero)
@@ -387,96 +388,96 @@ namespace DS14
             !hero.RebornWait);
     }
 
-	//英雄返回移动函数
-	void HeroMoveBack(Status & gameState,Coordinate position[][3])
-	{
-		while(true)
-		{
-			int a[6] = {-1,-1,-1,-1,-1,-1};
-			int step = 0;         //a[]记录重合的英雄位置,step为读取,写入指针
-			for(int i=0;i<3;i++)
-			{
-                if (gameState.AI1HeroInfo[i].RebornWait == 0)
-				for(int j=0;j<5;j++)
+    //英雄返回移动函数
+    void HeroMoveBack(Status & gameState,Coordinate position[][3])
+    {
 
-				{
+            bool a[6] = {false, false, false, false, false, false};
+
+            for(int i=0;i<3;i++)
+            {
+                if (gameState.AI1HeroInfo[i].RebornWait == 0)
+                for(int j=0;j<5;j++)
+
+                {
                     if(j<i)
-					{
+                    {
                         if (gameState.AI1HeroInfo[j].RebornWait == 0)
-						if(Distance(gameState.AI1HeroInfo[i].heroPosition,gameState.AI1HeroInfo[j].heroPosition)<2*HERO_RADIUS)
-						{
-							a[step]=i;
-							step++;
-						}
-					}
-					else if(j>=i&&j<2)
-					{
+                        if(Distance(gameState.AI1HeroInfo[i].heroPosition,gameState.AI1HeroInfo[j].heroPosition)<2*HERO_RADIUS)
+                        {
+                            a[i] = true;
+
+                        }
+                    }
+                    else if(j>=i&&j<2)
+                    {
                         if (gameState.AI1HeroInfo[j+1].RebornWait == 0)
-						if(Distance(gameState.AI1HeroInfo[i].heroPosition,gameState.AI1HeroInfo[j+1].heroPosition)<2*HERO_RADIUS)
-						{
-							a[step]=i;
-							step++;
-						}
-					}
-					else
-					{
+                        if(Distance(gameState.AI1HeroInfo[i].heroPosition,gameState.AI1HeroInfo[j+1].heroPosition)<2*HERO_RADIUS)
+                        {
+                            a[i] = true;
+
+                        }
+                    }
+                    else
+                    {
                         if (gameState.AI2HeroInfo[j-2].RebornWait == 0)
-						if(Distance(gameState.AI1HeroInfo[i].heroPosition,gameState.AI2HeroInfo[j-2].heroPosition)<2*HERO_RADIUS)
-						{
-							a[step]=i;
-							step++;
-						}
-					}
-				}
-			}
-			for(int i=0;i<3;i++)
-			{
+                        if(Distance(gameState.AI1HeroInfo[i].heroPosition,gameState.AI2HeroInfo[j-2].heroPosition)<2*HERO_RADIUS)
+                        {
+                            a[i] = true;
+
+                        }
+                    }
+                }
+            }
+
+            for(int i=0;i<3;i++)
+            {
                 if (gameState.AI2HeroInfo[i].RebornWait == 0)
-				for(int j=0;j<5;j++)
-				{
-					if(j<i)
-					{
+                for(int j=0;j<5;j++)
+                {
+                    if(j<i)
+                    {
                         if (gameState.AI2HeroInfo[j].RebornWait == 0)
-						if(Distance(gameState.AI2HeroInfo[i].heroPosition,gameState.AI2HeroInfo[j].heroPosition)<2*HERO_RADIUS)
-						{
-							a[step]=i+3;
-							step++;
-						}
-					}
-					else if(j>=i&&j<2)
-					{
+                        if(Distance(gameState.AI2HeroInfo[i].heroPosition,gameState.AI2HeroInfo[j].heroPosition)<2*HERO_RADIUS)
+                        {
+                            a[i+3] = true;
+                        }
+                    }
+                    else if(j>=i&&j<2)
+                    {
                         if (gameState.AI2HeroInfo[j+1].RebornWait == 0)
-						if(Distance(gameState.AI2HeroInfo[i].heroPosition,gameState.AI2HeroInfo[j+1].heroPosition)<2*HERO_RADIUS)
-						{
-							a[step]=i+3;
-							step++;
-						}
-					}
-					else
-					{
+                        if(Distance(gameState.AI2HeroInfo[i].heroPosition,gameState.AI2HeroInfo[j+1].heroPosition)<2*HERO_RADIUS)
+                        {
+                            a[i+3] = true;
+                        }
+                    }
+                    else
+                    {
                         if (gameState.AI1HeroInfo[j-2].RebornWait == 0)
-						if(Distance(gameState.AI2HeroInfo[i].heroPosition,gameState.AI1HeroInfo[j-2].heroPosition)<2*HERO_RADIUS)
-						{
-							a[step]=i+3;
-							step++;
-						}
-					}
-				}
-			}
-			for(int i=0;i<step;i++)//将位置重复的英雄调整至原来的位置
-			{
-				if(a[i]>2)
-				{
-					gameState.AI2HeroInfo[a[i]-3].heroPosition=position[1][a[i]-3];
-				}
-				else
-				{
-					gameState.AI1HeroInfo[a[i]].heroPosition=position[0][a[i]];
-				}
-			}
-			if(step==0)return; //若已无重复则返回
-		}
-	}
+                        if(Distance(gameState.AI2HeroInfo[i].heroPosition,gameState.AI1HeroInfo[j-2].heroPosition)<2*HERO_RADIUS)
+                        {
+                            a[i+3] = true;
+                        }
+                    }
+                }
+            }
+
+            for (int i=0; i<6; i++)
+            {
+                if (a[i])
+                {
+                    if(i>2)
+                    {
+                        gameState.AI2HeroInfo[i-3].heroPosition=position[1][i-3];
+                    }
+                    else
+                    {
+                        gameState.AI1HeroInfo[i].heroPosition=position[0][i];
+                    }
+                }
+            }
+
+    }
 
     int OnlyOne(const Status &gameState,Coordinate pos)
     {
@@ -501,37 +502,37 @@ namespace DS14
         return res;
     }
 
-	//回合初加钱函数
-	void AddGold(Status & gameState)
-	{
-		gameState.AI1gold+=GOLD_PER_ROUND;
-		gameState.AI2gold+=GOLD_PER_ROUND;  //回合开始，双方补充金钱
-	}
+    //回合初加钱函数
+    void AddGold(Status & gameState)
+    {
+        gameState.AI1gold+=GOLD_PER_ROUND;
+        gameState.AI2gold+=GOLD_PER_ROUND;  //回合开始，双方补充金钱
+    }
 
-	//英雄复活函数
-	void Preparation(Status & gameState)
-	{
-		for(int i=0;i<3;i++)
-		{
-			if(gameState.AI1HeroInfo[i].RebornWait==1)
-			{
-				gameState.AI1HeroInfo[i].heroPosition=gameState.mapInfo.AIHeroBirthPlace[0][i];//在相应出生点出现
-				gameState.AI1HeroInfo[i].InvincibleLast=HERO_INVINCIBLE_TIME;//无敌状态剩余回合数
-			}
-			if(gameState.AI1HeroInfo[i].RebornWait!=0)gameState.AI1HeroInfo[i].RebornWait--;//若死亡英雄尚未复活,则将等待时间减1
-		}
-		for(int i=0;i<3;i++)//对方玩家
-		{
-			if(gameState.AI2HeroInfo[i].RebornWait==1)
-			{
-				gameState.AI2HeroInfo[i].heroPosition=gameState.mapInfo.AIHeroBirthPlace[1][i];
-				gameState.AI2HeroInfo[i].InvincibleLast=HERO_INVINCIBLE_TIME;
-			}
-			if(gameState.AI2HeroInfo[i].RebornWait!=0)gameState.AI2HeroInfo[i].RebornWait--;
-		}
-	}
+    //英雄复活函数
+    void Preparation(Status & gameState)
+    {
+        for(int i=0;i<3;i++)
+        {
+            if(gameState.AI1HeroInfo[i].RebornWait==1)
+            {
+                gameState.AI1HeroInfo[i].heroPosition=gameState.mapInfo.AIHeroBirthPlace[0][i];//在相应出生点出现
+                gameState.AI1HeroInfo[i].InvincibleLast=HERO_INVINCIBLE_TIME;//无敌状态剩余回合数
+            }
+            if(gameState.AI1HeroInfo[i].RebornWait!=0)gameState.AI1HeroInfo[i].RebornWait--;//若死亡英雄尚未复活,则将等待时间减1
+        }
+        for(int i=0;i<3;i++)//对方玩家
+        {
+            if(gameState.AI2HeroInfo[i].RebornWait==1)
+            {
+                gameState.AI2HeroInfo[i].heroPosition=gameState.mapInfo.AIHeroBirthPlace[1][i];
+                gameState.AI2HeroInfo[i].InvincibleLast=HERO_INVINCIBLE_TIME;
+            }
+            if(gameState.AI2HeroInfo[i].RebornWait!=0)gameState.AI2HeroInfo[i].RebornWait--;
+        }
+    }
 
-	//科技树更新函数
+    //科技树更新函数
     void UpdateTree(Status & gameState,PlayerCommand * command1,PlayerCommand * command2)
     {
         for(int i=0;i<3;i++)
@@ -736,142 +737,153 @@ namespace DS14
     }
 
 
-	//英雄移动函数
-	void HeroMove(Status & gameState,PlayerCommand * command1,PlayerCommand * command2)
-	{
-		Coordinate position[2][3];
-		for(int i=0;i<3;i++)
-		{
-			position[0][i]=gameState.AI1HeroInfo[i].heroPosition;
-			if(command1->heroOrder[i]==walk&&      //指令为walk
-                isOperablew(gameState.AI1HeroInfo[i]))
-			{
-				double movespeed = HERO_ORIGIN_SPEED + MOVE_SPEED_PER_AGILITY*gameState.AI1HeroInfo[i].heroTechTree.agility; //movespeed表示移速
-				if(movespeed<=0)movespeed=0;
-				for(int j=0;j<gameState.mapInfo.slowDownAreaNumber;j++)
-				{
-					if(Distance(gameState.AI1HeroInfo[i].heroPosition,gameState.mapInfo.slowDownArea[j])<=RADIUS_OF_SLOWDOWNAREA)
-					{
-						movespeed-=SLOWDOWN_REDUCE;
-						if(movespeed<=0)movespeed=0;
-					}
-				} //根据减速区情况减去一定速度
-				if(gameState.AI1HeroInfo[i].FastwalkLast!=0)
-					movespeed *= 1+(SPEEDRATE_WHEN_FASTWALKING_ORIGIN+SPEEDRATE_WHEN_FASTWALKING_PER_LEVEL*gameState.AI1HeroInfo[i].heroTechTree.fastWalkLevel)/100.00;//疾风步加速
+    //英雄移动函数
+    void HeroMove(Status & gameState,PlayerCommand * command1,PlayerCommand * command2)
+    {
+        Coordinate position[2][3];
+        //qDebug << "b1";
+        for(int i=0;i<3;i++)
+        {
+            position[0][i]=gameState.AI1HeroInfo[i].heroPosition;
+            if(command1->heroOrder[i]==walk&&      //指令为walk
+                isOperablew(gameState.AI1HeroInfo[i])
+                    && command1->target[i].x <= MAP_RADIUS
+                    && command1->target[i].x >= -MAP_RADIUS
+                    && command1->target[i].y <= MAP_RADIUS
+                    && command1->target[i].y >= -MAP_RADIUS)
+            {
+                Coordinate centre;
+                centre.x = 0; centre.y = 0;
+                if (Distance(command1->target[i], centre) > MAP_RADIUS) continue;
+                double movespeed = HERO_ORIGIN_SPEED + MOVE_SPEED_PER_AGILITY*gameState.AI1HeroInfo[i].heroTechTree.agility; //movespeed表示移速
+                if(movespeed<=0)movespeed=0;
+                for(int j=0;j<gameState.mapInfo.slowDownAreaNumber;j++)
+                {
+                    if(Distance(gameState.AI1HeroInfo[i].heroPosition,gameState.mapInfo.slowDownArea[j])<=RADIUS_OF_SLOWDOWNAREA)
+                    {
+                        movespeed-=SLOWDOWN_REDUCE;
+                        if(movespeed<=0)movespeed=0;
+                    }
+                } //根据减速区情况减去一定速度
+                if(gameState.AI1HeroInfo[i].FastwalkLast!=0)
+                    movespeed *= 1+(SPEEDRATE_WHEN_FASTWALKING_ORIGIN+SPEEDRATE_WHEN_FASTWALKING_PER_LEVEL*gameState.AI1HeroInfo[i].heroTechTree.fastWalkLevel)/100.00;//疾风步加速
                 if(gameState.AI1HeroInfo[i].hasSword) movespeed = movespeed*(1-double(SWORD_REDUCE)/100); //根据带香锅情况减去一定速度
                 //darkthecross 修改：swordreduce减少的是百分比
-				//Han再次修改：减少百分比放在所有的加、减速最后
-				Coordinate target; //目标点
-				double distance1=Distance(command1->target[i],gameState.AI1HeroInfo[i].heroPosition); //目标点离英雄距离
-				double distance2=TIME_PER_ROUND*movespeed; //本回合最大移动距离
-				if(distance1<=distance2)
-				{
-					target=command1->target[i]; //若目标点离英雄距离小于最大距离,则目标target即为指令点
-				}
-				else //否则按该方向达到最大长度为止
-				{
-					target.x=distance2*(command1->target[i].x-gameState.AI1HeroInfo[i].heroPosition.x)/distance1+gameState.AI1HeroInfo[i].heroPosition.x;
-					target.y=distance2*(command1->target[i].y-gameState.AI1HeroInfo[i].heroPosition.y)/distance1+gameState.AI1HeroInfo[i].heroPosition.y;
-				}
-				//darkthecross修改：这尼玛什么错！！！
-				//Han说明：应该没错了吧...
-				//darkthecross吐槽：哥给你改了……
-				for(int j=0;j<gameState.mapInfo.roadBlockNumber;j++)
-				{
-					target = check_intersection(gameState.mapInfo.roadBlock[j],gameState.AI1HeroInfo[i].heroPosition,target,RADIUS_OF_ROADBLOCK+HERO_RADIUS);//根据路障刷新target
-				}
-				for(int j=0;j<2;j++)
-				{
-					target = check_intersection(gameState.mapInfo.AIBases[j],gameState.AI1HeroInfo[i].heroPosition,target,2*HERO_RADIUS);//根据基地刷新target
-				}
-				for(int j=0;j<3;j++)
-				{
+                //Han再次修改：减少百分比放在所有的加、减速最后
+                Coordinate target; //目标点
+                double distance1=Distance(command1->target[i],gameState.AI1HeroInfo[i].heroPosition); //目标点离英雄距离
+                double distance2=TIME_PER_ROUND*movespeed; //本回合最大移动距离
+                if(distance1<=distance2)
+                {
+                    target=command1->target[i]; //若目标点离英雄距离小于最大距离,则目标target即为指令点
+                }
+                else //否则按该方向达到最大长度为止
+                {
+                    target.x=distance2*(command1->target[i].x-gameState.AI1HeroInfo[i].heroPosition.x)/distance1+gameState.AI1HeroInfo[i].heroPosition.x;
+                    target.y=distance2*(command1->target[i].y-gameState.AI1HeroInfo[i].heroPosition.y)/distance1+gameState.AI1HeroInfo[i].heroPosition.y;
+                }
+                //darkthecross修改：这尼玛什么错！！！
+                //Han说明：应该没错了吧...
+                //darkthecross吐槽：哥给你改了……
+                for(int j=0;j<gameState.mapInfo.roadBlockNumber;j++)
+                {
+                    target = check_intersection(gameState.mapInfo.roadBlock[j],gameState.AI1HeroInfo[i].heroPosition,target,RADIUS_OF_ROADBLOCK+HERO_RADIUS);//根据路障刷新target
+                }
+                for(int j=0;j<2;j++)
+                {
+                    target = check_intersection(gameState.mapInfo.AIBases[j],gameState.AI1HeroInfo[i].heroPosition,target,2*HERO_RADIUS);//根据基地刷新target
+                }
+                for(int j=0;j<3;j++)
+                {
                     if(i!=j)
-						target = check_intersection(gameState.mapInfo.AIHeroBirthPlace[0][j],gameState.AI1HeroInfo[i].heroPosition,target,2*HERO_RADIUS);//根据出生点刷新target
-						target = check_intersection(gameState.mapInfo.AIHeroBirthPlace[1][j],gameState.AI1HeroInfo[i].heroPosition,target,2*HERO_RADIUS);//根据出生点刷新target
-				}
-                for(int j=0;j<gameState.swordInfo.groundNumber;j++)
-				{
-                    target = check_intersection(gameState.swordInfo.groundSwords[j],gameState.AI1HeroInfo[i].heroPosition,target,2*HERO_RADIUS);//根据香锅刷新target
-				}
+                        target = check_intersection(gameState.mapInfo.AIHeroBirthPlace[0][j],gameState.AI1HeroInfo[i].heroPosition,target,2*HERO_RADIUS);//根据出生点刷新target
+                        target = check_intersection(gameState.mapInfo.AIHeroBirthPlace[1][j],gameState.AI1HeroInfo[i].heroPosition,target,2*HERO_RADIUS);//根据出生点刷新target
+                }
 
 
-				Coordinate o_center;
-				o_center.x=o_center.y=0;//o_center表示原点
-				if(Distance(target,o_center)>MAP_RADIUS-HERO_RADIUS)
-				{
-					target = check_intersection(o_center,target,gameState.AI1HeroInfo[i].heroPosition,MAP_RADIUS-HERO_RADIUS);
-					//逆向思考，为使用check_intersection函数而将target认为是起始点（因为它在圆外）
-				}
+                Coordinate o_center;
+                o_center.x=o_center.y=0;//o_center表示原点
+                if(Distance(target,o_center)>MAP_RADIUS-HERO_RADIUS)
+                {
+                    target = check_intersection(o_center,target,gameState.AI1HeroInfo[i].heroPosition,MAP_RADIUS-HERO_RADIUS);
+                    //逆向思考，为使用check_intersection函数而将target认为是起始点（因为它在圆外）
+                }
 
-				gameState.AI1HeroInfo[i].heroPosition=target;//将位置改至目标点target
-			}
-		}
-		for(int i=0;i<3;i++) //另一方
-		{
-			position[1][i]=gameState.AI2HeroInfo[i].heroPosition;
-			if(command2->heroOrder[i]==walk&&
-                isOperablew(gameState.AI2HeroInfo[i]))
-			{
-				double movespeed = HERO_ORIGIN_SPEED + MOVE_SPEED_PER_AGILITY*gameState.AI2HeroInfo[i].heroTechTree.agility;
-				if(movespeed<=0)movespeed=0;
-				for(int j=0;j<gameState.mapInfo.slowDownAreaNumber;j++)
-				{
-					if(Distance(gameState.AI2HeroInfo[i].heroPosition,gameState.mapInfo.slowDownArea[j])<=RADIUS_OF_SLOWDOWNAREA)
-					{
-						movespeed-=SLOWDOWN_REDUCE;
-						if(movespeed<=0)movespeed=0;
-					}
-				}
-				if(gameState.AI2HeroInfo[i].FastwalkLast!=0)
-					movespeed *= 1+(SPEEDRATE_WHEN_FASTWALKING_ORIGIN+SPEEDRATE_WHEN_FASTWALKING_PER_LEVEL*gameState.AI2HeroInfo[i].heroTechTree.fastWalkLevel)/100.00;//疾风步状态
+                gameState.AI1HeroInfo[i].heroPosition=target;//将位置改至目标点target
+            }
+        }
+        //qDebug << "b2";
+        for(int i=0;i<3;i++) //另一方
+        {
+            position[1][i]=gameState.AI2HeroInfo[i].heroPosition;
+            if(command2->heroOrder[i]==walk&&
+                isOperablew(gameState.AI2HeroInfo[i])
+                    && command2->target[i].x <= MAP_RADIUS
+                    && command2->target[i].x >= -MAP_RADIUS
+                    && command2->target[i].y <= MAP_RADIUS
+                    && command2->target[i].y >= -MAP_RADIUS)
+            {
+                Coordinate centre;
+                centre.x = 0; centre.y = 0;
+                if (Distance(command2->target[i], centre) > MAP_RADIUS) continue;
+                double movespeed = HERO_ORIGIN_SPEED + MOVE_SPEED_PER_AGILITY*gameState.AI2HeroInfo[i].heroTechTree.agility;
+                if(movespeed<=0)movespeed=0;
+                for(int j=0;j<gameState.mapInfo.slowDownAreaNumber;j++)
+                {
+                    if(Distance(gameState.AI2HeroInfo[i].heroPosition,gameState.mapInfo.slowDownArea[j])<=RADIUS_OF_SLOWDOWNAREA)
+                    {
+                        movespeed-=SLOWDOWN_REDUCE;
+                        if(movespeed<=0)movespeed=0;
+                    }
+                }
+                if(gameState.AI2HeroInfo[i].FastwalkLast!=0)
+                    movespeed *= 1+(SPEEDRATE_WHEN_FASTWALKING_ORIGIN+SPEEDRATE_WHEN_FASTWALKING_PER_LEVEL*gameState.AI2HeroInfo[i].heroTechTree.fastWalkLevel)/100.00;//疾风步状态
                 if(gameState.AI2HeroInfo[i].hasSword) movespeed = movespeed*(1-double(SWORD_REDUCE)/100); //根据带香锅情况减去一定速度
                 //darkthecross 修改：swordreduce减少的是百分比
-				//Han再次修改：减少百分比放在所有的加、减速最后
-				Coordinate target;
-				double distance1=Distance(command2->target[i],gameState.AI2HeroInfo[i].heroPosition);
-				double distance2=TIME_PER_ROUND*movespeed;
-				if(distance1<=distance2)
-				{
-					target=command2->target[i];
-				}
-				else
-				{
-					target.x=distance2*(command2->target[i].x-gameState.AI2HeroInfo[i].heroPosition.x)/distance1+gameState.AI2HeroInfo[i].heroPosition.x;
-					target.y=distance2*(command2->target[i].y-gameState.AI2HeroInfo[i].heroPosition.y)/distance1+gameState.AI2HeroInfo[i].heroPosition.y;
-				}
-				for(int j=0;j<gameState.mapInfo.roadBlockNumber;j++)
-				{
-					target = check_intersection(gameState.mapInfo.roadBlock[j],gameState.AI2HeroInfo[i].heroPosition,target,RADIUS_OF_ROADBLOCK+HERO_RADIUS);
-				}
-				for(int j=0;j<2;j++)
-				{
-					target = check_intersection(gameState.mapInfo.AIBases[j],gameState.AI2HeroInfo[i].heroPosition,target,2*HERO_RADIUS);//根据基地刷新target
-				}
-				for(int j=0;j<3;j++)
-				{
+                //Han再次修改：减少百分比放在所有的加、减速最后
+                Coordinate target;
+                double distance1=Distance(command2->target[i],gameState.AI2HeroInfo[i].heroPosition);
+                double distance2=TIME_PER_ROUND*movespeed;
+                if(distance1<=distance2)
+                {
+                    target=command2->target[i];
+                }
+                else
+                {
+                    target.x=distance2*(command2->target[i].x-gameState.AI2HeroInfo[i].heroPosition.x)/distance1+gameState.AI2HeroInfo[i].heroPosition.x;
+                    target.y=distance2*(command2->target[i].y-gameState.AI2HeroInfo[i].heroPosition.y)/distance1+gameState.AI2HeroInfo[i].heroPosition.y;
+                }
+                for(int j=0;j<gameState.mapInfo.roadBlockNumber;j++)
+                {
+                    target = check_intersection(gameState.mapInfo.roadBlock[j],gameState.AI2HeroInfo[i].heroPosition,target,RADIUS_OF_ROADBLOCK+HERO_RADIUS);
+                }
+                for(int j=0;j<2;j++)
+                {
+                    target = check_intersection(gameState.mapInfo.AIBases[j],gameState.AI2HeroInfo[i].heroPosition,target,2*HERO_RADIUS);//根据基地刷新target
+                }
+                for(int j=0;j<3;j++)
+                {
                     target = check_intersection(gameState.mapInfo.AIHeroBirthPlace[0][j],gameState.AI2HeroInfo[i].heroPosition,target,2*HERO_RADIUS);//根据出生点刷新target
                     if(i!=j)
-						target = check_intersection(gameState.mapInfo.AIHeroBirthPlace[1][j],gameState.AI2HeroInfo[i].heroPosition,target,2*HERO_RADIUS);//根据出生点刷新target
-				}
-                for(int j=0;j<gameState.swordInfo.groundNumber;j++)
-				{
-                    target = check_intersection(gameState.swordInfo.groundSwords[j],gameState.AI2HeroInfo[i].heroPosition,target,2*HERO_RADIUS);//根据香锅刷新target
-				}
-				Coordinate o_center;
-				o_center.x=o_center.y=0;//o_center表示原点
-				if(Distance(target,o_center)>MAP_RADIUS-HERO_RADIUS)
-				{
-					target = check_intersection(o_center,target,gameState.AI2HeroInfo[i].heroPosition,MAP_RADIUS-HERO_RADIUS);
-					//逆向思考，为使用check_intersection函数而将target认为是起始点（因为它在圆外）
-				}
-				gameState.AI2HeroInfo[i].heroPosition=target;
-			}
-		}
-		HeroMoveBack(gameState,position); //若有重复则将其返回
-	}
+                        target = check_intersection(gameState.mapInfo.AIHeroBirthPlace[1][j],gameState.AI2HeroInfo[i].heroPosition,target,2*HERO_RADIUS);//根据出生点刷新target
+                }
 
-	//英雄疾风步
+                Coordinate o_center;
+                o_center.x=o_center.y=0;//o_center表示原点
+                if(Distance(target,o_center)>MAP_RADIUS-HERO_RADIUS)
+                {
+                    target = check_intersection(o_center,target,gameState.AI2HeroInfo[i].heroPosition,MAP_RADIUS-HERO_RADIUS);
+                    //逆向思考，为使用check_intersection函数而将target认为是起始点（因为它在圆外）
+                }
+                gameState.AI2HeroInfo[i].heroPosition=target;
+            }
+        }
+        //qDebug << "b3";
+        HeroMoveBack(gameState,position); //若有重复则将其返回
+        //qDebug << "b4";
+    }
+
+    //英雄疾风步
     void HeroFastWalk(Status & gameState,PlayerCommand * command1,PlayerCommand * command2)
     {
         for(int i=0;i<3;i++)
@@ -945,174 +957,174 @@ namespace DS14
 
     }
 
-	//英雄战争践踏
-	void HeroStun(Status & gameState,PlayerCommand * command1,PlayerCommand * command2)
-	{
-		for(int i=0;i<3;i++)
-		{
-			bool NEW = false; //NEW表示是否成功发动践踏
-			if(gameState.AI1HeroInfo[i].StunLast==0&&              //英雄未眩晕
-				gameState.AI1HeroInfo[i].RebornWait==0&&           //英雄未死亡
+    //英雄战争践踏
+    void HeroStun(Status & gameState,PlayerCommand * command1,PlayerCommand * command2)
+    {
+        for(int i=0;i<3;i++)
+        {
+            bool NEW = false; //NEW表示是否成功发动践踏
+            if(gameState.AI1HeroInfo[i].StunLast==0&&              //英雄未眩晕
+                gameState.AI1HeroInfo[i].RebornWait==0&&           //英雄未死亡
                 !gameState.AI1HeroInfo[i].hasSword&&                 //英雄未拿香锅
-				gameState.AI1HeroInfo[i].stunCD==0&&               //践踏CD为0
-				command1->heroOrder[i]==stun)					   //指令为发动践踏
-			{
-				gameState.AI1HeroInfo[i].stunCD=STUN_ORIGIN_CD-STUN_CD_REDUCE_PER_LEVEL*gameState.AI1HeroInfo[i].heroTechTree.stunLevel; //确定CD
-				gameState.AI1HeroInfo[i].StunForwardWait=STUN_FORWARD_SWING;
-				gameState.AI1HeroInfo[i].StunBackWait=STUN_BACK_SWING;   //确定前,后摇
-				NEW = true;   //表示践踏发动成功
-			}
+                gameState.AI1HeroInfo[i].stunCD==0&&               //践踏CD为0
+                command1->heroOrder[i]==stun)					   //指令为发动践踏
+            {
+                gameState.AI1HeroInfo[i].stunCD=STUN_ORIGIN_CD-STUN_CD_REDUCE_PER_LEVEL*gameState.AI1HeroInfo[i].heroTechTree.stunLevel; //确定CD
+                gameState.AI1HeroInfo[i].StunForwardWait=STUN_FORWARD_SWING;
+                gameState.AI1HeroInfo[i].StunBackWait=STUN_BACK_SWING;   //确定前,后摇
+                NEW = true;   //表示践踏发动成功
+            }
 
-			//践踏效果启动
-			if(gameState.AI1HeroInfo[i].StunForwardWait==0&&gameState.AI1HeroInfo[i].StunBackWait==STUN_BACK_SWING) //若前摇等待时间为0,后摇等待时间为初始值,则技能启动
-			{
-				for(int j=0;j<2;j++)
-				{
-					int add = ((j>=i)?1:0);
-					if(Distance(gameState.AI1HeroInfo[j+add].heroPosition,gameState.AI1HeroInfo[i].heroPosition)<=STUN_RADIUS) //若在眩晕范围内
-					{
-						gameState.AI1HeroInfo[j+add].AttackBackWait=0;
-						gameState.AI1HeroInfo[j+add].AttackForwardWait=0;
-						//gameState.AI1HeroInfo[j+add].FastwalkBackWait=0;
-						//gameState.AI1HeroInfo[j+add].FastwalkForwardWait=0;
-						//gameState.AI1HeroInfo[j+add].FastwalkLast=0;           //打断其它所有技能与吟唱
-						gameState.AI1HeroInfo[j+add].StunLast=STUN_ROUNDS_ORIGIN+STUN_ROUNDS_PER_LEVEL*gameState.AI1HeroInfo[i].heroTechTree.stunLevel;    //眩晕剩余回合数
+            //践踏效果启动
+            if(gameState.AI1HeroInfo[i].StunForwardWait==0&&gameState.AI1HeroInfo[i].StunBackWait==STUN_BACK_SWING) //若前摇等待时间为0,后摇等待时间为初始值,则技能启动
+            {
+                for(int j=0;j<2;j++)
+                {
+                    int add = ((j>=i)?1:0);
+                    if(Distance(gameState.AI1HeroInfo[j+add].heroPosition,gameState.AI1HeroInfo[i].heroPosition)<=STUN_RADIUS) //若在眩晕范围内
+                    {
+                        gameState.AI1HeroInfo[j+add].AttackBackWait=0;
+                        gameState.AI1HeroInfo[j+add].AttackForwardWait=0;
+                        //gameState.AI1HeroInfo[j+add].FastwalkBackWait=0;
+                        //gameState.AI1HeroInfo[j+add].FastwalkForwardWait=0;
+                        //gameState.AI1HeroInfo[j+add].FastwalkLast=0;           //打断其它所有技能与吟唱
+                        gameState.AI1HeroInfo[j+add].StunLast=STUN_ROUNDS_ORIGIN+STUN_ROUNDS_PER_LEVEL*gameState.AI1HeroInfo[i].heroTechTree.stunLevel;    //眩晕剩余回合数
                         gameState.AI1HeroInfo[j+add].currentHP-=STUN_ORINGIN_DAMAGE+STUN_DAMAGE_PER_LEVEL*gameState.AI1HeroInfo[i].heroTechTree.stunLevel;//扣体力值
-						if(gameState.AI1HeroInfo[j+add].StunForwardWait==0&&
-							gameState.AI1HeroInfo[j+add].StunBackWait==STUN_BACK_SWING) //这个条件等价为:该英雄的践踏技能同样在本回合启动(前提:践踏技能的后摇初始值STUN_BACK_SWING不能为0)
-						{
-							;                                           //则不作任何其它处理(这里特指对后摇的操作),以便到该英雄时其践踏技能能够正常启动
-						}
-						else      //否则将践踏的吟唱打断
-						{
-							//gameState.AI1HeroInfo[j+add].StunBackWait=0;
-							gameState.AI1HeroInfo[j+add].StunForwardWait=0;
-						}
-					}
-				}
-				for(int j=0;j<3;j++) //践踏对对方英雄的影响(与上类似)
-				{
-					if(Distance(gameState.AI2HeroInfo[j].heroPosition,gameState.AI1HeroInfo[i].heroPosition)<=STUN_RADIUS)
-					{
-						gameState.AI2HeroInfo[j].AttackBackWait=0;
-						gameState.AI2HeroInfo[j].AttackForwardWait=0;
-						/*gameState.AI2HeroInfo[j].FastwalkBackWait=0;
-						gameState.AI2HeroInfo[j].FastwalkForwardWait=0;
-						gameState.AI2HeroInfo[j].FastwalkLast=0;*/
-						gameState.AI2HeroInfo[j].StunLast=STUN_ROUNDS_ORIGIN+STUN_ROUNDS_PER_LEVEL*gameState.AI1HeroInfo[i].heroTechTree.stunLevel;
+                        if(gameState.AI1HeroInfo[j+add].StunForwardWait==0&&
+                            gameState.AI1HeroInfo[j+add].StunBackWait==STUN_BACK_SWING) //这个条件等价为:该英雄的践踏技能同样在本回合启动(前提:践踏技能的后摇初始值STUN_BACK_SWING不能为0)
+                        {
+                            ;                                           //则不作任何其它处理(这里特指对后摇的操作),以便到该英雄时其践踏技能能够正常启动
+                        }
+                        else      //否则将践踏的吟唱打断
+                        {
+                            //gameState.AI1HeroInfo[j+add].StunBackWait=0;
+                            gameState.AI1HeroInfo[j+add].StunForwardWait=0;
+                        }
+                    }
+                }
+                for(int j=0;j<3;j++) //践踏对对方英雄的影响(与上类似)
+                {
+                    if(Distance(gameState.AI2HeroInfo[j].heroPosition,gameState.AI1HeroInfo[i].heroPosition)<=STUN_RADIUS)
+                    {
+                        gameState.AI2HeroInfo[j].AttackBackWait=0;
+                        gameState.AI2HeroInfo[j].AttackForwardWait=0;
+                        /*gameState.AI2HeroInfo[j].FastwalkBackWait=0;
+                        gameState.AI2HeroInfo[j].FastwalkForwardWait=0;
+                        gameState.AI2HeroInfo[j].FastwalkLast=0;*/
+                        gameState.AI2HeroInfo[j].StunLast=STUN_ROUNDS_ORIGIN+STUN_ROUNDS_PER_LEVEL*gameState.AI1HeroInfo[i].heroTechTree.stunLevel;
                         gameState.AI2HeroInfo[j].currentHP-=STUN_ORINGIN_DAMAGE+STUN_DAMAGE_PER_LEVEL*gameState.AI1HeroInfo[i].heroTechTree.stunLevel;
-						if(gameState.AI2HeroInfo[j].StunForwardWait==0&&
+                        if(gameState.AI2HeroInfo[j].StunForwardWait==0&&
                             gameState.AI2HeroInfo[j].StunBackWait==STUN_BACK_SWING)
-						{
-							;
-						}
-						else
-						{
-							//gameState.AI2HeroInfo[j].StunBackWait=0;
-							gameState.AI2HeroInfo[j].StunForwardWait=0;
-						}
-					}
-				}
-			}
-			else if(gameState.AI1HeroInfo[i].StunLast!=0)gameState.AI1HeroInfo[i].StunLast--; //若英雄正受践踏影响则将剩余回合减一
+                        {
+                            ;
+                        }
+                        else
+                        {
+                            //gameState.AI2HeroInfo[j].StunBackWait=0;
+                            gameState.AI2HeroInfo[j].StunForwardWait=0;
+                        }
+                    }
+                }
+            }
+            else if(gameState.AI1HeroInfo[i].StunLast!=0)gameState.AI1HeroInfo[i].StunLast--; //若英雄正受践踏影响则将剩余回合减一
             if(gameState.AI1HeroInfo[i].stunCD>0)gameState.AI1HeroInfo[i].stunCD--;   //CD减少的操作
-			if(!NEW)  //若此回合未成功发动践踏,则进行前后摇减少操作
-			{
-				if(gameState.AI1HeroInfo[i].StunForwardWait==0&&gameState.AI1HeroInfo[i].StunBackWait!=0)
-					gameState.AI1HeroInfo[i].StunBackWait--;
-				if(gameState.AI1HeroInfo[i].StunForwardWait!=0)gameState.AI1HeroInfo[i].StunForwardWait--;
-			}
-		}
-		for(int i=0;i<3;i++) //另一方
-		{
-			bool NEW = false;
-			if(gameState.AI2HeroInfo[i].StunLast==0&&              //英雄未眩晕
-				gameState.AI2HeroInfo[i].RebornWait==0&&           //英雄未死亡
+            if(!NEW)  //若此回合未成功发动践踏,则进行前后摇减少操作
+            {
+                if(gameState.AI1HeroInfo[i].StunForwardWait==0&&gameState.AI1HeroInfo[i].StunBackWait!=0)
+                    gameState.AI1HeroInfo[i].StunBackWait--;
+                if(gameState.AI1HeroInfo[i].StunForwardWait!=0)gameState.AI1HeroInfo[i].StunForwardWait--;
+            }
+        }
+        for(int i=0;i<3;i++) //另一方
+        {
+            bool NEW = false;
+            if(gameState.AI2HeroInfo[i].StunLast==0&&              //英雄未眩晕
+                gameState.AI2HeroInfo[i].RebornWait==0&&           //英雄未死亡
                 !gameState.AI2HeroInfo[i].hasSword&&                 //英雄未拿香锅
-				gameState.AI2HeroInfo[i].stunCD==0&&               //践踏CD为0
-				command2->heroOrder[i]==stun)					   //指令为发动践踏
-			{
-				gameState.AI2HeroInfo[i].stunCD=STUN_ORIGIN_CD-STUN_CD_REDUCE_PER_LEVEL*gameState.AI2HeroInfo[i].heroTechTree.stunLevel; //确定CD
-				gameState.AI2HeroInfo[i].StunForwardWait=STUN_FORWARD_SWING;
-				gameState.AI2HeroInfo[i].StunBackWait=STUN_BACK_SWING;   //确定前,后摇
-				NEW = true;   //表示践踏发动成功
-			}
-			if(gameState.AI2HeroInfo[i].StunForwardWait==0&&gameState.AI2HeroInfo[i].StunBackWait==STUN_BACK_SWING)
-			{
-				for(int j=0;j<2;j++)
-				{
-					int add = ((j>=i)?1:0);
-					if(Distance(gameState.AI2HeroInfo[j+add].heroPosition,gameState.AI2HeroInfo[i].heroPosition)<=STUN_RADIUS)
-					{
-						gameState.AI2HeroInfo[j+add].AttackBackWait=0;
-						gameState.AI2HeroInfo[j+add].AttackForwardWait=0;
-						/*gameState.AI2HeroInfo[j+add].FastwalkBackWait=0;
-						gameState.AI2HeroInfo[j+add].FastwalkForwardWait=0;
-						gameState.AI2HeroInfo[j+add].FastwalkLast=0;*/
-						gameState.AI2HeroInfo[j+add].StunLast=STUN_ROUNDS_ORIGIN+STUN_ROUNDS_PER_LEVEL*gameState.AI2HeroInfo[i].heroTechTree.stunLevel;
-						gameState.AI2HeroInfo[j+add].currentHP-=STUN_ORINGIN_DAMAGE+STUN_DAMAGE_PER_LEVEL*gameState.AI2HeroInfo[i].heroTechTree.stunLevel;
-						if(gameState.AI2HeroInfo[j+add].StunForwardWait==0&&
-							gameState.AI2HeroInfo[j+add].StunBackWait==STUN_BACK_SWING)
-						{
-							;
-						}
-						else
-						{
-							//gameState.AI2HeroInfo[j+add].StunBackWait=0;
-							gameState.AI2HeroInfo[j+add].StunForwardWait=0;
-						}
-					}
-				}
-				for(int j=0;j<3;j++)
-				{
-					if(Distance(gameState.AI1HeroInfo[j].heroPosition,gameState.AI2HeroInfo[i].heroPosition)<=STUN_RADIUS)
-					{
-						gameState.AI1HeroInfo[j].AttackBackWait=0;
-						gameState.AI1HeroInfo[j].AttackForwardWait=0;
-						/*gameState.AI1HeroInfo[j].FastwalkBackWait=0;
-						gameState.AI1HeroInfo[j].FastwalkForwardWait=0;
-						gameState.AI1HeroInfo[j].FastwalkLast=0;*/
-						gameState.AI1HeroInfo[j].StunLast=STUN_ROUNDS_ORIGIN+STUN_ROUNDS_PER_LEVEL*gameState.AI2HeroInfo[i].heroTechTree.stunLevel;
-						gameState.AI1HeroInfo[j].currentHP-=STUN_ORINGIN_DAMAGE+STUN_DAMAGE_PER_LEVEL*gameState.AI2HeroInfo[i].heroTechTree.stunLevel;
-						if(gameState.AI1HeroInfo[j].StunForwardWait==0&&
-							gameState.AI1HeroInfo[j].StunBackWait==STUN_BACK_SWING)
-						{
-							;
-						}
-						else
-						{
-							//gameState.AI1HeroInfo[j].StunBackWait=0;
-							gameState.AI1HeroInfo[j].StunForwardWait=0;
-						}
-					}
-				}
-			}
-			else if(gameState.AI2HeroInfo[i].StunLast!=0)gameState.AI2HeroInfo[i].StunLast--;
+                gameState.AI2HeroInfo[i].stunCD==0&&               //践踏CD为0
+                command2->heroOrder[i]==stun)					   //指令为发动践踏
+            {
+                gameState.AI2HeroInfo[i].stunCD=STUN_ORIGIN_CD-STUN_CD_REDUCE_PER_LEVEL*gameState.AI2HeroInfo[i].heroTechTree.stunLevel; //确定CD
+                gameState.AI2HeroInfo[i].StunForwardWait=STUN_FORWARD_SWING;
+                gameState.AI2HeroInfo[i].StunBackWait=STUN_BACK_SWING;   //确定前,后摇
+                NEW = true;   //表示践踏发动成功
+            }
+            if(gameState.AI2HeroInfo[i].StunForwardWait==0&&gameState.AI2HeroInfo[i].StunBackWait==STUN_BACK_SWING)
+            {
+                for(int j=0;j<2;j++)
+                {
+                    int add = ((j>=i)?1:0);
+                    if(Distance(gameState.AI2HeroInfo[j+add].heroPosition,gameState.AI2HeroInfo[i].heroPosition)<=STUN_RADIUS)
+                    {
+                        gameState.AI2HeroInfo[j+add].AttackBackWait=0;
+                        gameState.AI2HeroInfo[j+add].AttackForwardWait=0;
+                        /*gameState.AI2HeroInfo[j+add].FastwalkBackWait=0;
+                        gameState.AI2HeroInfo[j+add].FastwalkForwardWait=0;
+                        gameState.AI2HeroInfo[j+add].FastwalkLast=0;*/
+                        gameState.AI2HeroInfo[j+add].StunLast=STUN_ROUNDS_ORIGIN+STUN_ROUNDS_PER_LEVEL*gameState.AI2HeroInfo[i].heroTechTree.stunLevel;
+                        gameState.AI2HeroInfo[j+add].currentHP-=STUN_ORINGIN_DAMAGE+STUN_DAMAGE_PER_LEVEL*gameState.AI2HeroInfo[i].heroTechTree.stunLevel;
+                        if(gameState.AI2HeroInfo[j+add].StunForwardWait==0&&
+                            gameState.AI2HeroInfo[j+add].StunBackWait==STUN_BACK_SWING)
+                        {
+                            ;
+                        }
+                        else
+                        {
+                            //gameState.AI2HeroInfo[j+add].StunBackWait=0;
+                            gameState.AI2HeroInfo[j+add].StunForwardWait=0;
+                        }
+                    }
+                }
+                for(int j=0;j<3;j++)
+                {
+                    if(Distance(gameState.AI1HeroInfo[j].heroPosition,gameState.AI2HeroInfo[i].heroPosition)<=STUN_RADIUS)
+                    {
+                        gameState.AI1HeroInfo[j].AttackBackWait=0;
+                        gameState.AI1HeroInfo[j].AttackForwardWait=0;
+                        /*gameState.AI1HeroInfo[j].FastwalkBackWait=0;
+                        gameState.AI1HeroInfo[j].FastwalkForwardWait=0;
+                        gameState.AI1HeroInfo[j].FastwalkLast=0;*/
+                        gameState.AI1HeroInfo[j].StunLast=STUN_ROUNDS_ORIGIN+STUN_ROUNDS_PER_LEVEL*gameState.AI2HeroInfo[i].heroTechTree.stunLevel;
+                        gameState.AI1HeroInfo[j].currentHP-=STUN_ORINGIN_DAMAGE+STUN_DAMAGE_PER_LEVEL*gameState.AI2HeroInfo[i].heroTechTree.stunLevel;
+                        if(gameState.AI1HeroInfo[j].StunForwardWait==0&&
+                            gameState.AI1HeroInfo[j].StunBackWait==STUN_BACK_SWING)
+                        {
+                            ;
+                        }
+                        else
+                        {
+                            //gameState.AI1HeroInfo[j].StunBackWait=0;
+                            gameState.AI1HeroInfo[j].StunForwardWait=0;
+                        }
+                    }
+                }
+            }
+            else if(gameState.AI2HeroInfo[i].StunLast!=0)gameState.AI2HeroInfo[i].StunLast--;
             if(gameState.AI2HeroInfo[i].stunCD>0)gameState.AI2HeroInfo[i].stunCD--;
-			if(!NEW)
-			{
-				if(gameState.AI2HeroInfo[i].StunForwardWait==0&&gameState.AI2HeroInfo[i].StunBackWait!=0)
-					gameState.AI2HeroInfo[i].StunBackWait--;
-				if(gameState.AI2HeroInfo[i].StunForwardWait!=0)gameState.AI2HeroInfo[i].StunForwardWait--;
-			}
-		}
-	}
+            if(!NEW)
+            {
+                if(gameState.AI2HeroInfo[i].StunForwardWait==0&&gameState.AI2HeroInfo[i].StunBackWait!=0)
+                    gameState.AI2HeroInfo[i].StunBackWait--;
+                if(gameState.AI2HeroInfo[i].StunForwardWait!=0)gameState.AI2HeroInfo[i].StunForwardWait--;
+            }
+        }
+    }
 
-	void HeroHPRecovery(Status &gameState)
-	{
-		for (int i=0;i<3;i++)
-			if (!gameState.AI1HeroInfo[i].RebornWait)
-			{
-				//Han修改：进神你将min写成max了。。。难怪不扣血。。。
-				gameState.AI1HeroInfo[i].currentHP=std::min(
-					(int)(gameState.AI1HeroInfo[i].currentHP+gameState.AI1HeroInfo[i].heroTechTree.strenth*HP_RECOVERY_PER_STRENTH),
-					HERO_ORIGIN_HP+gameState.AI1HeroInfo[i].heroTechTree.strenth*HP_PER_STRENTH);
-				gameState.AI2HeroInfo[i].currentHP=std::min(
-					(int)(gameState.AI2HeroInfo[i].currentHP+gameState.AI2HeroInfo[i].heroTechTree.strenth*HP_RECOVERY_PER_STRENTH),
-					HERO_ORIGIN_HP+gameState.AI2HeroInfo[i].heroTechTree.strenth*HP_PER_STRENTH);
+    void HeroHPRecovery(Status &gameState)
+    {
+        for (int i=0;i<3;i++)
+            if (!gameState.AI1HeroInfo[i].RebornWait)
+            {
+                //Han修改：进神你将min写成max了。。。难怪不扣血。。。
+                gameState.AI1HeroInfo[i].currentHP=std::min(
+                    (int)(gameState.AI1HeroInfo[i].currentHP+gameState.AI1HeroInfo[i].heroTechTree.strenth*HP_RECOVERY_PER_STRENTH),
+                    HERO_ORIGIN_HP+gameState.AI1HeroInfo[i].heroTechTree.strenth*HP_PER_STRENTH);
+                gameState.AI2HeroInfo[i].currentHP=std::min(
+                    (int)(gameState.AI2HeroInfo[i].currentHP+gameState.AI2HeroInfo[i].heroTechTree.strenth*HP_RECOVERY_PER_STRENTH),
+                    HERO_ORIGIN_HP+gameState.AI2HeroInfo[i].heroTechTree.strenth*HP_PER_STRENTH);
 
-			}
-	}
+            }
+    }
 
     void HeroAttack(Status & gameState,const PlayerCommand &cmd1,const PlayerCommand &cmd2)
     {
@@ -1341,7 +1353,7 @@ namespace DS14
             }
         }
 
-        //捡地方家中的香锅
+        //捡敌方家中的香锅
         //AI1
         for (int i=0;i<3;i++)
         {
@@ -1392,110 +1404,142 @@ namespace DS14
         gameState.swordInfo.groundNumber=now;
     }
 
-	//英雄死亡
-	void logic::HeroDeath(Status & gameState)
-	{
-		for(int i=0;i<3;i++)
-		{
-			if(gameState.AI1HeroInfo[i].currentHP<=0) //若英雄HP为非正且未死亡(后者条件很重要,以防止等待复活的英雄每次都被"死亡")
-			{
-				gameState.AI1HeroInfo[i].AttackBackWait=0;
-				gameState.AI1HeroInfo[i].AttackForwardWait=0;
-				gameState.AI1HeroInfo[i].FastwalkBackWait=0;
-				gameState.AI1HeroInfo[i].FastwalkForwardWait=0;
-				gameState.AI1HeroInfo[i].FastwalkLast=0;
-				gameState.AI1HeroInfo[i].StunBackWait=0;
-				gameState.AI1HeroInfo[i].StunForwardWait=0;
-				gameState.AI1HeroInfo[i].StunLast=0;            //除技能CD外的所有技能与吟唱被取消
-				gameState.AI1HeroInfo[i].currentHP=HERO_ORIGIN_HP+gameState.AI1HeroInfo[i].heroTechTree.strenth*HP_PER_STRENTH;//复活初始的HP
+    //英雄死亡
+    void logic::HeroDeath(Status & gameState)
+    {
+        for(int i=0;i<3;i++)
+        {
+            if(gameState.AI1HeroInfo[i].currentHP<=0) //若英雄HP为非正且未死亡(后者条件很重要,以防止等待复活的英雄每次都被"死亡")
+            {
+                gameState.AI1HeroInfo[i].AttackBackWait=0;
+                gameState.AI1HeroInfo[i].AttackForwardWait=0;
+                gameState.AI1HeroInfo[i].FastwalkBackWait=0;
+                gameState.AI1HeroInfo[i].FastwalkForwardWait=0;
+                gameState.AI1HeroInfo[i].FastwalkLast=0;
+                gameState.AI1HeroInfo[i].StunBackWait=0;
+                gameState.AI1HeroInfo[i].StunForwardWait=0;
+                gameState.AI1HeroInfo[i].StunLast=0;            //除技能CD外的所有技能与吟唱被取消
+                gameState.AI1HeroInfo[i].currentHP=HERO_ORIGIN_HP+gameState.AI1HeroInfo[i].heroTechTree.strenth*HP_PER_STRENTH;//复活初始的HP
                 if(gameState.AI1HeroInfo[i].hasSword)             //若有香锅
-				{
+                {
                     gameState.AI1HeroInfo[i].hasSword=false;         //拿的香锅没了
-                    gameState.swordInfo.groundSwords[gameState.swordInfo.groundNumber]=gameState.AI1HeroInfo[i].heroPosition;//拿的香锅掉地上了
-                    gameState.swordInfo.groundNumber++;
-				}
-				gameState.AI1HeroInfo[i].heroPosition.x=(i+1)*100000;
-				gameState.AI1HeroInfo[i].heroPosition.y=100000;
-				int investment = 0;
-				investment += gameState.AI1HeroInfo[i].heroTechTree.agility * UPDATE_AGILITY_GOLD;
-				investment += gameState.AI1HeroInfo[i].heroTechTree.strenth * UPDATE_STRENTH_GOLD;
-				if(gameState.AI1HeroInfo[i].heroTechTree.attackLevel!=0)
-					investment += (gameState.AI1HeroInfo[i].heroTechTree.attackLevel - 1) * UPDATE_ATTACK_GOLD + LEARN_ATTACK_GOLD;
-				if(gameState.AI1HeroInfo[i].heroTechTree.fastWalkLevel!=0)
-					investment += (gameState.AI1HeroInfo[i].heroTechTree.fastWalkLevel - 1) * UPDATE_FASTWALK_GOLD + LEARN_FASTWALK_GOLD;
-				if(gameState.AI1HeroInfo[i].heroTechTree.stunLevel!=0)
-					investment += (gameState.AI1HeroInfo[i].heroTechTree.stunLevel - 1) * UPDATE_STUN_GOLD + LEARN_STUN_GOLD;
-				gameState.AI1HeroInfo[i].RebornWait=HERO_ORINGIN_REBIRTH_TIME+HERO_REBIRTH_TIME_INCREASE*(investment/100)+1;//计算复活等待回合数
-				gameState.AI2gold+=HERO_GOLD;
-				if(!FIRSTBLOOD)
-				{
-					FIRSTBLOOD=true;
-					gameState.AI2gold+=FIRST_BLOOD_GOLD;
-				}  //对方因击杀英雄以及可能的FIRSTBLOOD致使金钱增加
-			}
-		}
-		for(int i=0;i<3;i++)//对方
-		{
-			if(gameState.AI2HeroInfo[i].currentHP<=0)
-			{
-				gameState.AI2HeroInfo[i].AttackBackWait=0;
-				gameState.AI2HeroInfo[i].AttackForwardWait=0;
-				gameState.AI2HeroInfo[i].FastwalkBackWait=0;
-				gameState.AI2HeroInfo[i].FastwalkForwardWait=0;
-				gameState.AI2HeroInfo[i].FastwalkLast=0;
-				gameState.AI2HeroInfo[i].StunBackWait=0;
-				gameState.AI2HeroInfo[i].StunForwardWait=0;
-				gameState.AI2HeroInfo[i].StunLast=0;
-				gameState.AI2HeroInfo[i].currentHP=HERO_ORIGIN_HP+gameState.AI2HeroInfo[i].heroTechTree.strenth*HP_PER_STRENTH;//复活初始的HP
+                    if(gameState.swordInfo.groundNumber < MAX_GOUNDSWORD_NUMBER)
+                    {
+                                gameState.swordInfo.groundSwords[gameState.swordInfo.groundNumber]=gameState.AI1HeroInfo[i].heroPosition;//拿的香锅掉地上了
+                                gameState.swordInfo.groundNumber++;
+                    }
+                    else
+                    {
+                        for(int i = 0; i<MAX_GOUNDSWORD_NUMBER-1; i++)
+                        {
+                            gameState.swordInfo.groundSwords[i] = gameState.swordInfo.groundSwords[i+1];
+                        }
+                        gameState.swordInfo.groundSwords[MAX_GOUNDSWORD_NUMBER-1] = gameState.AI1HeroInfo[i].heroPosition;
+                    }
+                }
+                gameState.AI1HeroInfo[i].heroPosition.x=(i+1)*100000;
+                gameState.AI1HeroInfo[i].heroPosition.y=100000;
+                int investment = 0;
+                investment += gameState.AI1HeroInfo[i].heroTechTree.agility * UPDATE_AGILITY_GOLD;
+                investment += gameState.AI1HeroInfo[i].heroTechTree.strenth * UPDATE_STRENTH_GOLD;
+                if(gameState.AI1HeroInfo[i].heroTechTree.attackLevel!=0)
+                    investment += (gameState.AI1HeroInfo[i].heroTechTree.attackLevel - 1) * UPDATE_ATTACK_GOLD + LEARN_ATTACK_GOLD;
+                if(gameState.AI1HeroInfo[i].heroTechTree.fastWalkLevel!=0)
+                    investment += (gameState.AI1HeroInfo[i].heroTechTree.fastWalkLevel - 1) * UPDATE_FASTWALK_GOLD + LEARN_FASTWALK_GOLD;
+                if(gameState.AI1HeroInfo[i].heroTechTree.stunLevel!=0)
+                    investment += (gameState.AI1HeroInfo[i].heroTechTree.stunLevel - 1) * UPDATE_STUN_GOLD + LEARN_STUN_GOLD;
+                gameState.AI1HeroInfo[i].RebornWait=HERO_ORINGIN_REBIRTH_TIME+HERO_REBIRTH_TIME_INCREASE*(investment/100)+1;//计算复活等待回合数
+                gameState.AI2gold+=HERO_GOLD;
+                if(!FIRSTBLOOD)
+                {
+                    FIRSTBLOOD=true;
+                    gameState.AI2gold+=FIRST_BLOOD_GOLD;
+                }  //对方因击杀英雄以及可能的FIRSTBLOOD致使金钱增加
+            }
+        }
+        for(int i=0;i<3;i++)//对方
+        {
+            if(gameState.AI2HeroInfo[i].currentHP<=0)
+            {
+                gameState.AI2HeroInfo[i].AttackBackWait=0;
+                gameState.AI2HeroInfo[i].AttackForwardWait=0;
+                gameState.AI2HeroInfo[i].FastwalkBackWait=0;
+                gameState.AI2HeroInfo[i].FastwalkForwardWait=0;
+                gameState.AI2HeroInfo[i].FastwalkLast=0;
+                gameState.AI2HeroInfo[i].StunBackWait=0;
+                gameState.AI2HeroInfo[i].StunForwardWait=0;
+                gameState.AI2HeroInfo[i].StunLast=0;
+                gameState.AI2HeroInfo[i].currentHP=HERO_ORIGIN_HP+gameState.AI2HeroInfo[i].heroTechTree.strenth*HP_PER_STRENTH;//复活初始的HP
                 if(gameState.AI2HeroInfo[i].hasSword)             //若有香锅
-				{
+                {
                     gameState.AI2HeroInfo[i].hasSword=false;         //拿的香锅没了
-                    gameState.swordInfo.groundSwords[gameState.swordInfo.groundNumber]=gameState.AI2HeroInfo[i].heroPosition;//拿的香锅掉地上了
-                    gameState.swordInfo.groundNumber++;
-				}
-				gameState.AI2HeroInfo[i].heroPosition.x=100000;
-				gameState.AI2HeroInfo[i].heroPosition.y=(i+1)*100000;
-				int investment = 0;
-				investment += gameState.AI2HeroInfo[i].heroTechTree.agility * UPDATE_AGILITY_GOLD;
-				investment += gameState.AI2HeroInfo[i].heroTechTree.strenth * UPDATE_STRENTH_GOLD;
-				if(gameState.AI2HeroInfo[i].heroTechTree.attackLevel!=0)
-					investment += (gameState.AI2HeroInfo[i].heroTechTree.attackLevel - 1) * UPDATE_ATTACK_GOLD + LEARN_ATTACK_GOLD;
-				if(gameState.AI2HeroInfo[i].heroTechTree.fastWalkLevel!=0)
-					investment += (gameState.AI2HeroInfo[i].heroTechTree.fastWalkLevel - 1) * UPDATE_FASTWALK_GOLD + LEARN_FASTWALK_GOLD;
-				if(gameState.AI2HeroInfo[i].heroTechTree.stunLevel!=0)
-					investment += (gameState.AI2HeroInfo[i].heroTechTree.stunLevel - 1) * UPDATE_STUN_GOLD + LEARN_STUN_GOLD;
-				gameState.AI2HeroInfo[i].RebornWait=HERO_ORINGIN_REBIRTH_TIME+HERO_REBIRTH_TIME_INCREASE*(investment/100)+1;
-				gameState.AI1gold+=HERO_GOLD;
-				if(!FIRSTBLOOD)
-				{
-					FIRSTBLOOD=true;
-					gameState.AI1gold+=FIRST_BLOOD_GOLD;
-				}
-			}
-		}
-	}
+                    if(gameState.swordInfo.groundNumber < MAX_GOUNDSWORD_NUMBER)
+                    {
+                                gameState.swordInfo.groundSwords[gameState.swordInfo.groundNumber]=gameState.AI2HeroInfo[i].heroPosition;//拿的香锅掉地上了
+                                gameState.swordInfo.groundNumber++;
+                    }
+                    else
+                    {
+                        for(int i = 0; i<MAX_GOUNDSWORD_NUMBER-1; i++)
+                        {
+                            gameState.swordInfo.groundSwords[i] = gameState.swordInfo.groundSwords[i+1];
+                        }
+                        gameState.swordInfo.groundSwords[MAX_GOUNDSWORD_NUMBER-1] = gameState.AI2HeroInfo[i].heroPosition;
+                    }
+                }
+                gameState.AI2HeroInfo[i].heroPosition.x=100000;
+                gameState.AI2HeroInfo[i].heroPosition.y=(i+1)*100000;
+                int investment = 0;
+                investment += gameState.AI2HeroInfo[i].heroTechTree.agility * UPDATE_AGILITY_GOLD;
+                investment += gameState.AI2HeroInfo[i].heroTechTree.strenth * UPDATE_STRENTH_GOLD;
+                if(gameState.AI2HeroInfo[i].heroTechTree.attackLevel!=0)
+                    investment += (gameState.AI2HeroInfo[i].heroTechTree.attackLevel - 1) * UPDATE_ATTACK_GOLD + LEARN_ATTACK_GOLD;
+                if(gameState.AI2HeroInfo[i].heroTechTree.fastWalkLevel!=0)
+                    investment += (gameState.AI2HeroInfo[i].heroTechTree.fastWalkLevel - 1) * UPDATE_FASTWALK_GOLD + LEARN_FASTWALK_GOLD;
+                if(gameState.AI2HeroInfo[i].heroTechTree.stunLevel!=0)
+                    investment += (gameState.AI2HeroInfo[i].heroTechTree.stunLevel - 1) * UPDATE_STUN_GOLD + LEARN_STUN_GOLD;
+                gameState.AI2HeroInfo[i].RebornWait=HERO_ORINGIN_REBIRTH_TIME+HERO_REBIRTH_TIME_INCREASE*(investment/100)+1;
+                gameState.AI1gold+=HERO_GOLD;
+                if(!FIRSTBLOOD)
+                {
+                    FIRSTBLOOD=true;
+                    gameState.AI1gold+=FIRST_BLOOD_GOLD;
+                }
+            }
+        }
+    }
 
-	void logic::update(PlayerCommand * cmd1,PlayerCommand * cmd2)
-	{
-		gameState.roundNumber++;//回合数加1
-		AddGold(gameState);
-		Preparation(gameState);
-		UpdateTree(gameState, cmd1, cmd2);
-        //qDebug()<<"3";
-		HeroMove(gameState,cmd1,cmd2);
-       // qDebug()<<"4";
-		HeroFastWalk(gameState,cmd1,cmd2);
-		HeroStun(gameState,cmd1,cmd2);
-		HeroHPRecovery(gameState);
-		HeroAttack(gameState,* cmd1,* cmd2);
-		HeroMissile(gameState,* cmd1,* cmd2);
+    void logic::update(PlayerCommand * cmd1,PlayerCommand * cmd2)
+    {
+        //qDebug() << 'a';
+        gameState.roundNumber++;//回合数加1
+        AddGold(gameState);
+        Preparation(gameState);
+        UpdateTree(gameState, cmd1, cmd2);
+        //////qDebug()<<"3";
+        //qDebug() << 'b';
+        HeroMove(gameState,cmd1,cmd2);
+        //qDebug() << 'c';
+       // ////qDebug()<<"4";
+        HeroFastWalk(gameState,cmd1,cmd2);
+        //qDebug() << 'd';
+        HeroStun(gameState,cmd1,cmd2);
+        //qDebug() << 'e';
+        HeroHPRecovery(gameState);
+        //qDebug() << 'f';
+        HeroAttack(gameState,* cmd1,* cmd2);
+        //qDebug() << 'g';
+        HeroMissile(gameState,* cmd1,* cmd2);
+        //qDebug() << 'h';
         HeroSword(gameState);
-		HeroDeath(gameState);
-	}
+        //qDebug() << 'i';
+        HeroDeath(gameState);
+        //qDebug() << 'j';
+    }
 
-	Status logic::getStatus()
-	{
-		return gameState;
-	}
+    Status logic::getStatus()
+    {
+        return gameState;
+    }
 
 }

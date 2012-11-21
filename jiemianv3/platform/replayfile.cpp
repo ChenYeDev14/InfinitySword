@@ -1,28 +1,41 @@
 #include "replayfile.h"
 #include <QDate>
 #include <QTime>
-
+#include <QDebug>
 using namespace DS14;
 using namespace std;
 
 
-ReplayFile::ReplayFile() { newfile = false;}
+ReplayFile::ReplayFile(bool testBattle) { newfile = false; test_battle = testBattle;}
 
 bool ReplayFile::NewFile(QString playerName1, QString playerName2, QString mapName)
 {
     QDate date = QDate::currentDate();
     QTime time = QTime::currentTime();
-    QString fileName = "RepFiles/" + playerName1 + "_vs_" + playerName2 + "_inMap_" + mapName + "_atTime_";
+    QString fileName;
+    if (test_battle)
+        fileName = "plugins/";
+    else
+        fileName = "RepFiles/";
+    fileName += playerName1 + "_vs_" + playerName2 + "_inMap_" + mapName + "_atTime_";
     fileName.append(date.toString("yyyy-MM-dd_")).append(time.toString("hh-mm-ss")).append(".rep");
+    //qDebug <<fileName;
     file.setFileName(fileName);
     newfile = file.open(QIODevice::WriteOnly);
+    //qDebug << newfile;
     return newfile;
 }
 
-void ReplayFile::WriteInitialInfo(int basic_version, int logic_version, const DS14::PlayerInfo &playerInfo1, const DS14::PlayerInfo &playerInfo2)
+void ReplayFile::WriteInitialInfo(int basic_version, int logic_version,
+                                  const DS14::PlayerInfo &playerInfo1, const DS14::PlayerInfo &playerInfo2)
 {
-
-    file.write((char*)(&basic_version), sizeof(int));
+    if (test_battle)
+    {
+        int virtual_basic_version = basic_version + 940204;
+        file.write((char*)(&virtual_basic_version), sizeof(int));
+    }
+    else
+        file.write((char*)(&basic_version), sizeof(int));
     file.write((char*)(&logic_version), sizeof(int));
     file.write((char*)(&playerInfo1), sizeof(PlayerInfo));
     file.write((char*)(&playerInfo2), sizeof(PlayerInfo));
@@ -59,6 +72,7 @@ void ReplayFile::WriteWinner(int round, int winSide)
     file.putChar('e');
     file.write((char*)(&winSide), sizeof(int));
     file.close();
+    newfile = false;
 }
 
 bool ReplayFile::OpenFile(QString path)
@@ -73,6 +87,7 @@ bool ReplayFile::ReadInitialInfo(DS14::PlayerInfo &playerInfo1, DS14::PlayerInfo
     int basic_version, logic_version;
     file.read((char*)&basic_version, sizeof(int));
     file.read((char*)&logic_version, sizeof(int));
+    if (test_battle) basic_version -= 940204;
     if (basic_version != VERSION_BASIC || logic_version != VERSION_LOGIC)
     {
         file.close();
@@ -136,10 +151,12 @@ bool ReplayFile::ReadAllRoundInfo(int &roundNum, DS14::Status *statusList[])
         }
         for (; cur < next; cur++)
         {            
+
             _logic.update(&pcmd1, &pcmd2);
             statusList[cur] = new Status;
             *statusList[cur] = _logic.getStatus();
         }
+        qDebug()<<next<<endl;
         if (f == 'e')
         {
             roundNum = cur;
@@ -147,7 +164,9 @@ bool ReplayFile::ReadAllRoundInfo(int &roundNum, DS14::Status *statusList[])
         }
         if (cmd1 != NULL) pcmd1 = *cmd1;
         if (cmd2 != NULL) pcmd2 = *cmd2;
+        if (next == 287) qDebug() << "before";
         _logic.update(&pcmd1, &pcmd2);
+        if (next == 287) qDebug() << "after";
         Status state = _logic.getStatus();
         for(int i=0; i<3; i++)
         {
@@ -181,5 +200,6 @@ void ReplayFile::WriteErrorEnd()
     for (int i = 0; i < 2 * sizeof(PlayerCommand) + 3; i++)
         file.putChar(f);
     file.close();
+    file.remove();
 }
 		

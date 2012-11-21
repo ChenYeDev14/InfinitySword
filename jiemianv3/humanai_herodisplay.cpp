@@ -37,10 +37,10 @@ void heroDisplay::paintEvent(QPaintEvent *e)
     if (heroIndex>2) paint.drawPixmap(10,37,25,25,QPixmap(":/image/hero2.png"));
     else paint.drawPixmap(10,37,25,25,QPixmap(":/image/hero1.png"));
     //Ñª
-    paint.drawText(45,15,75,20,0,QString("HP: "+QString::number(heroInfo.currentHP)+"/"+QString::number(100+10*heroInfo.heroTechTree.strenth)));
+    paint.drawText(35,15,80,20,0,QString("HP:"+QString::number(heroInfo.currentHP)+"/"+QString::number(100+10*heroInfo.heroTechTree.strenth)));
     //ÊôÐÔ
-    paint.drawText(140,15,60,20,0,QString("Str:"+QString::number(heroInfo.heroTechTree.strenth)));
-    paint.drawText(140,45,60,20,0,QString("Agi:"+QString::number(heroInfo.heroTechTree.agility)));
+    paint.drawText(130,15,60,20,0,QString("Str:"+QString::number(heroInfo.heroTechTree.strenth)));
+    paint.drawText(130,45,60,20,0,QString("Agi:"+QString::number(heroInfo.heroTechTree.agility)));
     //¼¼ÄÜ
     if(heroInfo.missileCD==0)
     {

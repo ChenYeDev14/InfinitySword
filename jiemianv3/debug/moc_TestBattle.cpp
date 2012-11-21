@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'TestBattle.h'
 **
-** Created: Wed Oct 24 01:47:07 2012
+** Created: Tue Nov 20 04:27:14 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!

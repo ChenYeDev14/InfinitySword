@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'browser.h'
 **
-** Created: Wed Oct 24 01:32:39 2012
+** Created: Tue Nov 6 14:07:50 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.2)
 **
 ** WARNING! All changes made in this file will be lost!

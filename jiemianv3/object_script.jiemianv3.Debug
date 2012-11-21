@@ -21,12 +21,12 @@ INPUT(
 ./debug\humainai_aithread.o
 ./debug\humanai.o
 ./debug\TestBattle.o
-./debug\test.o
 ./debug\testwidget.o
 ./debug\loginwidget.o
 ./debug\Animation.o
 ./debug\qlabel_real.o
 ./debug\windowsstyle.o
+./debug\test.o
 ./debug\moc_widgetssingle.o
 ./debug\moc_rounditem.o
 ./debug\moc_creator.o
